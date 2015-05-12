@@ -3,12 +3,12 @@ package com.fupm.skeb.androidclient;
 
 public class BodyGame {
 
-    int bulls;
-    int cow;
-    int j = 0;
-    int [] riddle = new int [4];
-    int [] try_num = new int [4];
-    String log = "";
+    private int bulls;
+    private int cow;
+    private int j = 0;
+    private int [] riddle = new int [4];
+    private int [] try_num = new int [4];
+    private String log = "";
     private int attempt = 0;
 
     public BodyGame()
