@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="backgraund_colour">#ff50ff23</color>
+    <color name="button_value">#FFFFAB1B</color>
+    <color name="connect_back">#FFFFB61F</color>
+    <color name="Glass_green">#FF1A6200</color>
+    <color name="red_error">#FFC3150C</color>
+</resources>
