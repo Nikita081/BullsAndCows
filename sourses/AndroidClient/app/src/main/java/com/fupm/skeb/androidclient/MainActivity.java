@@ -11,13 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private EditText email,password;
     private Button btnActTwo,button;
     private Client mClient;
     private static int j=0;
-
+    RequestQueue queue;
+    StringRequest stringRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
