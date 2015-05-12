@@ -17,8 +17,8 @@ import android.widget.Toast;
 public class Game extends ActionBarActivity {
 
     private EditText edTryNumber;
-    int tryNumber = 0;
-    String tryNumberString;
+    private int tryNumber = 0;
+    private String tryNumberString;
     private Button buttonSet;
     private Vibrator winVib;
 
