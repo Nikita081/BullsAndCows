@@ -16,14 +16,14 @@ public class MainActivity extends ActionBarActivity {
     private EditText email,password;
     private Button btnActTwo,button;
     private Client mClient;
-    private static int j=0;
+    private static int j = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hello1 = (TextView)findViewById(R.id.textView);
+        hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
         email = (EditText)findViewById(R.id.editText1);
         password = (EditText)findViewById(R.id.editText2);
