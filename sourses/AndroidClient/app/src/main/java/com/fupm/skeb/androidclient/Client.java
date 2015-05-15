@@ -1,6 +1,7 @@
 package com.fupm.skeb.androidclient;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,10 +15,11 @@ import java.net.Socket;
 public class Client {
     private String serverMessage;
     public static  String serverIP = "192.168.0.101";
-    public static final int port = 2222;
+    public static final int port = 10100;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
-
+    private String TAG = "Client logging";
+    public Socket socket;
     private PrintWriter out;
     private BufferedReader in;
 
@@ -28,20 +30,23 @@ public class Client {
     }
 
 
-    public void sendNumber(String message) {
-        if (out != null && !out.checkError()) {
-            out.println(message);
-            out.flush();
-        }
-    }
     public void sendRiddle(String message) {
         if (out != null && !out.checkError()) {
             out.println(message);
             out.flush();
         }
     }
+    public boolean sendMessage(String message) {
+        if (out != null && !out.checkError()) {
+            out.println(message);
+            out.flush();
+            return true;
+        }
+        return false;
+    }
 
     public void stopClient() {
+
         mRun = false;
     }
 
@@ -57,7 +62,7 @@ public class Client {
             Log.e("TCP Client", "C: Connecting...");
 
             // create a socket to make the connection with the server
-            Socket socket = new Socket(serverAddr, port);
+            socket = new Socket(serverAddr, port);
             Log.e("TCP Server IP", serverIP);
             try {
 
@@ -94,8 +99,12 @@ public class Client {
                 Log.e("TCP", "S: Error", e);
 
             } finally {
-
+                out.close();
+                in.close();
                 socket.close();
+                Log.i(TAG,"socket closed");
+
+
             }
 
         } catch (Exception e) {

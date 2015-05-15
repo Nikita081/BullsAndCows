@@ -60,7 +60,7 @@
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
         </activity>
         <activity
-            android:name=".OnlineGame"
+            android:name=".GameOnline"
             android:label="@string/title_activity_game_online"
             android:parentActivityName=".ListGame" >
             <meta-data

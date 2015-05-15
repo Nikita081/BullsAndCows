@@ -47,7 +47,7 @@ public class MyAdapter extends BaseAdapter{
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         //check to see if the reused view is null or not, if is not null then reuse it
-        /*if (view == null) {
+        if (view == null) {
             view = mLayoutInflater.inflate(R.layout.list_item, null);
         }
 
@@ -61,7 +61,7 @@ public class MyAdapter extends BaseAdapter{
                 //set the item name on the TextView
                 itemName.setText(stringItem);
             }
-        }*/
+        }
 
         //this method must return the view corresponding to the data at the specified position.
         return view;

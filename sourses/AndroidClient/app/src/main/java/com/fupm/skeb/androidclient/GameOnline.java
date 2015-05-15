@@ -3,42 +3,68 @@ package com.fupm.skeb.androidclient;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class OnlineGame extends ActionBarActivity {
+public class GameOnline extends ActionBarActivity {
     private Button check,riddle;
     private EditText try_number,create_number;
     private ListView own,enemy;
     private Client mClient;
-    private ArrayList<String> myList,enemyList;
+    private String TAG = "Life circle";
     private MyAdapter myAdapter;
     private EnemyAdapter enemyAdapter;
+    private String vkToken = "12345";
+    private ArrayList<String> myList;
+    private ArrayList<String> enemyList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_online);
+        myList = new ArrayList<String>();
+        enemyList = new ArrayList<String>();
         check = (Button)findViewById(R.id.buttonSet);
         riddle =(Button)findViewById(R.id.buttonRiddle);
         try_number = (EditText)findViewById(R.id.tryNumber);
         create_number = (EditText)findViewById(R.id.setRiddle);
-        own = (ListView)findViewById(R.id.listView);
         enemy = (ListView)findViewById(R.id.listView2);
+        own = (ListView)findViewById(R.id.listView);
+
 
         myAdapter = new MyAdapter(this,myList);
-        own.setAdapter(myAdapter);
-        //enemyAdapter = new EnemyAdapter(this,enemyList);
+        //own.setAdapter(myAdapter);
+        enemyAdapter = new EnemyAdapter(this,enemyList);
         //enemy.setAdapter(enemyAdapter);
 
         new MyTask().execute("");
+        //mClient.sendMessage(vkToken);
 
+
+        riddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String riddle = create_number.getText().toString();
+                if(mClient != null){
+                    boolean a = mClient.sendMessage(riddle);
+                    if(a == false){
+                        Log.i(TAG,"can't send riddle");
+                    }
+
+                }
+            }
+        });
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,11 +72,13 @@ public class OnlineGame extends ActionBarActivity {
                 String number = try_number.getText().toString();
 
                 if (mClient != null) {
-                    mClient.sendNumber(number);
+                    mClient.sendMessage(number);
                 }
 
             }
         });
+        Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onCreate()");
     }
 
 
@@ -81,6 +109,61 @@ public class OnlineGame extends ActionBarActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onPause()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onStop()");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onRestart()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onDestroy()");
+    }
+    @Override
+    public void onBackPressed() {
+
+        Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "Back pressed");
+
+        onNavigateUp();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -10,18 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.util.Log;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
-    private EditText email,password;
+
     private Button btnActTwo,button;
-    private Client mClient;
+
     private static int j=0;
     RequestQueue queue;
-    StringRequest stringRequest;
+
+    private static final String uri = "http://192.168.0.101:8000/app/?fname=nikita&lname=hui";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +34,9 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         hello1 = (TextView)findViewById(R.id.textView);
         hello2 = (TextView)findViewById(R.id.textView1);
-        email = (EditText)findViewById(R.id.editText1);
-        password = (EditText)findViewById(R.id.editText2);
-        button = (Button) findViewById(R.id.button);
+        queue =  Volley.newRequestQueue(this);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
-
+        button = (Button)findViewById(R.id.button);
         btnActTwo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -48,56 +51,31 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-
-        new MyTask().execute("");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                String mail = email.getText().toString();
-                String pass = password.getText().toString();
-
-                if (mClient != null) {
-                    //mClient.sendEP(mail,pass);
-                }
-
+            public void onClick(View v) {
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
+                        new Response.Listener<String>(){
+                            @Override
+                            public void onResponse(String response) {
+                                //byte[] b = (byte[])response;
+                                //String out = new String(response);
+                                String a = (String)response;
+                                hello1.setText(a);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        hello1.setText("That didn't work!");
+                    }
+                });
+                queue.add(stringRequest);
             }
         });
+
     }
 
-    public class MyTask extends AsyncTask<String,String,Client> {
 
-        @Override
-        protected Client doInBackground(String... message) {
-
-
-            mClient = new Client(new Client.OnMessageReceived() {
-                @Override
-
-                public void messageReceived(String message) {
-
-                    publishProgress(message);
-                }
-            });
-            mClient.run();
-
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
-
-            if(j==0){
-                hello1.setText(values[0]);
-                j++;
-            }
-            else if(j==1){
-                hello2.setText(values[0]);
-                j--;
-            }
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,0 +1,17 @@
+/sourses/AndroidClient/.gradle
+/sourses/AndroidClient/local.properties
+/sourses/AndroidClient/.idea/workspace.xml
+/sourses/AndroidClient/.idea/libraries
+/sourses/AndroidClient/.DS_Store
+/sourses/AndroidClient/build
+/sourses/AndroidClient/captures
+/sourses/AndroidClient/AndroidClient.iml
+/sourses/AndroidClient/gradlew
+/sourses/AndroidClient/gradlew.bat
+/sourses/AndroidClient/gradle.properties
+/sourses/AndroidClient/gradle
+/sourses/MultyThreadingServer/.settings
+/sourses/MultyThreadingServer/bin
+/sourses/MultyThreadingServer/.project
+/sourses/MultyThreadingServer/.classpath
+/sourses/MultyThreadingServer/target
