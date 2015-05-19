@@ -14,8 +14,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="4"
+        android:ems="10"
         android:id="@+id/tryNumber"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
@@ -23,7 +22,8 @@
         android:layout_marginTop="25dp"
         android:hint="@string/tryNumber"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:inputType="number" />
 
     <Button
         android:layout_width="wrap_content"
