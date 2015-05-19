@@ -14,10 +14,9 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private EditText email,password;
-    private Button btnActTwo,button;
+    private Button btnActTwo, button, btnResult;
     private Client mClient;
     private static int j = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
         password = (EditText)findViewById(R.id.editText2);
         button = (Button) findViewById(R.id.button);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
+        btnResult = (Button) findViewById(R.id.btnResult);
 
         btnActTwo.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -37,6 +37,22 @@ public class MainActivity extends ActionBarActivity {
                     case R.id.btnActTwo:
                         // TODO Call second activity
                         Intent intent = new Intent(MainActivity.this, ListGame.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+
+        btnResult.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.btnResult:
+                        // TODO Call second activity
+                        Intent intent = new Intent(MainActivity.this, Results.class);
                         startActivity(intent);
                         break;
                     default:
