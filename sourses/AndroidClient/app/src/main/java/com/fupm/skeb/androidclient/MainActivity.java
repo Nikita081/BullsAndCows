@@ -21,14 +21,19 @@ import com.android.volley.toolbox.Volley;
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
 
-    private Button btnActTwo,button;
+
+    private Button btnActTwo,button,btnResult;
 
     private static int j=0;
     RequestQueue queue;
 
+
+
     private Client mClient;
 
+
     private static final String uri = "http://192.168.0.101:8000/app/?fname=nikita&lname=hui";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,12 @@ public class MainActivity extends ActionBarActivity {
         hello2 = (TextView)findViewById(R.id.textView1);
         queue =  Volley.newRequestQueue(this);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
+
         button = (Button)findViewById(R.id.button);
+
+        btnResult = (Button) findViewById(R.id.btnResult);
+
+
         btnActTwo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -53,6 +63,26 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
+
+
+
+        btnResult.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.btnResult:
+                        // TODO Call second activity
+                        Intent intent = new Intent(MainActivity.this, Results.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

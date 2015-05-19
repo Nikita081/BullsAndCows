@@ -25,10 +25,13 @@ public class GameOnline extends ActionBarActivity {
     private String TAG = "Life circle";
     private MyAdapter myAdapter;
     private EnemyAdapter enemyAdapter;
+
     private String vkToken = "12345";
     private ArrayList<String> myList;
     private ArrayList<String> enemyList;
 
+
+    private int createNumber = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,13 @@ public class GameOnline extends ActionBarActivity {
         create_number = (EditText)findViewById(R.id.setRiddle);
         enemy = (ListView)findViewById(R.id.listView2);
         own = (ListView)findViewById(R.id.listView);
+
+
+
+        //createNumber = Integer.parseInt(create_number.getText().toString());
+        //isCorrectInput(createNumber);
+
+
 
 
         myAdapter = new MyAdapter(this,myList);
@@ -80,6 +90,21 @@ public class GameOnline extends ActionBarActivity {
         Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onCreate()");
     }
+
+    /*private boolean isCorrectInput(int tryNumber){
+
+        int[] array = new int[4];
+        for(int i = 0; i < 4; i++){
+            array[i] = tryNumber % 10;
+            tryNumber /= 10;
+        }
+        int k = 0;
+        for(int i = 0; i < 3; i++)
+            for(int j = i + 1; j < 4; j++)
+                if (array[i] == array[j]) k++;
+        if (k == 0) return true;
+        else return false;
+    }*/
 
 
     public class MyTask extends AsyncTask<String,String,Client> {

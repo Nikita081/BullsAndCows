@@ -29,7 +29,7 @@ public class BodyGame {
         return bulls;
     }
 
-    public boolean isCorrectInput(int tryNumber){
+    private boolean isCorrectInput(int tryNumber){
 
         int[] array = new int[4];
         for(int i = 0; i < 4; i++){

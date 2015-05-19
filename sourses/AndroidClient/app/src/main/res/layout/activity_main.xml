@@ -22,7 +22,7 @@
         android:layout_width="110sp"
         android:layout_height="50sp"
         android:text="@string/button2"
-        android:id="@+id/button2"
+        android:id="@+id/btnResult"
         android:background="@color/connect_back"
         android:layout_below="@+id/btnActTwo"
         android:layout_marginTop="54dp"
