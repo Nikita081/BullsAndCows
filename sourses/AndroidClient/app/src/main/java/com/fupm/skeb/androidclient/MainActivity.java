@@ -11,12 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -38,9 +32,6 @@ public class MainActivity extends ActionBarActivity {
 
     private Button btnActTwo,button,btnResult;
 
-    private static int j=0;
-    RequestQueue queue;
-
 
 
     private Client mClient;
@@ -55,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
-        queue =  Volley.newRequestQueue(this);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
 
         button = (Button)findViewById(R.id.button);
