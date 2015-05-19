@@ -1,30 +1,19 @@
 package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -35,18 +24,7 @@ import java.net.URL;
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private String TAG  = "MainAct";
-
     private Button btnActTwo,button,btnResult;
-
-    private static int j=0;
-    RequestQueue queue;
-
-
-
-    private Client mClient;
-
-
-
 
 
     @Override
@@ -55,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
-        queue =  Volley.newRequestQueue(this);
+
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
 
         button = (Button)findViewById(R.id.button);
@@ -78,8 +56,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-
-
         btnResult.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -100,37 +76,24 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                URL uri = null;
                 try {
-                    uri = new URL("http://192.168.0.101:10100?data=testmessage");
+                    URL uri = new URL("http://192.168.0.101:10100");
+                    HttpURLConnection urlConnection = (HttpURLConnection) uri.openConnection();
+
+                        urlConnection.setDoOutput(true);
+                        urlConnection.setChunkedStreamingMode(0);
+
+                        PrintWriter out = new PrintWriter(new BufferedWriter(
+                                new OutputStreamWriter(urlConnection.getOutputStream())), true);
+                        out.println("test message!!!!!!!");
+
+                        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+
                 } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-
-                HttpURLConnection urlConnection = null;
-                try {
-                    urlConnection = (HttpURLConnection) uri.openConnection();
+                    Log.e("MalformedURLException"+e,TAG);
                 } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    urlConnection.setDoOutput(true);
-                    urlConnection.setChunkedStreamingMode(0);
-
-
-                    BufferedOutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-                    String mes = "test message!";
-                    byte message[] = mes.getBytes();
-
-                    Log.i(TAG, "message  :::  " + mes);
-                    out.write(message);
-                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    urlConnection.disconnect();
+                    Log.e("IOException"+e,TAG);
                 }
 
 
