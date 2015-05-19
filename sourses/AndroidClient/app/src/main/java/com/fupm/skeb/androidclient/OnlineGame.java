@@ -21,6 +21,7 @@ public class OnlineGame extends ActionBarActivity {
     private ArrayList<String> myList,enemyList;
     private MyAdapter myAdapter;
     private EnemyAdapter enemyAdapter;
+    private int createNumber = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,13 @@ public class OnlineGame extends ActionBarActivity {
         create_number = (EditText)findViewById(R.id.setRiddle);
         own = (ListView)findViewById(R.id.listView);
         enemy = (ListView)findViewById(R.id.listView2);
+
+
+        //createNumber = Integer.parseInt(create_number.getText().toString());
+        //isCorrectInput(createNumber);
+
+
+
 
         myAdapter = new MyAdapter(this,myList);
         own.setAdapter(myAdapter);
@@ -52,6 +60,21 @@ public class OnlineGame extends ActionBarActivity {
             }
         });
     }
+
+    /*private boolean isCorrectInput(int tryNumber){
+
+        int[] array = new int[4];
+        for(int i = 0; i < 4; i++){
+            array[i] = tryNumber % 10;
+            tryNumber /= 10;
+        }
+        int k = 0;
+        for(int i = 0; i < 3; i++)
+            for(int j = i + 1; j < 4; j++)
+                if (array[i] == array[j]) k++;
+        if (k == 0) return true;
+        else return false;
+    }*/
 
 
     public class MyTask extends AsyncTask<String,String,Client> {
