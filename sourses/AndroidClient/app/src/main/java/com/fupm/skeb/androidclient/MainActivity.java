@@ -18,9 +18,23 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
-
+    private String TAG  = "MainAct";
 
     private Button btnActTwo,button,btnResult;
 
@@ -32,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
     private Client mClient;
 
 
-    private static final String uri = "http://192.168.0.101:8000/app/?fname=nikita&lname=hui";
+
 
 
     @Override
@@ -86,24 +100,43 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
-                        new Response.Listener<String>(){
-                            @Override
-                            public void onResponse(String response) {
-                                //byte[] b = (byte[])response;
-                                //String out = new String(response);
-                                String a = (String)response;
-                                hello1.setText(a);
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        hello1.setText("That didn't work!");
-                    }
-                });
-                queue.add(stringRequest);
+                URL uri = null;
+                try {
+                    uri = new URL("http://192.168.0.101:10100?data=testmessage");
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
+                HttpURLConnection urlConnection = null;
+                try {
+                    urlConnection = (HttpURLConnection) uri.openConnection();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setChunkedStreamingMode(0);
+
+
+                    BufferedOutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+                    String mes = "test message!";
+                    byte message[] = mes.getBytes();
+
+                    Log.i(TAG, "message  :::  " + mes);
+                    out.write(message);
+                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    urlConnection.disconnect();
+                }
+
+
             }
         });
+
 
     }
 

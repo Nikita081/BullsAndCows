@@ -91,21 +91,6 @@ public class GameOnline extends ActionBarActivity {
         Log.i(TAG, "onCreate()");
     }
 
-    /*private boolean isCorrectInput(int tryNumber){
-
-        int[] array = new int[4];
-        for(int i = 0; i < 4; i++){
-            array[i] = tryNumber % 10;
-            tryNumber /= 10;
-        }
-        int k = 0;
-        for(int i = 0; i < 3; i++)
-            for(int j = i + 1; j < 4; j++)
-                if (array[i] == array[j]) k++;
-        if (k == 0) return true;
-        else return false;
-    }*/
-
 
     public class MyTask extends AsyncTask<String,String,Client> {
 

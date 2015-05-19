@@ -14,7 +14,7 @@ import java.net.Socket;
 
 public class Client {
     private String serverMessage;
-    public static  String serverIP = "192.168.0.101";
+    public static  String serverIP = "10.55.126.14";
     public static final int port = 10100;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
@@ -122,3 +122,19 @@ public class Client {
 }
 
 
+                /*StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
+                        new Response.Listener<String>(){
+                            @Override
+                            public void onResponse(String response) {
+                                //byte[] b = (byte[])response;
+                                //String out = new String(response);
+                                String a = (String)response;
+                                hello1.setText(a);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        hello1.setText("That didn't work!");
+                    }
+                });
+                queue.add(stringRequest);*/
