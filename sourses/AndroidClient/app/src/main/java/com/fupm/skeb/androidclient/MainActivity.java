@@ -26,13 +26,15 @@ public class MainActivity extends ActionBarActivity {
     private static int j=0;
     RequestQueue queue;
 
+    private Client mClient;
+
     private static final String uri = "http://192.168.0.101:8000/app/?fname=nikita&lname=hui";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hello1 = (TextView)findViewById(R.id.textView);
+        hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
         queue =  Volley.newRequestQueue(this);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
