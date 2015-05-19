@@ -28,5 +28,4 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.vk.androidsdk:library:1.2.1'
-    compile project(':Volley')
 }
