@@ -142,12 +142,12 @@ public class LoginActivity extends FragmentActivity {
                 }
             });
 
-            getView().findViewById(R.id.force_oauth_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    VKSdk.authorize(sMyScope, true, true);
-                }
-            });
+//            getView().findViewById(R.id.force_oauth_button).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    VKSdk.authorize(sMyScope, true, true);
+//                }
+//            });
         }
     }
     public static class LogoutFragment extends android.support.v4.app.Fragment {
