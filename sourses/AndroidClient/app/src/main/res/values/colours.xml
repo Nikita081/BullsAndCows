@@ -5,4 +5,8 @@
     <color name="connect_back">#FFFFB61F</color>
     <color name="Glass_green">#FF1A6200</color>
     <color name="red_error">#FFC3150C</color>
+    <color name="green">#ff238526</color>
+    <color name="grey">#8f9a979a</color>
+    <color name="red">#eeab0d0b</color>
+
 </resources>
