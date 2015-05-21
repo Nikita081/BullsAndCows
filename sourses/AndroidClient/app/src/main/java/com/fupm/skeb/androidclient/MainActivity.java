@@ -8,18 +8,38 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
 
 import static android.os.SystemClock.sleep;
 
+import android.util.Log;
+
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private String TAG  = "MainAct";
+
     private Button btnActTwo,button,btnResult;
     private HttpClient mClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +47,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
-
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
 
         button = (Button)findViewById(R.id.button);
@@ -50,6 +69,8 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+
         btnResult.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -70,6 +91,7 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String number ="Test Message!";
 
                 if (mClient != null) {
@@ -85,10 +107,13 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+
     public class MyTask extends AsyncTask<String,String,Client> {
+
 
         @Override
         protected Client doInBackground(String... message) {
+
 
 
             mClient = new HttpClient(new HttpClient.OnMessageReceived() {

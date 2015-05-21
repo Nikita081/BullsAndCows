@@ -21,6 +21,9 @@ public class Game extends ActionBarActivity {
     private String tryNumberString;
     private Button buttonSet;
     private Vibrator winVib;
+    private int[] mycount = new int[10];
+    private Button [] arrayButton = new Button[10];
+
 
     BodyGame bullcow  = new BodyGame();
 
@@ -28,6 +31,11 @@ public class Game extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        set(arrayButton, mycount);
+        for (int j = 0; j<10; j++){
+            change(arrayButton[j], mycount[j]);
+        }
 
         buttonSet = (Button) findViewById(R.id.buttonSet);
         edTryNumber = (EditText) findViewById(R.id.tryNumber);
@@ -49,7 +57,7 @@ public class Game extends ActionBarActivity {
                     int bulls = bullcow.countALL(tryNumber);
 
                     if (bulls == 4) {
-
+                        winVib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                         AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
                         builder.setTitle(R.string.compliment1)
                                 .setMessage(bullcow.numberAttempts())
@@ -63,8 +71,7 @@ public class Game extends ActionBarActivity {
                                         });
                         AlertDialog alert = builder.create();
                         alert.show();
-                        winVib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                    }
+                        }
 
                     String st = bullcow.giveLog(tryNumberString);
                     text.setText(st);
@@ -97,6 +104,54 @@ public class Game extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void set(Button[] a, int[] count){
+        a [0] = (Button)findViewById(R.id.number01);
+        a [1] = (Button)findViewById(R.id.number02);
+        a [2] = (Button)findViewById(R.id.number03);
+        a [3] = (Button)findViewById(R.id.number04);
+        a [4] = (Button)findViewById(R.id.number05);
+        a [5] = (Button)findViewById(R.id.number06);
+        a [6] = (Button)findViewById(R.id.number07);
+        a [7] = (Button)findViewById(R.id.number08);
+        a [8] = (Button)findViewById(R.id.number09);
+        a [9] = (Button)findViewById(R.id.number00);
+
+        for (int i=0; i<10; i++){
+            a[i].setTextColor(getResources().getColor(R.color.grey));
+            count[i]=0;
+        }
+    }
+
+
+    private void change (final Button a, final int count) {
+        a.setOnClickListener(new View.OnClickListener() {
+            int mycount = count;
+            @Override
+            public void onClick(View v) {
+
+
+                if (mycount == 0) {
+                    a.setTextColor(getResources().getColor(R.color.green));
+                    mycount = 1;
+                    return;
+                }
+
+                if (mycount == 1) {
+                    a.setTextColor(getResources().getColor(R.color.red));
+                    mycount = 2;
+                    return;
+                }
+
+                if (mycount == 2) {
+                    a.setTextColor(getResources().getColor(R.color.grey));
+                    mycount = 0;
+                    return;
+                }
+            }
+        });
+
     }
 }
 
