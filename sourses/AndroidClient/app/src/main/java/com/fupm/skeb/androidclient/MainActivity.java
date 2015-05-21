@@ -1,6 +1,7 @@
 package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,24 +9,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.util.Log;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+
+import static android.os.SystemClock.sleep;
+
 
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private String TAG  = "MainAct";
     private Button btnActTwo,button,btnResult;
-
+    private HttpClient mClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
 
         btnResult = (Button) findViewById(R.id.btnResult);
 
-
+        new MyTask().execute("");
         btnActTwo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -76,34 +70,47 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    URL uri = new URL("http://192.168.0.101:10100");
-                    HttpURLConnection urlConnection = (HttpURLConnection) uri.openConnection();
+                String number ="Test Message!";
 
-                        urlConnection.setDoOutput(true);
-                        urlConnection.setChunkedStreamingMode(0);
-
-                        PrintWriter out = new PrintWriter(new BufferedWriter(
-                                new OutputStreamWriter(urlConnection.getOutputStream())), true);
-                        out.println("test message!!!!!!!");
-
-                        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-
-                } catch (MalformedURLException e) {
-                    Log.e("MalformedURLException"+e,TAG);
-                } catch (IOException e) {
-                    Log.e("IOException"+e,TAG);
+                if (mClient != null) {
+                    try {
+                        mClient.sendMessage(number);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-
             }
         });
 
 
     }
 
+    public class MyTask extends AsyncTask<String,String,Client> {
 
+        @Override
+        protected Client doInBackground(String... message) {
+
+
+            mClient = new HttpClient(new HttpClient.OnMessageReceived() {
+                @Override
+
+                public void messageReceived(String message) {
+
+                    publishProgress(message);
+                }
+            });
+            mClient.run();
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+            hello1.setText(values[0]);
+            sleep(100);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
