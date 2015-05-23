@@ -25,6 +25,7 @@
     <string name="connect">Это нужно убрать</string>
     <string name="title_activity_results">Results</string>
     <string name="deleteStatistic">Удалить статистику</string>
+    <string name="correctInputNumber">Загадайте число из 4 различных цифр</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="number1">1</string>

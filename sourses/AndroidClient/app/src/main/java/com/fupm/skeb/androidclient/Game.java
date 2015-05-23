@@ -27,7 +27,7 @@ public class Game extends ActionBarActivity {
     private Button [] arrayButton = new Button[10];
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_COUNTER = "single_result";
-    private SharedPreferences mSettings;// = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+    private SharedPreferences mSettings;
 
 
     BodyGame bullcow  = new BodyGame();
