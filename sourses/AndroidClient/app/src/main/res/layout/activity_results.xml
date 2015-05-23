@@ -11,17 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="Кнопка" />
+        android:text="@string/deleteStatistic"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="160dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:id="@+id/resultView"
-        android:layout_marginTop="183dp"
+        android:layout_above="@+id/buttonCrowsCounter"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="144dp"
+        android:layout_alignRight="@+id/buttonCrowsCounter"
+        android:layout_alignEnd="@+id/buttonCrowsCounter" />
 
 </RelativeLayout>

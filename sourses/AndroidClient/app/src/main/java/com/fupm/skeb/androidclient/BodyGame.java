@@ -99,4 +99,8 @@ public class BodyGame {
         }
         return message;
     }
+
+    public int getAttempt(){
+        return attempt;
+    }
 }

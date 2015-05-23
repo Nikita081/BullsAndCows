@@ -22,16 +22,21 @@ public class Results extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-       mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-       mInfoTextView = (TextView) findViewById(R.id.resultView);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mInfoTextView = (TextView) findViewById(R.id.resultView);
     }
 
     public void onClick(View v) {
         // Выводим на экран
-        mInfoTextView.setText("Лучший результат " + ++mCounter + " ходов");
+        SharedPreferences.Editor editor = mSettings.edit();
+        mCounter = 0;
+        editor.putInt(APP_PREFERENCES_COUNTER, mCounter);
+        editor.apply();
+        //onResume();
+        mInfoTextView.setText("Лучший результат " + mCounter + " ходов");
     }
 
-    @Override
+   @Override
     protected void onResume() {
         super.onResume();
 
@@ -39,10 +44,10 @@ public class Results extends ActionBarActivity {
             // Получаем число из настроек
             mCounter = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
             // Выводим на экран данные из настроек
-            mInfoTextView.setText("Лучший результат " + ++mCounter + " ходов");
+            mInfoTextView.setText("Лучший результат " + mCounter + " ходов");
         }
     }
-
+/*
     @Override
     protected void onPause() {
         super.onPause();
@@ -50,5 +55,5 @@ public class Results extends ActionBarActivity {
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putInt(APP_PREFERENCES_COUNTER, mCounter);
         editor.apply();
-    }
+    }*/
 }

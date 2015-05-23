@@ -1,7 +1,9 @@
 package com.fupm.skeb.androidclient;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
@@ -23,6 +25,9 @@ public class Game extends ActionBarActivity {
     private Vibrator winVib;
     private int[] mycount = new int[10];
     private Button [] arrayButton = new Button[10];
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_COUNTER = "single_result";
+    private SharedPreferences mSettings;// = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
 
     BodyGame bullcow  = new BodyGame();
@@ -33,7 +38,7 @@ public class Game extends ActionBarActivity {
         setContentView(R.layout.activity_game);
 
         set(arrayButton, mycount);
-        for (int j = 0; j<10; j++){
+        for (int j = 0; j < 10; j++){
             change(arrayButton[j], mycount[j]);
         }
 
@@ -58,6 +63,15 @@ public class Game extends ActionBarActivity {
 
                     if (bulls == 4) {
                         winVib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+                        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+                        int attemptCurrent = bullcow.getAttempt();
+                        int attemptSettings = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
+                        if (attemptCurrent < attemptSettings || attemptSettings == 0) {
+                            SharedPreferences.Editor editor = mSettings.edit();
+                            editor.putInt(APP_PREFERENCES_COUNTER, attemptCurrent);
+                            editor.apply();
+                        }
                         AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
                         builder.setTitle(R.string.compliment1)
                                 .setMessage(bullcow.numberAttempts())
@@ -118,9 +132,9 @@ public class Game extends ActionBarActivity {
         a [8] = (Button)findViewById(R.id.number09);
         a [9] = (Button)findViewById(R.id.number00);
 
-        for (int i=0; i<10; i++){
+        for (int i = 0; i < 10; i++){
             a[i].setTextColor(getResources().getColor(R.color.grey));
-            count[i]=0;
+            count[i] = 0;
         }
     }
 
