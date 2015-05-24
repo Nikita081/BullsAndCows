@@ -12,20 +12,19 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="@string/deleteStatistic"
+        android:layout_gravity="right|center"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="160dp" />
+        android:layout_alignLeft="@+id/resultView"
+        android:layout_alignStart="@+id/resultView"
+        android:layout_marginBottom="173dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/resultView"
         android:layout_above="@+id/buttonCrowsCounter"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="144dp"
-        android:layout_alignRight="@+id/buttonCrowsCounter"
-        android:layout_alignEnd="@+id/buttonCrowsCounter" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="139dp" />
 
 </RelativeLayout>

@@ -33,12 +33,7 @@ public class MainActivity extends ActionBarActivity {
 
     private Button btnActTwo,button,btnResult;
 
-
-
     private Client mClient;
-
-
-
 
 
     @Override
@@ -50,7 +45,6 @@ public class MainActivity extends ActionBarActivity {
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
 
         button = (Button)findViewById(R.id.button);
-
         btnResult = (Button) findViewById(R.id.btnResult);
 
 
@@ -68,8 +62,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-
-
 
         btnResult.setOnClickListener(new View.OnClickListener(){
             @Override

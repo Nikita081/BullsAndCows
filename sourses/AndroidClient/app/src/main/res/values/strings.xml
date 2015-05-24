@@ -26,6 +26,11 @@
     <string name="title_activity_results">Results</string>
     <string name="deleteStatistic">Удалить статистику</string>
     <string name="correctInputNumber">Загадайте число из 4 различных цифр</string>
+    <string name="nonPlayed">Вы еще ни разу не сыграли в нашу игру =(</string>
+    <string name="singleRes">Лучший результат в одиночном режиме </string>
+    <string name="singleGames">\nСыграно игр в одиночном режиме: </string>
+    <string name="multiRes">\nЛучший результат в онлайн режиме </string>
+    <string name="multiGames">\nСыграно игр в онлайн режиме: </string>
 
     <string name="hello_world">Hello world!</string>
     <string name="number1">1</string>

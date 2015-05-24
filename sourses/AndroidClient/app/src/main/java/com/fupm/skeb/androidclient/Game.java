@@ -26,7 +26,8 @@ public class Game extends ActionBarActivity {
     private int[] mycount = new int[10];
     private Button [] arrayButton = new Button[10];
     public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_COUNTER = "single_result";
+    public static final String APP_PREFERENCES_SIN_RES = "single_result";
+    public static final String APP_PREFERENCES_SIN_GAM = "single_games";
     private SharedPreferences mSettings;
 
 
@@ -66,12 +67,15 @@ public class Game extends ActionBarActivity {
 
                         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
                         int attemptCurrent = bullcow.getAttempt();
-                        int attemptSettings = mSettings.getInt(APP_PREFERENCES_COUNTER, 0);
+                        SharedPreferences.Editor editor = mSettings.edit();
+                        editor.putInt(APP_PREFERENCES_SIN_GAM, mSettings.getInt(APP_PREFERENCES_SIN_GAM, 0) + 1);
+                        int attemptSettings = mSettings.getInt(APP_PREFERENCES_SIN_RES, 0);
                         if (attemptCurrent < attemptSettings || attemptSettings == 0) {
-                            SharedPreferences.Editor editor = mSettings.edit();
-                            editor.putInt(APP_PREFERENCES_COUNTER, attemptCurrent);
-                            editor.apply();
+                            editor.putInt(APP_PREFERENCES_SIN_RES, attemptCurrent);
                         }
+                        editor.apply();
+
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
                         builder.setTitle(R.string.compliment1)
                                 .setMessage(bullcow.numberAttempts())
