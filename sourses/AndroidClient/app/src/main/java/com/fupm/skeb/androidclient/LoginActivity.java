@@ -135,19 +135,19 @@ public class LoginActivity extends FragmentActivity {
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
+//            getView().findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    VKSdk.authorize(sMyScope, true, false);
+//                }
+//            });
+
             getView().findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    VKSdk.authorize(sMyScope, true, false);
+                    VKSdk.authorize(sMyScope, true, true);
                 }
             });
-
-//            getView().findViewById(R.id.force_oauth_button).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    VKSdk.authorize(sMyScope, true, true);
-//                }
-//            });
         }
     }
     public static class LogoutFragment extends android.support.v4.app.Fragment {
