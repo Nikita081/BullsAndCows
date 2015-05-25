@@ -20,7 +20,8 @@
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
             android:layout_gravity="center"
-            android:layout_margin="60dp" />
+            android:layout_margin="60dp"
+            android:gravity="center" />
 
     </FrameLayout>
 </LinearLayout>
