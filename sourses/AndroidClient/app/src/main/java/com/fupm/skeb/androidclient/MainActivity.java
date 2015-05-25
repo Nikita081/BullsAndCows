@@ -1,37 +1,33 @@
 package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
 
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.vk.sdk.VKAccessToken;
+
+import static com.vk.sdk.VKSdk.getAccessToken;
 
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private String TAG  = "MainAct";
 
-    private Button btnActTwo,button,btnResult;
+    private Button btnActTwo,button,btnResult,button2;
 
     private Client mClient;
 
@@ -44,9 +40,25 @@ public class MainActivity extends ActionBarActivity {
         hello2 = (TextView)findViewById(R.id.textView1);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
 
+        button2 = (Button)findViewById(R.id.button2);
         button = (Button)findViewById(R.id.button);
         btnResult = (Button) findViewById(R.id.btnResult);
 
+
+
+
+
+        button2.setOnClickListener(new  View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                VKAccessToken p;
+                p = getAccessToken();
+                hello1.setText(p.userId);
+
+
+            }
+        });
 
         btnActTwo.setOnClickListener(new View.OnClickListener(){
             @Override
