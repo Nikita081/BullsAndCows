@@ -46,12 +46,30 @@ public class GameOnline extends ActionBarActivity {
         own = (ListView)findViewById(R.id.listView);
 
 
-
         //createNumber = Integer.parseInt(create_number.getText().toString());
         //isCorrectInput(createNumber);
 
+     /* private boolean isCorrectInput(int tryNumber){
+        int[] array = new int[4];
+        for(int i = 0; i < 4; i++){
+            array[i] = tryNumber % 10;
+            tryNumber /= 10;
+        }
+        int k = 0;
+        for(int i = 0; i < 3; i++)
+            for(int j = i + 1; j < 4; j++)
+                if (array[i] == array[j]) k++;
+        if (k == 0) return true;
+        else return false;
+        }*/
 
-
+        /* if isCorrectInput(int tryNumber) == false ->
+            {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            R.string.correctInputNumber, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+        */
 
         myAdapter = new MyAdapter(this,myList);
         //own.setAdapter(myAdapter);
@@ -114,8 +132,6 @@ public class GameOnline extends ActionBarActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-
-
         }
     }
 

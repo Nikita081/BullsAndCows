@@ -29,20 +29,7 @@ public class BodyGame {
         return bulls;
     }
 
-    private boolean isCorrectInput(int tryNumber){
 
-        int[] array = new int[4];
-        for(int i = 0; i < 4; i++){
-            array[i] = tryNumber % 10;
-            tryNumber /= 10;
-        }
-        int k = 0;
-        for(int i = 0; i < 3; i++)
-            for(int j = i + 1; j < 4; j++)
-                if (array[i] == array[j]) k++;
-        if (k == 0) return true;
-        else return false;
-    }
 
     private static int[] insert(int [] riddle)
     {
@@ -98,5 +85,9 @@ public class BodyGame {
             default: message += "ходов"; break;
         }
         return message;
+    }
+
+    public int getAttempt(){
+        return attempt;
     }
 }
