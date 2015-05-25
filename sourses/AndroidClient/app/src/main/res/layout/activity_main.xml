@@ -78,4 +78,13 @@
         android:layout_toLeftOf="@+id/textView1"
         android:layout_toStartOf="@+id/textView1" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/token_check"
+        android:id="@+id/button2"
+        android:layout_above="@+id/btnActTwo"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
