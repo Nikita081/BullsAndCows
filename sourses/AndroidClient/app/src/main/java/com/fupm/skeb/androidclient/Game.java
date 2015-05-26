@@ -79,7 +79,7 @@ public class Game extends ActionBarActivity {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
                         builder.setTitle(R.string.compliment1)
                                 .setMessage(bullcow.numberAttempts())
-                                .setCancelable(false)
+                                 .setCancelable(false)
                                 .setNeutralButton(R.string.compliment2,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
@@ -89,7 +89,7 @@ public class Game extends ActionBarActivity {
                                         });
                         AlertDialog alert = builder.create();
                         alert.show();
-                        }
+                    }
 
                     String st = bullcow.giveLog(tryNumberString);
                     text.setText(st);

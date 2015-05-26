@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -14,7 +15,7 @@ import java.net.Socket;
 
 public class Client {
     private String serverMessage;
-    public static  String serverIP = "10.55.126.14";
+    public static  String serverIP = "192.168.0.101";
     public static final int port = 10100;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
@@ -30,12 +31,6 @@ public class Client {
     }
 
 
-    public void sendRiddle(String message) {
-        if (out != null && !out.checkError()) {
-            out.println(message);
-            out.flush();
-        }
-    }
     public boolean sendMessage(String message) {
         if (out != null && !out.checkError()) {
             out.println(message);
@@ -49,7 +44,13 @@ public class Client {
 
         mRun = false;
     }
-
+    public boolean clientHasRun(){
+        if(out!=null && in!=null){
+            return true;
+        }else{
+             return false;
+        }
+    }
     public void run() {
 
         mRun = true;
@@ -82,8 +83,10 @@ public class Client {
                 // server
                 while (mRun) {
                     serverMessage = in.readLine();
-
-                    if (serverMessage != null && mMessageListener != null) {
+                    if(serverMessage.equals("end")){
+                        break;
+                    }
+                    else if (serverMessage != null && mMessageListener != null) {
                         // call the method messageReceived from MyActivity class
                         mMessageListener.messageReceived(serverMessage);
                     }
@@ -103,7 +106,6 @@ public class Client {
                 in.close();
                 socket.close();
                 Log.i(TAG,"socket closed");
-
 
             }
 

@@ -9,103 +9,102 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class GameOnline extends ActionBarActivity {
     private Button check,riddle;
     private EditText try_number,create_number;
-    private ListView own,enemy;
+    private TextView own,enemy;
     private Client mClient;
+    private static final String RIDDLE = "riddle";
+    private static final String NUMBER = "number";
+    private static final String EQUALS = "=";
+    private static final String NEW_GAME = "newgame";
+    private static final String OWN_ATTEMPT = "own_attempt";
+    private static final String ENEMY_ATTEMPT = "enemy_attempt";
+
     private String TAG = "Life circle";
-    private MyAdapter myAdapter;
-    private EnemyAdapter enemyAdapter;
+    private String new_game_message;
+    private StringBuilder build_new_game_message;
+    private StringBuilder log = new StringBuilder();
+    private String enemy_log;
+    private String own_log;
+    private String vkToken = "12349";
+    private BodyGame body = new BodyGame();
 
-    private String vkToken = "12345";
-    private ArrayList<String> myList;
-    private ArrayList<String> enemyList;
-
-
-    private int createNumber = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_online);
-        myList = new ArrayList<String>();
-        enemyList = new ArrayList<String>();
+
         check = (Button)findViewById(R.id.buttonSet);
         riddle =(Button)findViewById(R.id.buttonRiddle);
         try_number = (EditText)findViewById(R.id.tryNumber);
         create_number = (EditText)findViewById(R.id.setRiddle);
-        enemy = (ListView)findViewById(R.id.listView2);
-        own = (ListView)findViewById(R.id.listView);
+        enemy = (TextView)findViewById(R.id.enemyLog);
+        own = (TextView)findViewById(R.id.ownLog);
 
 
-        //createNumber = Integer.parseInt(create_number.getText().toString());
-        //isCorrectInput(createNumber);
-
-     /* private boolean isCorrectInput(int tryNumber){
-        int[] array = new int[4];
-        for(int i = 0; i < 4; i++){
-            array[i] = tryNumber % 10;
-            tryNumber /= 10;
-        }
-        int k = 0;
-        for(int i = 0; i < 3; i++)
-            for(int j = i + 1; j < 4; j++)
-                if (array[i] == array[j]) k++;
-        if (k == 0) return true;
-        else return false;
-        }*/
-
-        /* if isCorrectInput(int tryNumber) == false ->
-            {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            R.string.correctInputNumber, Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-        */
-
-        myAdapter = new MyAdapter(this,myList);
-        //own.setAdapter(myAdapter);
-        enemyAdapter = new EnemyAdapter(this,enemyList);
-        //enemy.setAdapter(enemyAdapter);
 
         new MyTask().execute("");
-        //mClient.sendMessage(vkToken);
+        build_new_game_message = new StringBuilder();
+        build_new_game_message.append(NEW_GAME + EQUALS).append(vkToken);
+        new_game_message = build_new_game_message.toString();
+        while(true) {
+           if (mClient != null && mClient.clientHasRun()) {
+               mClient.sendMessage(new_game_message);
+               break;
+           }
+        }
 
 
         riddle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String riddle = create_number.getText().toString();
-                if(mClient != null){
-                    boolean a = mClient.sendMessage(riddle);
-                    if(a == false){
-                        Log.i(TAG,"can't send riddle");
-                    }
+               if(create_number.getText().toString().length()==4) {
+                   String riddle = create_number.getText().toString();
+                   build_new_game_message.delete(0, build_new_game_message.length());
+                   build_new_game_message.append(RIDDLE + EQUALS).append(riddle);
+                   riddle = build_new_game_message.toString();
+                   if (mClient != null) {
+                       boolean a = mClient.sendMessage(riddle);
+                       if (!a) {
+                           Log.i(TAG, "can't send riddle");
+                       }
 
-                }
+                   }
+               }else{
+                   Toast toast = Toast.makeText(getApplicationContext(),
+                           R.string.only4num, Toast.LENGTH_SHORT);
+                   toast.show();
+               }
             }
         });
+
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (try_number.getText().toString().length() == 4) {
+                    String number = try_number.getText().toString();
+                    build_new_game_message.delete(0, build_new_game_message.length());
+                    build_new_game_message.append(NUMBER + EQUALS).append(number);
+                    number = build_new_game_message.toString();
 
-                String number = try_number.getText().toString();
-
-                if (mClient != null) {
-                    mClient.sendMessage(number);
+                    if (mClient != null) {
+                        mClient.sendMessage(number);
+                    }
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            R.string.only4num, Toast.LENGTH_SHORT);
+                    toast.show();
                 }
 
             }
         });
-        Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onCreate()");
     }
 
@@ -132,6 +131,24 @@ public class GameOnline extends ActionBarActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
+
+            if(values[0].startsWith(OWN_ATTEMPT)){
+                String [] own_attempt_array = values[0].split(EQUALS);
+                own_log+=own_attempt_array[1].trim()+"\n";
+                own.setText(own_log);
+                Log.i(TAG, own_attempt_array[1]+":::::"+own_log);
+            }
+            else if(values[0].startsWith(ENEMY_ATTEMPT)){
+                String [] enemy_attempt_array = values[0].split(EQUALS);
+                enemy_log+=enemy_attempt_array[1].trim()+"\n";
+                enemy.setText(enemy_log);
+                Log.i(TAG, enemy_attempt_array[1]+":::::"+enemy_log);
+            }
+            else{
+                Toast.makeText(getApplicationContext(), values[0], Toast.LENGTH_SHORT).show();
+                Log.i(TAG, values[0]);
+            }
+
         }
     }
 
@@ -139,7 +156,7 @@ public class GameOnline extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onStart()");
     }
 
@@ -147,7 +164,7 @@ public class GameOnline extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onResume()");
     }
 
@@ -155,7 +172,7 @@ public class GameOnline extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
 
-        Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onPause()");
     }
 
@@ -163,7 +180,7 @@ public class GameOnline extends ActionBarActivity {
     protected void onStop() {
         super.onStop();
 
-        Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onStop()");
     }
 
@@ -171,7 +188,7 @@ public class GameOnline extends ActionBarActivity {
     protected void onRestart() {
         super.onRestart();
 
-        Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onRestart()");
     }
 
@@ -179,13 +196,13 @@ public class GameOnline extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onDestroy()");
     }
     @Override
     public void onBackPressed() {
 
-        Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "Back pressed");
 
         onNavigateUp();
