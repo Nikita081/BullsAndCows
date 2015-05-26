@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
 
     private String uri = "http://192.168.0.101:10100/test";
     private Button btnActTwo,button,btnResult;
-    private EditText mail;
+
 
 
     @Override
@@ -31,9 +31,9 @@ public class MainActivity extends ActionBarActivity {
         hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
-        mail = (EditText)findViewById(R.id.editText1);
+
         button = (Button)findViewById(R.id.button);
-        //queue = MyQueue.getInstance(this.getApplicationContext()).getQueue();
+
         btnResult = (Button) findViewById(R.id.btnResult);
 
 
@@ -51,8 +51,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-
-
 
         btnResult.setOnClickListener(new View.OnClickListener(){
             @Override

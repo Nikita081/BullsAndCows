@@ -48,6 +48,7 @@ public class GameOnline extends ActionBarActivity {
         own = (TextView)findViewById(R.id.ownLog);
 
 
+
         new MyTask().execute("");
         build_new_game_message = new StringBuilder();
         build_new_game_message.append(NEW_GAME + EQUALS).append(vkToken);
@@ -130,6 +131,7 @@ public class GameOnline extends ActionBarActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
+
             if(values[0].startsWith(OWN_ATTEMPT)){
                 String [] own_attempt_array = values[0].split(EQUALS);
                 own_log+=own_attempt_array[1].trim()+"\n";

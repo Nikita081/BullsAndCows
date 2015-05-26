@@ -8,21 +8,23 @@
 
     <Button
         android:id="@+id/continue_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
         android:layout_marginTop="16dp"
         android:text="@string/continue_using_app"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:layout_gravity="right" />
+        android:layout_gravity="center"
+        android:gravity="center" />
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
         android:layout_marginTop="16dp"
         android:text="@string/logout"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:layout_gravity="right" />
+        android:layout_gravity="center"
+        android:gravity="center" />
 </LinearLayout>
