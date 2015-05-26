@@ -9,33 +9,39 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.Socket;
 import java.net.URL;
 
+import static android.os.SystemClock.sleep;
+
 public class HttpClient {
     private String serverMessage;
-    public static  String ip = "http://192.168.0.101:10100";
-    public static final int port = 10100;
+    private static  String myurl = "http://192.168.0.101:10100/";
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
     private String TAG = "Client logging";
-    public Socket socket;
-    DataOutputStream wr;
-    BufferedReader rd;
-
+    private PrintWriter out;
+    private BufferedReader in;
+    private int len = 500;
     public HttpClient(OnMessageReceived listener) {
         mMessageListener = listener;
 
     }
 
     public boolean sendMessage(String message) throws IOException {
-        if (wr != null) {
-            wr.writeBytes(message);
-            wr.flush();
+        if (out != null) {
+            
+            out.write(message);
+            out.flush();
             return true;
         }
         return false;
@@ -51,62 +57,72 @@ public class HttpClient {
         mRun = true;
 
         try {
-            URL url;
-            String message = "Test Message!";
-            HttpURLConnection connection;
-            try {
-                //Create connection
-                url = new URL("http://192.168.0.101:10100");
-                connection = (HttpURLConnection)url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type",
-                        "application/x-www-form-urlencoded");
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
 
-                connection.setRequestProperty("Content-Length", "" +
-                        Integer.toString(message.getBytes().length));
-                connection.setRequestProperty("Content-Language", "en-US");
-
-                connection.setUseCaches (false);
-                connection.setDoInput(true);
-                connection.setDoOutput(true);
-
-                //Send request
-                wr = new DataOutputStream (
-                        connection.getOutputStream ());
-
-                InputStream is = connection.getInputStream();
-                rd = new BufferedReader(new InputStreamReader(is));
-
-
-
-                while (mRun) {
-                    serverMessage = rd.readLine();
-
-                    if (serverMessage != null && mMessageListener != null) {
-                        // call the method messageReceived from MyActivity class
-                        mMessageListener.messageReceived(serverMessage);
-                    }
-                    serverMessage = null;
-
-                }
-
-                Log.e("RESPONSE FROM SERVER", "S: Received Message: '"
-                        + serverMessage + "'");
-
-            } catch (Exception e) {
-
-                Log.e("TCP", "S: Error", e);
-
-            } finally {
-
-
-
+            // Starts the query
+            conn.connect();
+            Log.d(TAG, "connected!!!!!!");
+            //int response = conn.getResponseCode();
+            //Log.d(TAG, "The response is: " + response);
+            out = new PrintWriter(new BufferedWriter(
+                    new OutputStreamWriter(conn.getOutputStream())), true);
+            if(out!=null){
+                Log.d(TAG,"out open sucsessful");
             }
 
-        } catch (Exception e) {
+            /*in = new BufferedReader(new InputStreamReader(
+                    conn.getInputStream()));
 
-            Log.e("TCP", "C: Error", e);
+            if(in!=null){
+                Log.d(TAG,"in open sucsessful");
+            }*/
+            while(true){
+                int a=5,b=10;
+                a+=b;
+                b=a;
+                sleep(5000);
+            }
+            // Convert the InputStream into a string
+            /*while (mRun) {
+                serverMessage = in.readLine();
+                Log.d(TAG,"got server mesage: "+serverMessage);
+                if (serverMessage != null && mMessageListener != null) {
+                    // call the method messageReceived from MyActivity class
+                    mMessageListener.messageReceived(serverMessage);
+                }
+                serverMessage = null;
 
+            }*/
+
+
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(out!=null){
+
+                    out.close();
+                Log.d(TAG,"out closed!!!");
+
+            }
         }
 
     }
@@ -114,6 +130,13 @@ public class HttpClient {
 
     public interface OnMessageReceived {
         void messageReceived(String message);
+    }
+    public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[len];
+        reader.read(buffer);
+        return new String(buffer);
     }
 }
 

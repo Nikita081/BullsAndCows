@@ -1,7 +1,8 @@
 package com.fupm.skeb.androidclient;
 
+
 import android.content.Intent;
-import android.os.AsyncTask;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,34 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.IOException;
 
-import static android.os.SystemClock.sleep;
-
-import android.util.Log;
-
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class MainActivity extends ActionBarActivity {
     private TextView hello1,hello2;
     private String TAG  = "MainAct";
 
+    private String uri = "http://192.168.0.101:10100/test";
     private Button btnActTwo,button,btnResult;
-    private HttpClient mClient;
+    private EditText mail;
 
 
     @Override
@@ -48,13 +31,13 @@ public class MainActivity extends ActionBarActivity {
         hello1 = (TextView)findViewById(R.id.textView1);
         hello2 = (TextView)findViewById(R.id.textView1);
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
-
+        mail = (EditText)findViewById(R.id.editText1);
         button = (Button)findViewById(R.id.button);
-
+        //queue = MyQueue.getInstance(this.getApplicationContext()).getQueue();
         btnResult = (Button) findViewById(R.id.btnResult);
 
-        new MyTask().execute("");
-        btnActTwo.setOnClickListener(new View.OnClickListener(){
+
+        btnActTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
@@ -88,54 +71,13 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                String number ="Test Message!";
-
-                if (mClient != null) {
-                    try {
-                        mClient.sendMessage(number);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
 
 
     }
 
 
-    public class MyTask extends AsyncTask<String,String,Client> {
 
-
-        @Override
-        protected Client doInBackground(String... message) {
-
-
-
-            mClient = new HttpClient(new HttpClient.OnMessageReceived() {
-                @Override
-
-                public void messageReceived(String message) {
-
-                    publishProgress(message);
-                }
-            });
-            mClient.run();
-
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
-            hello1.setText(values[0]);
-            sleep(100);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
