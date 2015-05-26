@@ -143,6 +143,7 @@ public class LoginActivity extends FragmentActivity {
                     VKSdk.authorize(sMyScope, true, true);
                 }
             });
+j   
         }
     }
     public static class LogoutFragment extends android.support.v4.app.Fragment {
