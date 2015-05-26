@@ -1,5 +1,6 @@
 package com.fupm.skeb.androidclient;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,10 +15,11 @@ import android.widget.Toast;
 
 
 
+
 public class GameOnline extends ActionBarActivity {
-    private Button check,riddle;
-    private EditText try_number,create_number;
-    private TextView own,enemy;
+    private Button check, riddle;
+    private EditText try_number, create_number;
+    private TextView own, enemy;
     private Client mClient;
     private static final String RIDDLE = "riddle";
     private static final String NUMBER = "number";
@@ -25,6 +27,8 @@ public class GameOnline extends ActionBarActivity {
     private static final String NEW_GAME = "newgame";
     private static final String OWN_ATTEMPT = "own_attempt";
     private static final String ENEMY_ATTEMPT = "enemy_attempt";
+    private static final String YOUR_RIDDLE = "Вы загадали число ";
+
 
     private String TAG = "Life circle";
     private String new_game_message;
@@ -35,54 +39,67 @@ public class GameOnline extends ActionBarActivity {
     private String vkToken = "12349";
     private BodyGame body = new BodyGame();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_online);
 
-        check = (Button)findViewById(R.id.buttonSet);
-        riddle =(Button)findViewById(R.id.buttonRiddle);
-        try_number = (EditText)findViewById(R.id.tryNumber);
-        create_number = (EditText)findViewById(R.id.setRiddle);
-        enemy = (TextView)findViewById(R.id.enemyLog);
-        own = (TextView)findViewById(R.id.ownLog);
-
-
+        check = (Button) findViewById(R.id.buttonSet);
+        riddle = (Button) findViewById(R.id.buttonRiddle);
+        try_number = (EditText) findViewById(R.id.tryNumber);
+        create_number = (EditText) findViewById(R.id.setRiddle);
+        enemy = (TextView) findViewById(R.id.enemyLog);
+        own = (TextView) findViewById(R.id.ownLog);
+        check.setVisibility(View.INVISIBLE);
 
         new MyTask().execute("");
         build_new_game_message = new StringBuilder();
         build_new_game_message.append(NEW_GAME + EQUALS).append(vkToken);
         new_game_message = build_new_game_message.toString();
-        while(true) {
-           if (mClient != null && mClient.clientHasRun()) {
-               mClient.sendMessage(new_game_message);
-               break;
-           }
+        while (true) {
+            if (mClient != null && mClient.clientHasRun()) {
+                mClient.sendMessage(new_game_message);
+                break;
+            }
         }
 
 
         riddle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(create_number.getText().toString().length()==4) {
-                   String riddle = create_number.getText().toString();
-                   build_new_game_message.delete(0, build_new_game_message.length());
-                   build_new_game_message.append(RIDDLE + EQUALS).append(riddle);
-                   riddle = build_new_game_message.toString();
-                   if (mClient != null) {
-                       boolean a = mClient.sendMessage(riddle);
-                       if (!a) {
-                           Log.i(TAG, "can't send riddle");
-                       }
+                if (create_number.getText().toString().length() == 4) {
+                    String riddle = create_number.getText().toString();
+                    int send = Integer.parseInt(riddle);
+                    create_number.setText("");
 
-                   }
-               }else{
-                   Toast toast = Toast.makeText(getApplicationContext(),
-                           R.string.only4num, Toast.LENGTH_SHORT);
-                   toast.show();
-               }
+                    if (checkRid(send)) {
+                        build_new_game_message.delete(0, build_new_game_message.length());
+                        build_new_game_message.append(RIDDLE + EQUALS).append(riddle);
+                        riddle = build_new_game_message.toString();
+
+                        if (mClient != null) {
+                        boolean a = mClient.sendMessage(riddle);
+                        if (!a) {
+                            Log.i(TAG, "can't send riddle");
+                        } else {
+                            isend(send);
+                            }
+                        }
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                R.string.correctInputNumber, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            R.string.only4num, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
+
 
         check.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +126,7 @@ public class GameOnline extends ActionBarActivity {
     }
 
 
-    public class MyTask extends AsyncTask<String,String,Client> {
+    public class MyTask extends AsyncTask<String, String, Client> {
 
         @Override
         protected Client doInBackground(String... message) {
@@ -132,19 +149,17 @@ public class GameOnline extends ActionBarActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
 
-            if(values[0].startsWith(OWN_ATTEMPT)){
-                String [] own_attempt_array = values[0].split(EQUALS);
-                own_log+=own_attempt_array[1].trim()+"\n";
+            if (values[0].startsWith(OWN_ATTEMPT)) {
+                String[] own_attempt_array = values[0].split(EQUALS);
+                own_log += own_attempt_array[1].trim() + "\n";
                 own.setText(own_log);
-                Log.i(TAG, own_attempt_array[1]+":::::"+own_log);
-            }
-            else if(values[0].startsWith(ENEMY_ATTEMPT)){
-                String [] enemy_attempt_array = values[0].split(EQUALS);
-                enemy_log+=enemy_attempt_array[1].trim()+"\n";
+                Log.i(TAG, own_attempt_array[1] + ":::::" + own_log);
+            } else if (values[0].startsWith(ENEMY_ATTEMPT)) {
+                String[] enemy_attempt_array = values[0].split(EQUALS);
+                enemy_log += enemy_attempt_array[1].trim() + "\n";
                 enemy.setText(enemy_log);
-                Log.i(TAG, enemy_attempt_array[1]+":::::"+enemy_log);
-            }
-            else{
+                Log.i(TAG, enemy_attempt_array[1] + ":::::" + enemy_log);
+            } else {
                 Toast.makeText(getApplicationContext(), values[0], Toast.LENGTH_SHORT).show();
                 Log.i(TAG, values[0]);
             }
@@ -156,7 +171,7 @@ public class GameOnline extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-       // Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onStart()");
     }
 
@@ -199,11 +214,12 @@ public class GameOnline extends ActionBarActivity {
         //Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "onDestroy()");
     }
+
     @Override
     public void onBackPressed() {
 
         //Toast.makeText(getApplicationContext(), "Back pressed", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "Back pressed");
+        Log.i(TAG, "Back pressed");
 
         onNavigateUp();
     }
@@ -228,5 +244,33 @@ public class GameOnline extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void isend(int rid) {
+        riddle.setVisibility(View.INVISIBLE);
+        create_number.setText(YOUR_RIDDLE +rid);
+        create_number.setEnabled(false);
+        create_number.setCursorVisible(false);
+        create_number.setBackgroundColor(Color.TRANSPARENT);
+        create_number.setKeyListener(null);
+        try_number.setEnabled(true);
+        check.setVisibility(View.VISIBLE);
+    }
+
+    public boolean checkRid(int ridd){
+        boolean a;
+        int [] riddle = new int [4];
+        for (int i =0; i<4; i++){
+            riddle[i] = ridd % 10;
+            ridd = ridd/10;
+        }
+
+        if ( (riddle[0] == riddle[1] || riddle[0] == riddle[2] || riddle[0] == riddle[3]) || (riddle[1] == riddle[2] || riddle[1] == riddle[3]) || (riddle[2] == riddle[3]) ){
+            a=false;
+        }
+        else {
+            a=true;
+        }
+        return a;
     }
 }
