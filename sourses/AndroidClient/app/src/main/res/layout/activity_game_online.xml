@@ -54,11 +54,10 @@
         android:ems="4"
         android:id="@+id/setRiddle"
         android:hint="@string/makeRiddle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/buttonRiddle"
+        android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/buttonRiddle"
-        android:layout_toStartOf="@+id/buttonRiddle" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ScrollView
         android:layout_width="150sp"

@@ -32,6 +32,7 @@
     <string name="multiRes">\nЛучший результат в онлайн режиме </string>
     <string name="multiGames">\nСыграно игр в онлайн режиме: </string>
 
+
     <string name="hello_world">Hello world!</string>
     <string name="number1">1</string>
     <string name="number2">2</string>
@@ -44,6 +45,7 @@
     <string name="number9">9</string>
     <string name="number0">0</string>
     <string name="force_auth">force_auth</string>
+    <string name="Get_token">Get token</string>
 
 
 </resources>
