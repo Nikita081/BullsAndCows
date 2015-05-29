@@ -46,6 +46,7 @@
     <string name="number0">0</string>
     <string name="force_auth">force_auth</string>
     <string name="Get_token">Get token</string>
+    <string name="title_activity_list_online_game">ListOnlineGame</string>
 
 
 </resources>
