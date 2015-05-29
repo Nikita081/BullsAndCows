@@ -9,16 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 
 public class ListOnlineGame extends ActionBarActivity {
 
+    private int listNumbers = 0;
     private Button button;
-    ListView listView;
+    private ListView listView;
     private ArrayList<String> catnames = new ArrayList<String>();
 
     @Override
@@ -27,11 +25,8 @@ public class ListOnlineGame extends ActionBarActivity {
         setContentView(R.layout.activity_list_online_game);
 
         listView = (ListView) findViewById(R.id.listView);
-        //final EditText editText = (EditText) findViewById(R.id.editText);
 
         button = (Button) findViewById(R.id.button3);
-
-        //final ArrayList<String> catnames = new ArrayList<String>();
 
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this,
@@ -41,14 +36,19 @@ public class ListOnlineGame extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                catnames.add(0, "fgvb6");
+                catnames.add(0, Integer.toString(++listNumbers));
                 adapter.notifyDataSetChanged();
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
+                Intent intent = new Intent(ListOnlineGame.this, Game.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
