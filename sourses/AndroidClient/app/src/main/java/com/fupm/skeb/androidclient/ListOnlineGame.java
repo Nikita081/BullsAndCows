@@ -29,14 +29,13 @@ public class ListOnlineGame extends ActionBarActivity {
         button = (Button) findViewById(R.id.button3);
 
         final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, catnames);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item_1, catnames);
         listView.setAdapter(adapter);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                catnames.add(0, Integer.toString(++listNumbers));
+                catnames.add(0, Integer.toString(++listNumbers) + " session");
                 adapter.notifyDataSetChanged();
             }
         });
