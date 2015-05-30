@@ -46,6 +46,12 @@
     <string name="number0">0</string>
     <string name="force_auth">force_auth</string>
     <string name="Get_token">Get token</string>
+    <string name="title_activity_online">Online</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send">send</string>
+    <string name="Chat">Chat</string>
 
 
 </resources>

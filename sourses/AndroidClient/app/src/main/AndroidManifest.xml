@@ -67,7 +67,8 @@
         <activity
             android:name=".GameOnline"
             android:label="@string/title_activity_game_online"
-            android:parentActivityName=".ListGame" >
+            android:parentActivityName=".ListGame"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListGame" />
@@ -76,10 +77,18 @@
             android:name=".Results"
             android:label="@string/title_activity_results"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Dialog">
+            android:theme="@style/Theme.AppCompat.Dialog" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Online"
+            android:label="@string/title_activity_online"
+            android:parentActivityName=".ListGame" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fupm.skeb.androidclient.ListGame" />
         </activity>
     </application>
 

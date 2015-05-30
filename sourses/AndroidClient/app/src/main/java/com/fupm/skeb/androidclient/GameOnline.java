@@ -37,7 +37,7 @@ public class GameOnline extends ActionBarActivity {
     private String enemy_log;
     private String own_log;
     private String vkToken = "12349";
-    private BodyGame body = new BodyGame();
+
 
 
     @Override
