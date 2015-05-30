@@ -119,17 +119,17 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/number7"
+        android:text="@string/number8"
         android:id="@+id/number07"
-        android:layout_below="@+id/number05"
-        android:layout_alignRight="@+id/number06"
-        android:layout_alignEnd="@+id/number06" />
+        android:layout_below="@+id/number06"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/number8"
+        android:text="@string/number7"
         android:id="@+id/number08"
         android:layout_alignTop="@+id/number07"
         android:layout_toLeftOf="@+id/number07"

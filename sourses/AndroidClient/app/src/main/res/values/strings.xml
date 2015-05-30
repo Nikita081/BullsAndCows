@@ -31,6 +31,7 @@
     <string name="singleGames">\nСыграно игр в одиночном режиме: </string>
     <string name="multiRes">\nЛучший результат в онлайн режиме </string>
     <string name="multiGames">\nСыграно игр в онлайн режиме: </string>
+    <string name="newSession">New Session</string>
 
 
     <string name="hello_world">Hello world!</string>
@@ -46,12 +47,16 @@
     <string name="number0">0</string>
     <string name="force_auth">force_auth</string>
     <string name="Get_token">Get token</string>
+
     <string name="title_activity_online">Online</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">send</string>
     <string name="Chat">Chat</string>
+
+    <string name="title_activity_list_online_game">ListOnlineGame</string>
+
 
 
 </resources>
