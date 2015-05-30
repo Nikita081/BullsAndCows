@@ -72,7 +72,7 @@ public class HttpClient {
             //Log.d(TAG, "The response is: " + response);
             out = new PrintWriter(new BufferedWriter(
                     new OutputStreamWriter(conn.getOutputStream())), true);
-            if(out!=null){
+            if(out != null){
                 Log.d(TAG,"out open sucsessful");
             }
 
@@ -83,9 +83,9 @@ public class HttpClient {
                 Log.d(TAG,"in open sucsessful");
             }*/
             while(true){
-                int a=5,b=10;
-                a+=b;
-                b=a;
+                int a = 5, b = 10;
+                a += b;
+                b = a;
                 sleep(5000);
             }
             // Convert the InputStream into a string
@@ -117,11 +117,10 @@ public class HttpClient {
                     e.printStackTrace();
                 }
             }
-            if(out!=null){
+            if(out != null){
 
                     out.close();
                 Log.d(TAG,"out closed!!!");
-
             }
         }
 

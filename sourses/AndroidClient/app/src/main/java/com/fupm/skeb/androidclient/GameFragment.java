@@ -115,9 +115,9 @@ public class GameFragment extends Fragment {
     public boolean checkRid(int ridd){
         boolean a;
         int [] riddle = new int [4];
-        for (int i =0; i<4; i++){
+        for (int i = 0; i < 4; i++){
             riddle[i] = ridd % 10;
-            ridd = ridd/10;
+            ridd = ridd / 10;
         }
 
         a = !((riddle[0] == riddle[1] || riddle[0] == riddle[2] || riddle[0] == riddle[3]) || (riddle[1] == riddle[2] || riddle[1] == riddle[3]) || (riddle[2] == riddle[3]));

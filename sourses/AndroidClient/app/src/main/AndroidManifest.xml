@@ -86,6 +86,14 @@
 
             android:name=".Online"
             android:label="@string/title_activity_online"
+            android:parentActivityName=".ListOnlineGame" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fupm.skeb.androidclient.ListOnlineGame" />
+        </activity>
+        <activity
+            android:name=".ListOnlineGame"
+            android:label="@string/title_activity_list_online_game"
             android:parentActivityName=".ListGame" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
