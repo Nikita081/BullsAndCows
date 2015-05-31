@@ -33,7 +33,9 @@
     <string name="multiGames">\nСыграно игр в онлайн режиме: </string>
     <string name="newSession">New Session</string>
     <string name="exit">Сдаться?</string>
-    <string name="exitQuestion">В случае выхода будет засчитано поражение. Выйти?</string>
+    <string name="exitQuestion">В случае выхода из игры Вам будет засчитано поражение</string>
+    <string name="yes">Выйти из игры</string>
+    <string name="no">Назад в игру</string>
 
 
 

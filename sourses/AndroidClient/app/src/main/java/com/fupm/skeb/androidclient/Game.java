@@ -129,10 +129,10 @@ public class Game extends ActionBarActivity {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.exit)
                 .setMessage(R.string.exitQuestion)
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, null)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Game.super.onBackPressed();
+                        finish();
                     }
                 }).create().show();
     }
