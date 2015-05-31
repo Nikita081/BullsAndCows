@@ -1,6 +1,5 @@
 package com.fupm.skeb.androidclient;
 
-
 public class BodyGame {
 
     private int bulls;
@@ -28,8 +27,6 @@ public class BodyGame {
         cow = countCows(riddle, try_num);
         return bulls;
     }
-
-
 
     private static int[] insert(int [] riddle)
     {
@@ -69,20 +66,21 @@ public class BodyGame {
         attempt++;
         String space = "";
         if (attempt < 10) space = "  ";
-        log += "\n" +  attempt + R.string.point + space + tryNumber + "           " + bulls + R.string.bulls + cow + R.string.cow;
+        log += "\n" +  attempt + ".   " + space + tryNumber + "           " + bulls + " Bulls     " + cow + " Cow";
         return log;
     }
 
     public String numberAttempts(){
 
-        String message = R.string.haveStep + attempt + " ";
-        if (attempt >= 5 && attempt <= 20) message += R.string.step_ov;
+        //String message = "Вы совершили " + attempt + " ";
+        String message = "fcffkycv " + attempt + " ";
+        if (attempt >= 5 && attempt <= 20) message += "ходов";
         else switch(attempt % 10) {
-            case 1: message += R.string.step; break;
+            case 1: message += "ход"; break;
             case 2:
             case 3:
-            case 4: message += R.string.step_a; break;
-            default: message +=  R.string.step_ov; break;
+            case 4: message += "хода"; break;
+            default: message += "ходов"; break;
         }
         return message;
     }

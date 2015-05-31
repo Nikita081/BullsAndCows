@@ -15,8 +15,6 @@ public class Results extends ActionBarActivity {
     private TextView textView6;
     private TextView textView8;
 
-    private TextView mInfoTextView;
-
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_SIN_RES = "single_result";
     public static final String APP_PREFERENCES_SIN_GAM = "single_games";
@@ -30,7 +28,6 @@ public class Results extends ActionBarActivity {
         setContentView(R.layout.activity_results);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        mInfoTextView = (TextView) findViewById(R.id.resultView);
         textView2 = (TextView) findViewById(R.id.textView2);
         textView4 = (TextView) findViewById(R.id.textView4);
         textView6 = (TextView) findViewById(R.id.textView6);
@@ -39,7 +36,7 @@ public class Results extends ActionBarActivity {
 
     public void onClick(View v) {
         SharedPreferences.Editor editor = mSettings.edit();
-        int mCounter = 3;
+        int mCounter = 0;
         editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
         editor.putInt(APP_PREFERENCES_SIN_GAM, mCounter);
         editor.putInt(APP_PREFERENCES_MUL_RES, mCounter);
@@ -57,27 +54,27 @@ public class Results extends ActionBarActivity {
             int mCounter2 = mSettings.getInt(APP_PREFERENCES_SIN_GAM, 0);
             int mCounter3 = mSettings.getInt(APP_PREFERENCES_MUL_RES, 0);
             int mCounter4 = mSettings.getInt(APP_PREFERENCES_MUL_GAM, 0);
-            
+
             textView2.setText(numAttempts(mCounter));
             textView4.setText("" + mCounter2 + "");
             textView6.setText(numAttempts(mCounter3));
             textView8.setText("" + mCounter4 + "");
         }
         else{
-            mInfoTextView.setText(R.string.nonPlayed);
+
         }
     }
 
     private String numAttempts(int attempt){
         String message = attempt + " ";
-        if (attempt >= 5 && attempt <= 20) message += R.string.step_ov;
+        if (attempt >= 5 && attempt <= 20) message += getString(R.string.step_ov);
         else switch(attempt % 10) {
             case 0: message = " - "; break;
-            case 1: message += R.string.step; break;
+            case 1: message += getString(R.string.step); break;
             case 2:
             case 3:
-            case 4: message += R.string.step_a; break;
-            default: message += R.string.step_ov; break;
+            case 4: message += getString(R.string.step_a); break;
+            default: message += getString(R.string.step_ov); break;
         }
         return message;
     }
