@@ -79,7 +79,7 @@ public class Game extends ActionBarActivity {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Game.this);
                         builder.setTitle(R.string.compliment1)
                                 .setMessage(bullcow.numberAttempts())
-                                 .setCancelable(false)
+                                .setCancelable(false)
                                 .setNeutralButton(R.string.compliment2,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
@@ -122,6 +122,19 @@ public class Game extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.exit)
+                .setMessage(R.string.exitQuestion)
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Game.super.onBackPressed();
+                    }
+                }).create().show();
     }
 
     private void set(Button[] a, int[] count){
