@@ -54,8 +54,8 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
         game_fragment = new GameFragment();
         chat_fragment = new ChatFragment();
-        token = getAccessToken();
-        Log.i(TAG, "userID: " + token.userId);
+        int token = 12345;//getAccessToken();
+        Log.i(TAG, "userID: " + token);
         manager = this.getFragmentManager();
         transaction = manager.beginTransaction();
         transaction.add(R.id.container, game_fragment);
@@ -70,7 +70,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         new MyTask().execute("");
 
         build_new_game_message = new StringBuilder();
-        build_new_game_message.append(NEW_GAME + EQUALS).append(token.userId);
+        build_new_game_message.append(NEW_GAME + EQUALS).append(token);
         new_game_message = build_new_game_message.toString();
 
         while (true) {
@@ -190,11 +190,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         }
 
     }
-
-
-
-
-
 
 
     @Override

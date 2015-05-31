@@ -2,40 +2,27 @@ package com.fupm.skeb.androidclient;
 
 
 import android.content.Intent;
-
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-
 
 
 public class MainActivity extends ActionBarActivity {
-    private TextView hello1,hello2;
     private String TAG  = "MainAct";
-
     private String uri = "http://192.168.0.101:10100/test";
-    private Button btnActTwo,button,btnResult;
-
+    private Button btnActTwo, btnResult;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        hello1 = (TextView)findViewById(R.id.textView1);
-        hello2 = (TextView)findViewById(R.id.textView1);
+
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
-
-        button = (Button)findViewById(R.id.button);
-
         btnResult = (Button) findViewById(R.id.btnResult);
-
 
         btnActTwo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,15 +53,7 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-
-
-
-
-
-
     }
-
-
 
 
     @Override
@@ -86,9 +65,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -98,5 +74,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
