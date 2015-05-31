@@ -36,6 +36,16 @@
     <string name="exitQuestion">В случае выхода из игры Вам будет засчитано поражение</string>
     <string name="yes">Выйти из игры</string>
     <string name="no">Назад в игру</string>
+    <string name="bulls"> Bulls      </string>
+    <string name="cow"> Cow</string>
+    <string name="point">".   "</string>
+    <string name="haveStep">Вы совершили </string>
+    <string name="step">ход</string>
+    <string name="step_ov"> ходов</string>
+    <string name="step_a">хода</string>
+    <string name="yourRiddle">Вы загадали число </string>
+
+
 
 
 

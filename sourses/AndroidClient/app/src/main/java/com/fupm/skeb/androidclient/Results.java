@@ -70,14 +70,14 @@ public class Results extends ActionBarActivity {
 
     private String numAttempts(int attempt){
         String message = attempt + " ";
-        if (attempt >= 5 && attempt <= 20) message += "ходов";
+        if (attempt >= 5 && attempt <= 20) message += R.string.step_ov;
         else switch(attempt % 10) {
             case 0: message = " - "; break;
-            case 1: message += "ход"; break;
+            case 1: message += R.string.step; break;
             case 2:
             case 3:
-            case 4: message += "хода"; break;
-            default: message += "ходов"; break;
+            case 4: message += R.string.step_a; break;
+            default: message += R.string.step_ov; break;
         }
         return message;
     }

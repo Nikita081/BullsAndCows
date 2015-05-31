@@ -69,20 +69,20 @@ public class BodyGame {
         attempt++;
         String space = "";
         if (attempt < 10) space = "  ";
-        log += "\n" +  attempt + ".   " + space + tryNumber + "           " + bulls + " Bulls     " + cow + " Cow";
+        log += "\n" +  attempt + R.string.point + space + tryNumber + "           " + bulls + R.string.bulls + cow + R.string.cow;
         return log;
     }
 
     public String numberAttempts(){
 
-        String message = "Вы совершили " + attempt + " ";
-        if (attempt >= 5 && attempt <= 20) message += "ходов";
+        String message = R.string.haveStep + attempt + " ";
+        if (attempt >= 5 && attempt <= 20) message += R.string.step_ov;
         else switch(attempt % 10) {
-            case 1: message += "ход"; break;
+            case 1: message += R.string.step; break;
             case 2:
             case 3:
-            case 4: message += "хода"; break;
-            default: message += "ходов"; break;
+            case 4: message += R.string.step_a; break;
+            default: message +=  R.string.step_ov; break;
         }
         return message;
     }

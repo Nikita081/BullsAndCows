@@ -31,7 +31,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     private static final String GAME = "game";
     private static final String CHAT = "chat";
     private static final String ENEMY_ATTEMPT = "enemy_attempt";
-    private static final String YOUR_RIDDLE = "�� �������� ����� ";
     private static final String STARTCHAT = "startChat";
 
 
@@ -207,7 +206,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
     public void isend(int rid) {
         (game_fragment.getView().findViewById(R.id.buttonRiddle)).setVisibility(View.INVISIBLE);
-        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText(YOUR_RIDDLE + rid);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText(R.string.yourRiddle + rid);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setEnabled(false);
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setCursorVisible(false);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setBackgroundColor(Color.TRANSPARENT);
