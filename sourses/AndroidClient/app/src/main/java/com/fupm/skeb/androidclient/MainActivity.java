@@ -8,13 +8,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends ActionBarActivity {
     private String TAG  = "MainAct";
     private String uri = "http://192.168.0.101:10100/test";
     private Button btnActTwo, btnResult;
+    private Button change;
 
+    public RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,25 @@ public class MainActivity extends ActionBarActivity {
 
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
         btnResult = (Button) findViewById(R.id.btnResult);
+        change = (Button) findViewById(R.id.change);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.change:
+                        // TODO Call second activity
+
+                        mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
         btnActTwo.setOnClickListener(new View.OnClickListener() {
             @Override

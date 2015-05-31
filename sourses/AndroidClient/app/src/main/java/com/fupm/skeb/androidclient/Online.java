@@ -54,8 +54,8 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
         game_fragment = new GameFragment();
         chat_fragment = new ChatFragment();
-        int token = 12345;//getAccessToken();
-        Log.i(TAG, "userID: " + token);
+        token = getAccessToken();
+        Log.i(TAG, "userID: " + token.userId);
         manager = this.getFragmentManager();
         transaction = manager.beginTransaction();
         transaction.add(R.id.container, game_fragment);
@@ -70,7 +70,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         new MyTask().execute("");
 
         build_new_game_message = new StringBuilder();
-        build_new_game_message.append(NEW_GAME + EQUALS).append(token);
+        build_new_game_message.append(NEW_GAME + EQUALS).append(token.userId);
         new_game_message = build_new_game_message.toString();
 
         while (true) {
@@ -107,9 +107,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             transaction.hide(game_fragment);
             transaction.addToBackStack(null);
             transaction.commit();
-
         }
-
     }
 
     @Override
@@ -141,14 +139,12 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         }
         else
             onNavigateUp();
-
     }
 
     public class MyTask extends AsyncTask<String, String, Client> {
 
         @Override
         protected Client doInBackground(String... message) {
-
 
             mClient = new Client(new Client.OnMessageReceived() {
                 @Override
@@ -184,13 +180,9 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             } else {
                 Toast.makeText(game_fragment.getActivity(), values[0], Toast.LENGTH_SHORT).show();
                 Log.i(TAG, values[0]);
-
             }
-
         }
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -210,7 +202,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -224,5 +215,4 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
         (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
     }
-
 }
