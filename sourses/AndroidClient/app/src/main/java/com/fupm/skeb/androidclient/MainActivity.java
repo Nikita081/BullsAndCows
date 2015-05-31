@@ -21,6 +21,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.vk.sdk.VKAccessToken;
+import com.vk.sdk.api.VKApi;
+import com.vk.sdk.api.VKRequest;
+import com.vk.sdk.api.VKResponse;
+import com.vk.sdk.api.model.VKApiUser;
+import com.vk.sdk.api.model.VKList;
 
 import static com.vk.sdk.VKSdk.getAccessToken;
 
@@ -55,11 +60,28 @@ public class MainActivity extends FragmentActivity {
                 // TODO Auto-generated method stub
                 VKAccessToken p;
                 p = getAccessToken();
-                hello1.setText(p.userId);
+                // hello1.setText(p.userId);
+                final VKRequest request = VKApi.users().get();
+                request.executeWithListener(new VKRequest.VKRequestListener() {
+                    @Override
+                    public void onComplete(VKResponse response) {
+                        super.onComplete(response);
 
+                        //Log.v("VK SDK",response.json.toString());
 
-            }
-        });
+                        VKList list = (VKList) response.parsedModel;
+                        VKApiUser user = (VKApiUser) list.get(0);
+
+                        if (user == null) {
+                            Log.v("Ошибка", "Ничего не загрузилось");
+                        } else {
+                            Log.v("User name:", user.first_name + user.last_name);
+                            hello1.setText(user.first_name + " " + user.last_name);
+                        }
+                    }
+                });
+                }
+            });
 
         btnActTwo.setOnClickListener(new View.OnClickListener(){
             @Override
