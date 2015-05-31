@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.app.Activity;
 
 
 public class ListGame extends ActionBarActivity {
@@ -43,10 +44,10 @@ public class ListGame extends ActionBarActivity {
                     case R.id.human_game:
                         // TODO Call second activity
 
-                        Intent intent = new Intent(ListGame.this, Online.class);
+                        //Intent intent = new Intent(ListGame.this, Online.class);
 
                         //Intent intent = new Intent(ListGame.this, GameOnline.class);
-                        //Intent intent = new Intent(ListGame.this, ListOnlineGame.class);
+                        Intent intent = new Intent(ListGame.this, ListOnlineGame.class);
 
                         startActivity(intent);
                         break;

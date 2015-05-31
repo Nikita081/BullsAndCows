@@ -37,7 +37,8 @@ public class MainActivity extends ActionBarActivity {
                     case R.id.change:
                         // TODO Call second activity
 
-                        mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
+                        //mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
+                        mRelativeLayout.setBackgroundResource(R.drawable.bull);
 
                         break;
                     default:

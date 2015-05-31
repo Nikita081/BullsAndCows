@@ -10,6 +10,11 @@ import android.content.Context;
 
 public class Results extends ActionBarActivity {
 
+    private TextView textView2;
+    private TextView textView4;
+    private TextView textView6;
+    private TextView textView8;
+
     private TextView mInfoTextView;
 
     public static final String APP_PREFERENCES = "mysettings";
@@ -26,11 +31,15 @@ public class Results extends ActionBarActivity {
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         mInfoTextView = (TextView) findViewById(R.id.resultView);
+        textView2 = (TextView) findViewById(R.id.textView2);
+        textView4 = (TextView) findViewById(R.id.textView4);
+        textView6 = (TextView) findViewById(R.id.textView6);
+        textView8 = (TextView) findViewById(R.id.textView8);
     }
 
     public void onClick(View v) {
         SharedPreferences.Editor editor = mSettings.edit();
-        int mCounter = 0;
+        int mCounter = 3;
         editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
         editor.putInt(APP_PREFERENCES_SIN_GAM, mCounter);
         editor.putInt(APP_PREFERENCES_MUL_RES, mCounter);
@@ -48,10 +57,11 @@ public class Results extends ActionBarActivity {
             int mCounter2 = mSettings.getInt(APP_PREFERENCES_SIN_GAM, 0);
             int mCounter3 = mSettings.getInt(APP_PREFERENCES_MUL_RES, 0);
             int mCounter4 = mSettings.getInt(APP_PREFERENCES_MUL_GAM, 0);
-            mInfoTextView.setText(getString(R.string.singleRes) + numAttempts(mCounter) +
-                    getString(R.string.singleGames) + mCounter2 +
-                    getString(R.string.multiRes) + numAttempts(mCounter3) +
-                    getString(R.string.multiGames) + mCounter4);
+            
+            textView2.setText(numAttempts(mCounter));
+            textView4.setText("" + mCounter2 + "");
+            textView6.setText(numAttempts(mCounter3));
+            textView8.setText("" + mCounter4 + "");
         }
         else{
             mInfoTextView.setText(R.string.nonPlayed);
@@ -71,13 +81,4 @@ public class Results extends ActionBarActivity {
         }
         return message;
     }
-/*
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Запоминаем данные
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putInt(APP_PREFERENCES_COUNTER, mCounter);
-        editor.apply();
-    }*/
 }
