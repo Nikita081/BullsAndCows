@@ -72,18 +72,18 @@ public class BodyGame {
 
     public String numberAttempts(){
 
-        //String message = "Вы совершили " + attempt + " ";
-        String message = "fcffkycv " + attempt + " ";
-        if (attempt >= 5 && attempt <= 20) message += "ходов";
+        String message = "Р’С‹ СЃРѕРІРµСЂС€РёР»Рё " + attempt + " ";
+        if (attempt >= 5 && attempt <= 20) message += "С…РѕРґРѕРІ";
         else switch(attempt % 10) {
-            case 1: message += "ход"; break;
+            case 1: message += "С…РѕРґ"; break;
             case 2:
             case 3:
-            case 4: message += "хода"; break;
-            default: message += "ходов"; break;
+            case 4: message += "С…РѕРґР°"; break;
+            default: message +=  "С…РѕРґРѕРІ"; break;
         }
         return message;
     }
+
 
     public int getAttempt(){
         return attempt;
