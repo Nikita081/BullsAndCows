@@ -3,6 +3,7 @@ package com.fupm.skeb.androidclient;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 
 
-public class GameOnline extends ActionBarActivity {
+public class GameOnline extends FragmentActivity {
     private Button check, riddle;
     private EditText try_number, create_number;
     private TextView own, enemy;

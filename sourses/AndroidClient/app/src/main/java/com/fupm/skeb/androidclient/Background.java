@@ -1,6 +1,7 @@
 package com.fupm.skeb.androidclient;
 
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +12,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
 
-public class Background extends ActionBarActivity {
+public class Background extends FragmentActivity {
 
     //layout
     RadioGroup radioGroup;
