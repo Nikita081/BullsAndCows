@@ -61,6 +61,8 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         transaction.add(R.id.container,chat_fragment);
         transaction.hide(chat_fragment);
         transaction.show(game_fragment);
+        (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.INVISIBLE);
+        (game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.INVISIBLE);
         boolean tmp = transaction.isAddToBackStackAllowed();
         Log.i(TAG, "stack allow:" + tmp);
         transaction.addToBackStack(null);
@@ -213,5 +215,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setKeyListener(null);
         (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
         (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
+        (game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.VISIBLE);
     }
 }
