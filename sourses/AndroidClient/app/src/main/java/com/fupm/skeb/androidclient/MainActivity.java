@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
         change = (Button) findViewById(R.id.change);
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        mRelativeLayout.setBackgroundResource(R.drawable.ferma);
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +39,12 @@ public class MainActivity extends ActionBarActivity {
                         // TODO Call second activity
 
                         //mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
-                        mRelativeLayout.setBackgroundResource(R.drawable.bull);
+
+                        //ListGame trew = new ListGame();
+                        //mRelativeLayout.setBackgroundResource(trew.check());
+
+                        Intent intent = new Intent(MainActivity.this, Background.class);
+                        startActivity(intent);
 
                         break;
                     default:
@@ -77,7 +83,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

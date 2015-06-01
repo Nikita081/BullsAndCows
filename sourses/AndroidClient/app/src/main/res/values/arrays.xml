@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="background_photo">
+        <item>Ферма</item>
+        <item>Бык</item>
+        <item>Курсив</item>
+        <item>Полужирный+Курсив</item>
+    </string-array>
+</resources>
