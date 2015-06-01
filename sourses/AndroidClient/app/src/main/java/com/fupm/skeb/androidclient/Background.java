@@ -8,24 +8,34 @@ import android.view.MenuItem;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 
 
 public class Background extends ActionBarActivity {
 
+    //layout
     RadioGroup radioGroup;
 
+    private TextView textView3;
+
+    //PREFERENCES
     public static final String APP_PREFERENCES = "mysettings";
     public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_background);
+        setContentView(R.layout.activity_background);//standard
 
-        radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
+        radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
         radioGroup.setOnCheckedChangeListener(radioGroupOnCheckedChangeListener);
 
-        LoadPreferences();
+        textView3 = (TextView) findViewById(R.id.textView3);
+
+        int a = LoadPreferences();
+        //LoadPreferences();//+
+
+        textView3.setText("" + a + "");
     }
 
     OnCheckedChangeListener radioGroupOnCheckedChangeListener = new OnCheckedChangeListener() {
@@ -41,36 +51,22 @@ public class Background extends ActionBarActivity {
     };
 
     private void SavePreferences(String key, int value) {
-        SharedPreferences sharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSettings.edit();
         editor.putInt(key, value);
         editor.apply();
     }
 
-    private void LoadPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int savedRadioIndex = sharedPreferences.getInt(KEY_RADIOBUTTON_INDEX, 0);
+    private int LoadPreferences() {
+    //private void LoadPreferences() {//загрузка
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int savedRadioIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
         RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
+
+        return savedRadioIndex;
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
