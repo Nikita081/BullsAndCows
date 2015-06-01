@@ -17,7 +17,6 @@ public class ListGame extends FragmentActivity {
     private Button gameOnline;
 
 
-
     //PREFERENCES
     public static final String APP_PREFERENCES = "mysettings";
     public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
@@ -31,9 +30,14 @@ public class ListGame extends FragmentActivity {
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
         mRelativeLayout.setBackgroundResource(R.drawable.ferma);
-//        mRelativeLayout.setBackgroundResource(check());
 
-        onResume(); // load or change background
+        ChangeBackground mBackground = new ChangeBackground();
+
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
 
         gameComp = (Button) findViewById(R.id.comp_game);
         gameComp.setOnClickListener(new View.OnClickListener() {
@@ -67,20 +71,6 @@ public class ListGame extends FragmentActivity {
                 }
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        ChangeBackground mBackground = new ChangeBackground();
-
-        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
-
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-  //      mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
-
     }
 
     @Override
