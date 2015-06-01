@@ -10,9 +10,13 @@
     </style>
     <style name="ThemeButton" parent="Base.TextAppearance.AppCompat.Button">
         <item name="android:background">@drawable/button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
     </style>
     <style name="myTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:buttonStyle">@style/ThemeButton2</item>
+
     </style>
     <style name="ThemeButton2" parent="Base.TextAppearance.AppCompat.Button">
         <item name="android:background">@drawable/button2</item>
