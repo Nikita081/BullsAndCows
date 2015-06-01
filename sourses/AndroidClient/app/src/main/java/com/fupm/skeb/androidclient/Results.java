@@ -1,5 +1,6 @@
 package com.fupm.skeb.androidclient;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 import android.content.Context;
 
 
-public class Results extends ActionBarActivity {
+public class Results extends FragmentActivity {
 
     //single game
     private TextView SingleText1, SingleText2, SingleText3, SingleText4;

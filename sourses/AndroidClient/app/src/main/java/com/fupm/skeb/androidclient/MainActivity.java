@@ -1,10 +1,13 @@
 package com.fupm.skeb.androidclient;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,8 +41,10 @@ public class MainActivity extends FragmentActivity {
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
         btnResult = (Button) findViewById(R.id.btnResult);
         change = (Button) findViewById(R.id.change);
+        textView1 = (TextView) findViewById(R.id.textView1);
 
         Background trew = new Background();
+
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
         //mRelativeLayout.setBackgroundResource(trew.changeBackground());

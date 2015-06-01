@@ -19,11 +19,11 @@ public class ListGame extends FragmentActivity {
 
     public RelativeLayout mRelativeLayout;
 
-    public int check(){
-
-        return R.drawable.bull;
-
-    }
+//    public int check(){
+//
+//        return R.drawable.bull;
+//
+//    }
 
 
 
@@ -33,8 +33,8 @@ public class ListGame extends FragmentActivity {
         setContentView(R.layout.activity_list_game);
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mRelativeLayout.setBackgroundResource(R.drawable.ferma);
-        mRelativeLayout.setBackgroundResource(check());
+        mRelativeLayout.setBackgroundResource(R.drawable.ferma);
+//        mRelativeLayout.setBackgroundResource(check());
 
 
 
