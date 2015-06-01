@@ -14,12 +14,19 @@ public class Results extends ActionBarActivity {
     private TextView textView4;
     private TextView textView6;
     private TextView textView8;
+    private TextView textView10;
+    private TextView textView12;
 
     public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_SIN_RES = "single_result";
-    public static final String APP_PREFERENCES_SIN_GAM = "single_games";
+    //single game
+    public static final String APP_PREFERENCES_SIN_RES = "single_result";//количество ходов
+    public static final String APP_PREFERENCES_SIN_WIN = "single_win";//количество побед
+    public static final String APP_PREFERENCES_SIN_LOS = "single_loss";//количество игр
+
+    //multiplayer
     public static final String APP_PREFERENCES_MUL_RES = "multi_result";
     public static final String APP_PREFERENCES_MUL_GAM = "multi_games";
+
     private SharedPreferences mSettings;
 
    @Override
@@ -32,13 +39,18 @@ public class Results extends ActionBarActivity {
         textView4 = (TextView) findViewById(R.id.textView4);
         textView6 = (TextView) findViewById(R.id.textView6);
         textView8 = (TextView) findViewById(R.id.textView8);
+        textView10 = (TextView) findViewById(R.id.textView10);
+        textView12 = (TextView) findViewById(R.id.textView12);
     }
 
     public void onClick(View v) {
         SharedPreferences.Editor editor = mSettings.edit();
         int mCounter = 0;
+        //single game
         editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
-        editor.putInt(APP_PREFERENCES_SIN_GAM, mCounter);
+        editor.putInt(APP_PREFERENCES_SIN_WIN, mCounter);
+        editor.putInt(APP_PREFERENCES_SIN_LOS, mCounter);
+        //multiplayer
         editor.putInt(APP_PREFERENCES_MUL_RES, mCounter);
         editor.putInt(APP_PREFERENCES_MUL_GAM, mCounter);
         editor.apply();
@@ -50,15 +62,20 @@ public class Results extends ActionBarActivity {
         super.onResume();
 
         if (mSettings.contains(APP_PREFERENCES_SIN_RES)) {
+            //single game
             int mCounter = mSettings.getInt(APP_PREFERENCES_SIN_RES, 0);
-            int mCounter2 = mSettings.getInt(APP_PREFERENCES_SIN_GAM, 0);
+            int mCounter2 = mSettings.getInt(APP_PREFERENCES_SIN_WIN, 0);
+            int mCounter21 = mSettings.getInt(APP_PREFERENCES_SIN_LOS, 0);
+            //multiplayer
             int mCounter3 = mSettings.getInt(APP_PREFERENCES_MUL_RES, 0);
             int mCounter4 = mSettings.getInt(APP_PREFERENCES_MUL_GAM, 0);
 
-            textView2.setText(numAttempts(mCounter));
+            textView2.setText("" + (mCounter2 + mCounter21) + "");
             textView4.setText("" + mCounter2 + "");
-            textView6.setText(numAttempts(mCounter3));
-            textView8.setText("" + mCounter4 + "");
+            textView6.setText("" + mCounter21 + "");
+            textView8.setText(numAttempts(mCounter));
+            textView10.setText(numAttempts(mCounter3));
+            textView12.setText("" + mCounter4 + "");
         }
         else{
 
