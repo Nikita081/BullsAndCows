@@ -27,7 +27,8 @@ public class Game extends ActionBarActivity {
     private Button [] arrayButton = new Button[10];
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_SIN_RES = "single_result";
-    public static final String APP_PREFERENCES_SIN_GAM = "single_games";
+    public static final String APP_PREFERENCES_SIN_WIN = "single_win";
+    public static final String APP_PREFERENCES_SIN_LOS = "single_loss";
     private SharedPreferences mSettings;
 
 
@@ -68,7 +69,7 @@ public class Game extends ActionBarActivity {
                         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
                         int attemptCurrent = bullcow.getAttempt();
                         SharedPreferences.Editor editor = mSettings.edit();
-                        editor.putInt(APP_PREFERENCES_SIN_GAM, mSettings.getInt(APP_PREFERENCES_SIN_GAM, 0) + 1);
+                        editor.putInt(APP_PREFERENCES_SIN_WIN, mSettings.getInt(APP_PREFERENCES_SIN_WIN, 0) + 1);
                         int attemptSettings = mSettings.getInt(APP_PREFERENCES_SIN_RES, 0);
                         if (attemptCurrent < attemptSettings || attemptSettings == 0) {
                             editor.putInt(APP_PREFERENCES_SIN_RES, attemptCurrent);
@@ -133,7 +134,10 @@ public class Game extends ActionBarActivity {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                        /////////////////////
+                        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = mSettings.edit();
+                        editor.putInt(APP_PREFERENCES_SIN_LOS, mSettings.getInt(APP_PREFERENCES_SIN_LOS, 0) + 1);
+                        editor.apply();
 
                         finish();
                     }
