@@ -73,7 +73,7 @@ public class ListGame extends FragmentActivity {
         int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
+//        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
     }
 
     @Override

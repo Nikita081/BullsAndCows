@@ -45,7 +45,7 @@ public class ChangeBackground{
             case 19:
                 return R.drawable.p19;
             case 20:
-                return R.drawable.p20;
+                return R.drawable.p6;
             case 21:
                 return R.drawable.cow;
             default:

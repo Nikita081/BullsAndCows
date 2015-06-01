@@ -102,8 +102,6 @@ public class Background extends FragmentActivity {
             case 19:
                 return R.drawable.p19;
             case 20:
-                return R.drawable.p20;
-            case 21:
                 return R.drawable.cow;
             default:
                 return R.drawable.ferma;
