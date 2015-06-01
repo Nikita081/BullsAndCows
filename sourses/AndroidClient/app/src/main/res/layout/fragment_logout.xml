@@ -6,25 +6,33 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/continue_button"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/continue_using_app"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:layout_gravity="center"
-        android:gravity="center" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/logout"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:layout_gravity="center"
-        android:gravity="center" />
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/continue_using_app"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:gravity="center"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="160dp" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/logout"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:gravity="center"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="100dp" />
+    </FrameLayout>
+
 </LinearLayout>
