@@ -4,8 +4,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    >
+    android:background="#FFFFFF"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
 
     <TextView
@@ -24,12 +24,12 @@
         android:layout_height="50sp"
         android:text="@string/button2"
         android:id="@+id/btnResult"
-        android:background="@color/connect_back"
         android:layout_below="@+id/btnActTwo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp" />
 
     <Button
         android:layout_width="110sp"
@@ -37,12 +37,12 @@
         android:text="@string/game"
         android:id="@+id/btnActTwo"
         android:layout_gravity="center"
-        android:background="@color/Glass_green"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_alignEnd="@+id/button2"
+        android:layout_margin="10dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -57,7 +57,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Background"
+        android:text="@string/change"
         android:id="@+id/change"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

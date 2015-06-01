@@ -2,20 +2,31 @@ package com.fupm.skeb.androidclient;
 
 
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.vk.sdk.VKAccessToken;
+import com.vk.sdk.api.VKApi;
+import com.vk.sdk.api.VKRequest;
+import com.vk.sdk.api.VKResponse;
+import com.vk.sdk.api.model.VKApiUser;
+import com.vk.sdk.api.model.VKList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends FragmentActivity {
     private String TAG  = "MainAct";
     private String uri = "http://192.168.0.101:10100/test";
-    private Button btnActTwo, btnResult;
+    private Button btnActTwo, btnResult, button2;
     private Button change;
+    private TextView textView1;
 
     private RelativeLayout mRelativeLayout;
 
@@ -32,6 +43,31 @@ public class MainActivity extends ActionBarActivity {
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
         //mRelativeLayout.setBackgroundResource(trew.changeBackground());
+
+//        button2.setOnClickListener(new  View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final VKRequest request = VKApi.users().get();
+//                request.executeWithListener(new VKRequest.VKRequestListener() {
+//                    @Override
+//                    public void onComplete(VKResponse response) {
+//                        super.onComplete(response);
+//
+//                        //Log.v("VK SDK",response.json.toString());
+//
+//                        VKList list = (VKList) response.parsedModel;
+//                        VKApiUser user = (VKApiUser) list.get(0);
+//
+//                        if (user == null) {
+//                            Log.v("Ошибка", "Ничего не загрузилось");
+//                        } else {
+//                            Log.v("User name:", user.first_name + user.last_name);
+//                            textView1.setText(user.first_name + " " + user.last_name);
+//                        }
+//                    }
+//                });
+//            }
+//        });
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override

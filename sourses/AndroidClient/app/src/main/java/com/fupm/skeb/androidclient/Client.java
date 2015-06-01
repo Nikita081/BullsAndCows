@@ -15,7 +15,7 @@ import java.net.Socket;
 
 public class Client {
     private String serverMessage;
-    public static  String serverIP = "192.168.0.102";
+    public static  String serverIP = "192.168.0.101";
     public static final int port = 10100;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;

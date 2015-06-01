@@ -72,7 +72,11 @@
 
     <string name="title_activity_list_online_game">ListOnlineGame</string>
     <string name="title_activity_background">Background</string>
+<<<<<<< HEAD
     <string name="bar">BAR</string>
+=======
+    <string name="change">Background</string>
+>>>>>>> 4f4202f2d5b8049923a5ddfe8a1d734e24c71c33
 
 
 </resources>

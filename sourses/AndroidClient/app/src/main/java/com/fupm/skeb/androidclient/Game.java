@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Game extends ActionBarActivity {
+public class Game extends FragmentActivity {
 
     private EditText edTryNumber;
     private int tryNumber = 0;

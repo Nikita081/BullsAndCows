@@ -2,6 +2,7 @@ package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.content.res.Resources;
 
 
-public class ListGame extends ActionBarActivity {
+public class ListGame extends FragmentActivity {
 
     private Button gameComp;
     private Button gameOnline;
