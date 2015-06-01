@@ -80,6 +80,7 @@ public class ListGame extends FragmentActivity {
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
   //      mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
+
     }
 
     @Override

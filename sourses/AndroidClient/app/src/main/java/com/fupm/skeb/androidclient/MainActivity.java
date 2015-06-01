@@ -48,7 +48,7 @@ public class MainActivity extends FragmentActivity {
         textView1 = (TextView) findViewById(R.id.textView1);
         background = (Button) findViewById(R.id.background);
 
-        onResume(); // load or change background
+       // onResume(); // load or change background
 
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
