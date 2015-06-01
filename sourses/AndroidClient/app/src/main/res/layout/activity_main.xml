@@ -18,12 +18,13 @@
         android:layout_height="wrap_content"
         android:text="@string/hello"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         foo:customFont="Ruthie.ttf"
         android:textSize="35sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp" />
 
 
     <Button
