@@ -4,7 +4,7 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FFFFFF"
+    android:background="@drawable/ferma"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
 
@@ -15,8 +15,7 @@
         android:text="@string/hello"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="189dp" />
+        android:layout_centerHorizontal="true" />
 
 
     <Button
@@ -25,11 +24,11 @@
         android:text="@string/button2"
         android:id="@+id/btnResult"
         android:layout_below="@+id/btnActTwo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp" />
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignStart="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignEnd="@+id/textView1"
+        android:layout_margin="10sp" />
 
     <Button
         android:layout_width="110sp"
@@ -37,30 +36,20 @@
         android:text="@string/game"
         android:id="@+id/btnActTwo"
         android:layout_gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2"
-        android:layout_margin="10dp" />
+        android:layout_marginTop="85dp"
+        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/btnResult"
+        android:layout_alignStart="@+id/btnResult"
+        android:layout_alignRight="@+id/btnResult"
+        android:layout_alignEnd="@+id/btnResult" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Get_token"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120sp"
+        android:layout_height="25sp"
         android:text="@string/change"
         android:id="@+id/change"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/btnResult"
+        android:layout_alignEnd="@+id/btnResult" />
 
 </RelativeLayout>
