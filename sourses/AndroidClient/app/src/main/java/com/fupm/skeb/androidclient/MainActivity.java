@@ -48,10 +48,10 @@ public class MainActivity extends FragmentActivity {
         textView1 = (TextView) findViewById(R.id.textView1);
         background = (Button) findViewById(R.id.background);
 
-       // onResume(); // load or change background
+        onResume(); // load or change background
 
 
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        //mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
         //mRelativeLayout.setBackgroundResource(trew.changeBackground());
 
 
@@ -141,7 +141,7 @@ public class MainActivity extends FragmentActivity {
         int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-//        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
+        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
     }
 
     @Override
