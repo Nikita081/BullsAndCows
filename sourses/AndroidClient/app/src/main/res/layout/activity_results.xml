@@ -59,7 +59,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -76,7 +77,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -93,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
         </TableRow>
         <TableRow>
             <TextView
@@ -110,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
         </TableRow>
     </TableLayout>
 
@@ -138,7 +142,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
 
         </TableRow>
         <TableRow>
@@ -155,7 +160,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
 
         </TableRow>
         <TableRow>
@@ -172,7 +178,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
 
         </TableRow>
         <TableRow>
@@ -189,7 +196,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
 
         </TableRow>
         <TableRow>
@@ -206,7 +214,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"
+                android:gravity="center"/>
         </TableRow>
     </TableLayout>
 
