@@ -39,13 +39,11 @@ public class MainActivity extends ActionBarActivity {
                         // TODO Call second activity
 
                         //mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
-
                         //ListGame trew = new ListGame();
                         //mRelativeLayout.setBackgroundResource(trew.check());
 
                         Intent intent = new Intent(MainActivity.this, Background.class);
                         startActivity(intent);
-
                         break;
                     default:
                         break;
