@@ -55,7 +55,7 @@
         android:layout_width="120sp"
         android:layout_height="25sp"
         android:text="@string/change"
-        android:id="@+id/change"
+        android:id="@+id/background"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/btnResult"
         android:layout_alignEnd="@+id/btnResult" />

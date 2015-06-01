@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +36,26 @@ public class Game extends FragmentActivity {
 
     BodyGame bullcow  = new BodyGame();
 
+    //PREFERENCES
+
+    public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+
+    private RelativeLayout mRelativeLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        ChangeBackground mBackground = new ChangeBackground();
+
+        SharedPreferences mS = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mS.getInt(KEY_RADIOBUTTON_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        //mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
+
+
 
         set(arrayButton, mycount);
         for (int j = 0; j < 10; j++){
@@ -54,13 +71,12 @@ public class Game extends FragmentActivity {
             public void onClick(View v) {
 
                 int len = edTryNumber.getText().toString().length();
-                if (len == 4)
-                {
+                if (len == 4) {
                     tryNumber = Integer.parseInt(edTryNumber.getText().toString());
                     tryNumberString = edTryNumber.getText().toString();
                     edTryNumber.setText("");
 
-                    TextView text = (TextView)findViewById(R.id.logtext);
+                    TextView text = (TextView) findViewById(R.id.logtext);
 
                     int bulls = bullcow.countALL(tryNumber);
 
@@ -95,7 +111,7 @@ public class Game extends FragmentActivity {
 
                     String st = bullcow.giveLog(tryNumberString);
                     text.setText(st);
-                }else {
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             R.string.only4num, Toast.LENGTH_SHORT);
                     toast.show();
@@ -103,6 +119,7 @@ public class Game extends FragmentActivity {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

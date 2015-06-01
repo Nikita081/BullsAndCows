@@ -4,6 +4,7 @@ package com.fupm.skeb.androidclient;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -28,8 +29,12 @@ public class MainActivity extends FragmentActivity {
     private String TAG  = "MainAct";
     private String uri = "http://192.168.0.101:10100/test";
     private Button btnActTwo, btnResult, button2;
-    private Button change;
+    private Button background;
     private TextView textView1;
+
+    //PREFERENCES
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
     private RelativeLayout mRelativeLayout;
 
@@ -40,14 +45,15 @@ public class MainActivity extends FragmentActivity {
 
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
         btnResult = (Button) findViewById(R.id.btnResult);
-        change = (Button) findViewById(R.id.change);
         textView1 = (TextView) findViewById(R.id.textView1);
+        background = (Button) findViewById(R.id.background);
 
-        Background trew = new Background();
+        onResume(); // load or change background
 
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
         //mRelativeLayout.setBackgroundResource(trew.changeBackground());
+
 
 //        button2.setOnClickListener(new  View.OnClickListener() {
 //            @Override
@@ -74,11 +80,11 @@ public class MainActivity extends FragmentActivity {
 //            }
 //        });
 
-        change.setOnClickListener(new View.OnClickListener() {
+        background.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.change:
+                    case R.id.background:
                         // TODO Call second activity
 
                         //mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
@@ -123,6 +129,19 @@ public class MainActivity extends FragmentActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ChangeBackground mBackground = new ChangeBackground();
+
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+//        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
     }
 
     @Override

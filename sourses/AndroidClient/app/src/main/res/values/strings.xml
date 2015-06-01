@@ -72,7 +72,7 @@
 
     <string name="title_activity_list_online_game">ListOnlineGame</string>
     <string name="title_activity_background">Background</string>
+    <string name="bar">BAR</string>
     <string name="change">Background</string>
-
 
 </resources>
