@@ -1,15 +1,14 @@
 package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.content.res.Resources;
 
 
 public class ListGame extends FragmentActivity {
@@ -17,26 +16,18 @@ public class ListGame extends FragmentActivity {
     private Button gameComp;
     private Button gameOnline;
 
-    public RelativeLayout mRelativeLayout;
+    //PREFERENCES
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
 
-    public int check(){
-
-        return R.drawable.bull;
-
-    }
-
-
+    private RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_game);
 
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mRelativeLayout.setBackgroundResource(R.drawable.ferma);
-        mRelativeLayout.setBackgroundResource(check());
-
-
+        onResume(); // load or change background
 
         gameComp = (Button) findViewById(R.id.comp_game);
         gameComp.setOnClickListener(new View.OnClickListener() {
@@ -62,11 +53,7 @@ public class ListGame extends FragmentActivity {
                     case R.id.human_game:
                         // TODO Call second activity
 
-                        //Intent intent = new Intent(ListGame.this, Online.class);
-
-                        //Intent intent = new Intent(ListGame.this, GameOnline.class);
                         Intent intent = new Intent(ListGame.this, ListOnlineGame.class);
-
                         startActivity(intent);
                         break;
                     default:
@@ -74,6 +61,19 @@ public class ListGame extends FragmentActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ChangeBackground mBackground = new ChangeBackground();
+
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
     }
 
     @Override

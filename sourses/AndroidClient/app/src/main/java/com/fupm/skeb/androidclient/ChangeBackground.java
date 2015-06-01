@@ -24,6 +24,30 @@ public class ChangeBackground{
                 return R.drawable.p8;
             case 9:
                 return R.drawable.p9;
+            case 10:
+                return R.drawable.p10;
+            case 11:
+                return R.drawable.p11;
+            case 12:
+                return R.drawable.p12;
+            case 13:
+                return R.drawable.p13;
+            case 14:
+                return R.drawable.p14;
+            case 15:
+                return R.drawable.p15;
+            case 16:
+                return R.drawable.p16;
+            case 17:
+                return R.drawable.p17;
+            case 18:
+                return R.drawable.p18;
+            case 19:
+                return R.drawable.p19;
+            case 20:
+                return R.drawable.p20;
+            case 21:
+                return R.drawable.cow;
             default:
                 return R.drawable.ferma;
         }
