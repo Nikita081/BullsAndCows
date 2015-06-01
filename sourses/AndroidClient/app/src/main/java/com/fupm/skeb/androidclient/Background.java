@@ -58,7 +58,7 @@ public class Background extends FragmentActivity {
         RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
     }
-
+/*
     public int choose(int key) {
         switch (key) {
             case 0:
@@ -104,5 +104,5 @@ public class Background extends FragmentActivity {
             default:
                 return R.drawable.ferma;
         }
-    }
+    }*/
 }
