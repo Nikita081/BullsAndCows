@@ -77,7 +77,8 @@
         <activity
             android:name=".Results"
             android:label="@string/title_activity_results"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
@@ -85,7 +86,8 @@
         <activity
             android:name=".Online"
             android:label="@string/title_activity_online"
-            android:parentActivityName=".ListOnlineGame" >
+            android:parentActivityName=".ListOnlineGame"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListOnlineGame" />
@@ -93,7 +95,8 @@
         <activity
             android:name=".ListOnlineGame"
             android:label="@string/title_activity_list_online_game"
-            android:parentActivityName=".ListGame" >
+            android:parentActivityName=".ListGame"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListGame" />
@@ -101,7 +104,8 @@
         <activity
             android:name=".Background"
             android:label="@string/title_activity_background"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
