@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.fupm.skeb.androidclient.Results">
+    tools:context="com.fupm.skeb.androidclient.Results"
+    >
 
     <Button
         android:id="@+id/buttonCrowsCounter"
@@ -14,25 +15,210 @@
         android:text="@string/deleteStatistic"
         android:layout_gravity="right|center"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/resultView"
-        android:layout_alignStart="@+id/resultView"
-        android:layout_marginBottom="173dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/resultView"
-        android:layout_above="@+id/buttonCrowsCounter"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="139dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/resultOnline"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Одиночный режим"
+        android:id="@+id/textView"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Многопользовательский"
+        android:id="@+id/textViewM"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/textView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="45dp" />
+        android:layout_alignParentEnd="true">
+        <TableRow android:baselineAligned="false">
+            <TextView
+                android:id="@+id/Single1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Сыграно игр"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/SingleText1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Single2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Выигрыно игр"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/SingleText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Single3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Незаконченных игр"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/SingleText3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Single4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Лучший результат"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/SingleText4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textViewM"
+        android:layout_above="@+id/buttonCrowsCounter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+
+        android:layout_alignParentEnd="true">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/Multi1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Сыграно игр"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/MultiText1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Multi2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Выиграно игр"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/MultiText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Multi3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Проиграно игр"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/MultiText3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Multi4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Сыграно ничей"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/MultiText4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/Multi5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Лучший результат"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.7" />
+
+            <TextView
+                android:id="@+id/MultiText5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="0.3"
+                android:gravity="center"/>
+        </TableRow>
+    </TableLayout>
+
 
 </RelativeLayout>

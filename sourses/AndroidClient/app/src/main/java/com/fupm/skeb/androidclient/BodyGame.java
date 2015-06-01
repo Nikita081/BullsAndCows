@@ -1,6 +1,5 @@
 package com.fupm.skeb.androidclient;
 
-
 public class BodyGame {
 
     private int bulls;
@@ -28,8 +27,6 @@ public class BodyGame {
         cow = countCows(riddle, try_num);
         return bulls;
     }
-
-
 
     private static int[] insert(int [] riddle)
     {
@@ -82,10 +79,11 @@ public class BodyGame {
             case 2:
             case 3:
             case 4: message += "хода"; break;
-            default: message += "ходов"; break;
+            default: message +=  "ходов"; break;
         }
         return message;
     }
+
 
     public int getAttempt(){
         return attempt;

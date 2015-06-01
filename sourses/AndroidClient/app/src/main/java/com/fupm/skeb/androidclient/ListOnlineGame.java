@@ -21,10 +21,15 @@ public class ListOnlineGame extends ActionBarActivity {
     private int listNumbers = 0;
     private Button button;
     private ListView listView;
+
     private String TAG = "ListOnline: ";
     private ArrayList<String> catnames = new ArrayList<String>();
     private int idd;
     private AsyncTask task  = null;
+
+    private ArrayList<String> session = new ArrayList<String>();
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +40,13 @@ public class ListOnlineGame extends ActionBarActivity {
         button = (Button) findViewById(R.id.button3);
 
         final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item_1, catnames);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item_1, session);
         listView.setAdapter(adapter);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                catnames.add(0, Integer.toString(++listNumbers) + " session");
+                session.add(0, Integer.toString(++listNumbers) + " session");
                 adapter.notifyDataSetChanged();
             }
         });
@@ -68,9 +73,7 @@ public class ListOnlineGame extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

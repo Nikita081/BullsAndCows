@@ -27,7 +27,6 @@ public class GameOnline extends ActionBarActivity {
     private static final String NEW_GAME = "newgame";
     private static final String OWN_ATTEMPT = "own_attempt";
     private static final String ENEMY_ATTEMPT = "enemy_attempt";
-    private static final String YOUR_RIDDLE = "Вы загадали число ";
 
 
     private String TAG = "Life circle";
@@ -248,7 +247,7 @@ public class GameOnline extends ActionBarActivity {
 
     public void isend(int rid) {
         riddle.setVisibility(View.INVISIBLE);
-        create_number.setText(YOUR_RIDDLE +rid);
+        create_number.setText(R.string.yourRiddle +rid);
         create_number.setEnabled(false);
         create_number.setCursorVisible(false);
         create_number.setBackgroundColor(Color.TRANSPARENT);

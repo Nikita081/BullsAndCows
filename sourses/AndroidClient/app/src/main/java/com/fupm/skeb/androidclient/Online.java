@@ -41,7 +41,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     private static final String GAME = "game";
     private static final String CHAT = "chat";
     private static final String ENEMY_ATTEMPT = "enemy_attempt";
-    private static final String YOUR_RIDDLE = "�� �������� ����� ";
     private static final String STARTCHAT = "startChat";
     private static final String GAME_PREFERENCES = "game";
     private static final String ENEMY_LOG = "enemylog";
@@ -175,9 +174,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             transaction.hide(game_fragment);
             transaction.addToBackStack(null);
             transaction.commit();
-
         }
-
     }
 
     @Override
@@ -206,11 +203,13 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             transaction.show(game_fragment);
             transaction.hide(chat_fragment);
             transaction.commit();
+
         } else {
 
           onRetainCustomNonConfigurationInstance();
             super.onBackPressed();
         }
+
     }
 
     public class MyTask extends AsyncTask<String, String, Client> {
@@ -227,7 +226,9 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         @Override
         protected Client doInBackground(String... message) {
 
+
             Log.i(TAG, "befor client");
+
             mClient = new Client(new Client.OnMessageReceived() {
                 @Override
 
@@ -264,18 +265,12 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
                     Toast.makeText(activity.game_fragment.getActivity(), values[0], Toast.LENGTH_SHORT).show();
                     Log.i(TAG, values[0]);
 
+
                 }
+
             }
-
         }
-
     }
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -295,13 +290,12 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     public void isend(int rid) {
         (game_fragment.getView().findViewById(R.id.buttonRiddle)).setVisibility(View.INVISIBLE);
-        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText(YOUR_RIDDLE + rid);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText(R.string.yourRiddle + rid);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setEnabled(false);
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setCursorVisible(false);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setBackgroundColor(Color.TRANSPARENT);
@@ -309,6 +303,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
         (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
     }
+
 
     private void savePreferences(){
         SharedPreferences online_saves = getSharedPreferences(GAME_PREFERENCES+id, Context.MODE_PRIVATE);
@@ -385,5 +380,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         task.unLink();
         return task;
     }
+
 
 }

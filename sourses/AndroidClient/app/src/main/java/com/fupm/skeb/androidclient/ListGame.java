@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.content.res.Resources;
 
 
 public class ListGame extends ActionBarActivity {
@@ -14,10 +16,26 @@ public class ListGame extends ActionBarActivity {
     private Button gameComp;
     private Button gameOnline;
 
+    public RelativeLayout mRelativeLayout;
+
+    public int check(){
+
+        return R.drawable.bull;
+
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_game);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        //mRelativeLayout.setBackgroundResource(R.drawable.ferma);
+        mRelativeLayout.setBackgroundResource(check());
+
+
 
         gameComp = (Button) findViewById(R.id.comp_game);
         gameComp.setOnClickListener(new View.OnClickListener() {

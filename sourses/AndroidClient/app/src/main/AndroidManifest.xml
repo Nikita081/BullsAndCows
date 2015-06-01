@@ -77,14 +77,12 @@
         <activity
             android:name=".Results"
             android:label="@string/title_activity_results"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
         </activity>
         <activity
-
             android:name=".Online"
             android:label="@string/title_activity_online"
             android:parentActivityName=".ListOnlineGame" >
@@ -99,6 +97,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListGame" />
+        </activity>
+        <activity
+            android:name=".Background"
+            android:label="@string/title_activity_background"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fupm.skeb.androidclient.MainActivity" />
         </activity>
     </application>
 

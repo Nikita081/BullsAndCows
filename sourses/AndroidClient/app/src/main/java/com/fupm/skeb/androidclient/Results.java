@@ -15,19 +15,34 @@ import com.vk.sdk.VKAccessToken;
 import static com.vk.sdk.VKSdk.getAccessToken;
 
 
+
 public class Results extends ActionBarActivity {
+
+    //single game
+    private TextView SingleText1, SingleText2, SingleText3, SingleText4;
+
+    //multiplayer
+    private TextView MultiText1, MultiText2, MultiText3, MultiText4, MultiText5;
+
 
     private TextView mInfoTextView,resultOnline;
     private Client mClient;
     public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_SIN_RES = "single_result";
-    public static final String APP_PREFERENCES_SIN_GAM = "single_games";
-    public static final String APP_PREFERENCES_MUL_RES = "multi_result";
-    public static final String APP_PREFERENCES_MUL_GAM = "multi_games";
+
+    //single game
+    public static final String APP_PREFERENCES_SIN_RES = "single_result";//количество ходов
+    public static final String APP_PREFERENCES_SIN_WIN = "single_win";//количество побед
+    public static final String APP_PREFERENCES_SIN_LOS = "single_loss";//количество недоигранных игр
     private static final String STATISTIC = "statistic";
     private static final String EQUALS = "=";
     private VKAccessToken token;
     private String res_log  ="\n";
+    //multiplayer
+    public static final String APP_PREFERENCES_MUL_RES = "multi_result";//количество ходов
+    public static final String APP_PREFERENCES_MUL_WIN = "multi_win";//количество побед
+    public static final String APP_PREFERENCES_MUL_LOS = "multi_loss";//количество проигрышей
+    public static final String APP_PREFERENCES_MUL_DRAW = "multi_draw";//количество ничей
+
     private SharedPreferences mSettings;
     private Results.MyTask task;
    @Override
@@ -36,24 +51,35 @@ public class Results extends ActionBarActivity {
         setContentView(R.layout.activity_results);
         token = getAccessToken();
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        mInfoTextView = (TextView) findViewById(R.id.resultView);
-       resultOnline = (TextView)findViewById(R.id.resultOnline);
-       task = (MyTask) new MyTask().execute("");
-       while (true) {
-           if (mClient != null && mClient.clientHasRun()) {
-               mClient.sendMessage(STATISTIC + EQUALS + token.userId);
-               break;
-           }
-       }
+
+
+        //single game
+        SingleText1 = (TextView) findViewById(R.id.SingleText1);
+        SingleText2 = (TextView) findViewById(R.id.SingleText2);
+        SingleText3 = (TextView) findViewById(R.id.SingleText3);
+        SingleText4 = (TextView) findViewById(R.id.SingleText4);
+
+        //multiplayer
+        MultiText1 = (TextView) findViewById(R.id.MultiText1);
+        MultiText2 = (TextView) findViewById(R.id.MultiText2);
+        MultiText3 = (TextView) findViewById(R.id.MultiText3);
+        MultiText4 = (TextView) findViewById(R.id.MultiText4);
+        MultiText5 = (TextView) findViewById(R.id.MultiText5);
+
     }
 
     public void onClick(View v) {
         SharedPreferences.Editor editor = mSettings.edit();
         int mCounter = 0;
+        //single game
         editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
-        editor.putInt(APP_PREFERENCES_SIN_GAM, mCounter);
+        editor.putInt(APP_PREFERENCES_SIN_WIN, mCounter);
+        editor.putInt(APP_PREFERENCES_SIN_LOS, mCounter);
+        //multiplayer
         editor.putInt(APP_PREFERENCES_MUL_RES, mCounter);
-        editor.putInt(APP_PREFERENCES_MUL_GAM, mCounter);
+        editor.putInt(APP_PREFERENCES_MUL_WIN, mCounter);
+        editor.putInt(APP_PREFERENCES_MUL_LOS, mCounter);
+        editor.putInt(APP_PREFERENCES_MUL_DRAW, mCounter);
         editor.apply();
         onResume();
     }
@@ -63,42 +89,49 @@ public class Results extends ActionBarActivity {
         super.onResume();
 
         if (mSettings.contains(APP_PREFERENCES_SIN_RES)) {
-            int mCounter = mSettings.getInt(APP_PREFERENCES_SIN_RES, 0);
-            int mCounter2 = mSettings.getInt(APP_PREFERENCES_SIN_GAM, 0);
-            int mCounter3 = mSettings.getInt(APP_PREFERENCES_MUL_RES, 0);
-            int mCounter4 = mSettings.getInt(APP_PREFERENCES_MUL_GAM, 0);
-            mInfoTextView.setText(getString(R.string.singleRes) + numAttempts(mCounter) +
-                    getString(R.string.singleGames) + mCounter2 +
-                    getString(R.string.multiRes) + numAttempts(mCounter3) +
-                    getString(R.string.multiGames) + mCounter4);
+            //single game
+            int mCounterWIN = mSettings.getInt(APP_PREFERENCES_SIN_WIN, 0);
+            int mCounterLOS = mSettings.getInt(APP_PREFERENCES_SIN_LOS, 0);
+            int mCounterRES = mSettings.getInt(APP_PREFERENCES_SIN_RES, 0);
+
+            SingleText1.setText("" + (mCounterWIN + mCounterLOS) + "");
+            SingleText2.setText("" + mCounterWIN + "");
+            SingleText3.setText("" + mCounterLOS + "");
+            SingleText4.setText(numAttempts(mCounterRES));
+
+            //multiplayer
+            mCounterWIN = mSettings.getInt(APP_PREFERENCES_MUL_WIN, 0);
+            mCounterLOS = mSettings.getInt(APP_PREFERENCES_MUL_LOS, 0);
+            int mCounterDRAW = mSettings.getInt(APP_PREFERENCES_MUL_DRAW, 0);
+            mCounterRES = mSettings.getInt(APP_PREFERENCES_MUL_RES, 0);
+
+            MultiText1.setText("" + (mCounterWIN + mCounterLOS + mCounterDRAW) + "");
+            MultiText2.setText("" + mCounterWIN + "");
+            MultiText3.setText("" + mCounterLOS + "");
+            MultiText4.setText("" + mCounterDRAW + "");
+            MultiText5.setText(numAttempts(mCounterRES));
         }
         else{
-            mInfoTextView.setText(R.string.nonPlayed);
+
+            ///////////////НАДО ЧТО-ТО СДЕЛАТЬ!
+
         }
     }
 
     private String numAttempts(int attempt){
         String message = attempt + " ";
-        if (attempt >= 5 && attempt <= 20) message += "ходов";
+        if (attempt >= 5 && attempt <= 20) message += getString(R.string.step_ov);
         else switch(attempt % 10) {
             case 0: message = " - "; break;
-            case 1: message += "ход"; break;
+            case 1: message += getString(R.string.step); break;
             case 2:
             case 3:
-            case 4: message += "хода"; break;
-            default: message += "ходов"; break;
+            case 4: message += getString(R.string.step_a); break;
+            default: message += getString(R.string.step_ov); break;
         }
         return message;
     }
-/*
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Запоминаем данные
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putInt(APP_PREFERENCES_COUNTER, mCounter);
-        editor.apply();
-    }*/
+
 public class MyTask extends AsyncTask<String, String, Client> {
 
     @Override
@@ -127,4 +160,5 @@ public class MyTask extends AsyncTask<String, String, Client> {
     }
 
 }
+
 }

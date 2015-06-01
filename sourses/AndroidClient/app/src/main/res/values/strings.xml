@@ -32,6 +32,21 @@
     <string name="multiRes">\nЛучший результат в онлайн режиме </string>
     <string name="multiGames">\nСыграно игр в онлайн режиме: </string>
     <string name="newSession">New Session</string>
+    <string name="exit">Сдаться?</string>
+    <string name="exitQuestion">В случае выхода из игры Вам будет засчитано поражение</string>
+    <string name="yes">Выйти из игры</string>
+    <string name="no">Назад в игру</string>
+    <string name="bulls"> Bulls      </string>
+    <string name="cow"> Cow</string>
+    <string name="point">".   "</string>
+    <string name="haveStep">Вы совершили </string>
+    <string name="step">ход</string>
+    <string name="step_ov"> ходов</string>
+    <string name="step_a">хода</string>
+    <string name="yourRiddle">Вы загадали число </string>
+
+
+
 
 
     <string name="hello_world">Hello world!</string>
@@ -56,6 +71,7 @@
     <string name="Chat">Chat</string>
 
     <string name="title_activity_list_online_game">ListOnlineGame</string>
+    <string name="title_activity_background">Background</string>
 
 
 
