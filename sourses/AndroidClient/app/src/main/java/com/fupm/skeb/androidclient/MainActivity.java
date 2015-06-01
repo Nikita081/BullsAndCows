@@ -44,17 +44,7 @@ public class MainActivity extends FragmentActivity {
         btnResult = (Button) findViewById(R.id.btnResult);
         background = (Button) findViewById(R.id.background);
 
-        ChangeBackground mBackground = new ChangeBackground();
-
-        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
-
-
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mRelativeLayout = (RelativeLayout)findViewById(mBackground.choose(groundIndex));
-        //mRelativeLayout.setBackgroundResource(R.drawable.ferma);
-        //mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
-        //mRelativeLayout = (RelativeLayout)findViewById(R.drawable.ferma);
+        onResume(); // load or change background
 
 
 //        button2.setOnClickListener(new  View.OnClickListener() {
@@ -131,6 +121,19 @@ public class MainActivity extends FragmentActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ChangeBackground mBackground = new ChangeBackground();
+
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
     }
 
     @Override
