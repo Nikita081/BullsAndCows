@@ -17,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
     private Button btnActTwo, btnResult;
     private Button change;
 
-    public RelativeLayout mRelativeLayout;
+    private RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,10 @@ public class MainActivity extends ActionBarActivity {
         btnResult = (Button) findViewById(R.id.btnResult);
         change = (Button) findViewById(R.id.change);
 
+        Background trew = new Background();
+
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        mRelativeLayout.setBackgroundResource(R.drawable.ferma);
+        //mRelativeLayout.setBackgroundResource(trew.changeBackground());
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override

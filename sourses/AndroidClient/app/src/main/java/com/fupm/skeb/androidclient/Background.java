@@ -16,8 +16,6 @@ public class Background extends ActionBarActivity {
     //layout
     RadioGroup radioGroup;
 
-    private TextView textView3;
-
     //PREFERENCES
     public static final String APP_PREFERENCES = "mysettings";
     public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
@@ -25,17 +23,12 @@ public class Background extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_background);//standard
+        setContentView(R.layout.activity_background);
 
         radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
         radioGroup.setOnCheckedChangeListener(radioGroupOnCheckedChangeListener);
 
-        textView3 = (TextView) findViewById(R.id.textView3);
-
-        int a = LoadPreferences();
-        //LoadPreferences();//+
-
-        textView3.setText("" + a + "");
+        LoadPreferences();
     }
 
     OnCheckedChangeListener radioGroupOnCheckedChangeListener = new OnCheckedChangeListener() {
@@ -57,16 +50,10 @@ public class Background extends ActionBarActivity {
         editor.apply();
     }
 
-    private int LoadPreferences() {
-    //private void LoadPreferences() {//загрузка
+    private void LoadPreferences() {
         SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         int savedRadioIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
         RadioButton savedCheckedRadioButton = (RadioButton)radioGroup.getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
-
-        return savedRadioIndex;
     }
-
-
-
 }
