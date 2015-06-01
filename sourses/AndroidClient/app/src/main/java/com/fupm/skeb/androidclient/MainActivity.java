@@ -50,11 +50,6 @@ public class MainActivity extends FragmentActivity {
 
         onResume(); // load or change background
 
-
-        //mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mRelativeLayout.setBackgroundResource(trew.changeBackground());
-
-
 //        button2.setOnClickListener(new  View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -86,10 +81,6 @@ public class MainActivity extends FragmentActivity {
                 switch (v.getId()) {
                     case R.id.background:
                         // TODO Call second activity
-
-                        //mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.backgraund_colour));
-                        //ListGame trew = new ListGame();
-                        //mRelativeLayout.setBackgroundResource(trew.check());
 
                         Intent intent = new Intent(MainActivity.this, Background.class);
                         startActivity(intent);
