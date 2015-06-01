@@ -53,7 +53,7 @@ public class GameOnline extends ActionBarActivity {
         own = (TextView) findViewById(R.id.ownLog);
         check.setVisibility(View.INVISIBLE);
 
-        new MyTask().execute("");
+        new MyTasks().execute("");
         build_new_game_message = new StringBuilder();
         build_new_game_message.append(NEW_GAME + EQUALS).append(vkToken);
         new_game_message = build_new_game_message.toString();
@@ -126,13 +126,13 @@ public class GameOnline extends ActionBarActivity {
     }
 
 
-    public class MyTask extends AsyncTask<String, String, Client> {
+    public class MyTasks extends AsyncTask<String, String, Client> {
 
         @Override
         protected Client doInBackground(String... message) {
 
 
-            mClient = new Client(new Client.OnMessageReceived() {
+            /*mClient = new Client(new Client.OnMessageReceived() {
                 @Override
 
                 public void messageReceived(String message) {
@@ -140,7 +140,7 @@ public class GameOnline extends ActionBarActivity {
                     publishProgress(message);
                 }
             });
-            mClient.run();
+            mClient.run();*/
 
             return null;
         }

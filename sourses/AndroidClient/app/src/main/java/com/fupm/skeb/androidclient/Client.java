@@ -15,21 +15,25 @@ import java.net.Socket;
 
 public class Client {
     private String serverMessage;
-    public static  String serverIP = "192.168.0.102";
-    public static final int port = 10100;
+    public static  String serverIP = "192.168.0.101";
+    public int port = 10100;
     private OnMessageReceived mMessageListener = null;
-    private boolean mRun = false;
+    private volatile boolean mRun = false;
     private String TAG = "Client logging";
     public Socket socket;
     private PrintWriter out;
     private BufferedReader in;
+    private volatile Online.MyTask task;
 
-
+    public Client(OnMessageReceived listener,Online.MyTask task,int plus) {
+        mMessageListener = listener;
+        this.task = task;
+        port+=plus;
+    }
     public Client(OnMessageReceived listener) {
         mMessageListener = listener;
 
     }
-
 
     public boolean sendMessage(String message) {
         if (out != null && !out.checkError()) {
@@ -45,11 +49,7 @@ public class Client {
         mRun = false;
     }
     public boolean clientHasRun(){
-        if(out!=null && in!=null){
-            return true;
-        }else{
-             return false;
-        }
+        return out != null && in != null;
     }
     public void run() {
 
@@ -63,6 +63,7 @@ public class Client {
             Log.e("TCP Client", "C: Connecting...");
 
             // create a socket to make the connection with the server
+            Log.e("Port"+ port,"!!!");
             socket = new Socket(serverAddr, port);
             Log.e("TCP Server IP", serverIP);
             try {
@@ -83,12 +84,21 @@ public class Client {
                 // server
                 while (mRun) {
                     serverMessage = in.readLine();
+
+
+
                     if(serverMessage.equals("end")){
+                        break;
+                    }
+                    else if(serverMessage.endsWith("endstatistic")){
+                        mMessageListener.messageReceived(serverMessage);
                         break;
                     }
                     else if (serverMessage != null && mMessageListener != null) {
                         // call the method messageReceived from MyActivity class
                         mMessageListener.messageReceived(serverMessage);
+                        Log.e("RESPONSE", "S: Received Message: '"
+                                + serverMessage + "'");
                     }
                     serverMessage = null;
 

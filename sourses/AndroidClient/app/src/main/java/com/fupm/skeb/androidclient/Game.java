@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ public class Game extends ActionBarActivity {
     public static final String APP_PREFERENCES_SIN_RES = "single_result";
     public static final String APP_PREFERENCES_SIN_GAM = "single_games";
     private SharedPreferences mSettings;
+    private String TAG  = "GAME:";
 
 
     BodyGame bullcow  = new BodyGame();
@@ -100,6 +102,8 @@ public class Game extends ActionBarActivity {
                 }
             }
         });
+        Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onCreate()");
     }
 
     @Override
@@ -170,6 +174,53 @@ public class Game extends ActionBarActivity {
             }
         });
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onPause()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onStop()");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onRestart()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Online onDestroy()");
     }
 }
 
