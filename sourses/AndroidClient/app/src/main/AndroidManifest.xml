@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fupm.skeb.androidclient">
+    package="com.fupm.skeb.androidclient" >
     android:versionCode="1"
     android:versionName="1.0"
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -19,10 +18,10 @@
 
     <application
         android:allowBackup="true"
-        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/myTheme2">
+        android:largeHeap="true"
+        android:theme="@style/myTheme2" >
         <activity android:name="com.vk.sdk.VKOpenAuthActivity" />
         <activity
             android:name=".LoginActivity"
@@ -44,9 +43,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/myTheme2"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/myTheme2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,9 +60,9 @@
         <activity
             android:name=".ListGame"
             android:label="@string/title_activity_list_game"
-            android:theme="@style/myTheme2"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/myTheme2" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
@@ -72,8 +71,8 @@
             android:name=".GameOnline"
             android:label="@string/title_activity_game_online"
             android:parentActivityName=".ListGame"
-            android:theme="@style/myTheme2"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/myTheme2" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListGame" />
@@ -81,9 +80,9 @@
         <activity
             android:name=".Results"
             android:label="@string/title_activity_results"
-            android:theme="@style/myTheme2"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/myTheme2" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
@@ -91,9 +90,9 @@
         <activity
             android:name=".Online"
             android:label="@string/title_activity_online"
-            android:theme="@style/myTheme2"
             android:parentActivityName=".ListOnlineGame"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/myTheme2" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListOnlineGame" />
@@ -101,9 +100,9 @@
         <activity
             android:name=".ListOnlineGame"
             android:label="@string/title_activity_list_online_game"
-            android:theme="@style/myTheme2"
             android:parentActivityName=".ListGame"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/myTheme2" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.ListGame" />
@@ -112,7 +111,15 @@
             android:name=".Background"
             android:label="@string/title_activity_background"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fupm.skeb.androidclient.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Rules"
+            android:label="@string/title_activity_rules"
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />

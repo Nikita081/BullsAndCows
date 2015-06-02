@@ -83,6 +83,15 @@
         android:layout_alignEnd="@+id/btnActTwo"
         android:gravity="center" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Правила игры"
+        android:id="@+id/rules"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
 
 

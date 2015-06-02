@@ -4,11 +4,7 @@ import android.content.Intent;
 
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
-
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,13 +14,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
-
 import android.widget.Toast;
-
 import android.widget.RelativeLayout;
-
-
 import java.util.ArrayList;
+
 
 public class ListOnlineGame extends FragmentActivity {
 
@@ -51,8 +44,10 @@ public class ListOnlineGame extends FragmentActivity {
 
 
     public static final String APP_PREFERENCES = "mysettings";
+
     public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
     public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
+
     private RelativeLayout mRelativeLayout;
 
 
@@ -61,9 +56,17 @@ public class ListOnlineGame extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_online_game);
 
+
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mSettings.getInt(BACKGROUND_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        mRelativeLayout.setBackgroundResource(groundIndex);
+
+
         listView = (ListView) findViewById(R.id.listView);
         button = (Button) findViewById(R.id.button3);
-        for(int i=0;i<10;i++) renew_st_array[i] = "notrenew";
+        for(int i = 0; i < 10; i++) renew_st_array[i] = "notrenew";
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, R.layout.list_item_1, session);
         listView.setAdapter(adapter);
@@ -175,7 +178,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onResume()");
     }
 
