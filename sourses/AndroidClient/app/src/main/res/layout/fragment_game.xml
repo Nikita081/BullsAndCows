@@ -60,11 +60,12 @@
 
         <ScrollView
             android:layout_width="200sp"
-            android:layout_height="400sp"
+            android:layout_height="380sp"
             android:id="@+id/scrollView1"
             android:layout_below="@+id/buttonSet"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="38dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,10 +78,9 @@
             android:layout_width="120sp"
             android:layout_height="380sp"
             android:id="@+id/scrollView2"
-            android:layout_alignTop="@+id/scrollView1"
-            android:layout_alignRight="@+id/buttonSet"
-            android:layout_alignEnd="@+id/buttonSet"
-            android:layout_above="@+id/buttonChat">
+            android:layout_alignBottom="@+id/buttonChat"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:layout_width="wrap_content"
