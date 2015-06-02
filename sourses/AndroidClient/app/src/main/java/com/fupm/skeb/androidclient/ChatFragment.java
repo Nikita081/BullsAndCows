@@ -1,6 +1,8 @@
 package com.fupm.skeb.androidclient;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -21,10 +24,17 @@ public class ChatFragment extends Fragment {
     private StringBuilder message_builder;
     private static final String CHAT = "chat";
     private static final String EQUALS = "=";
-
+    private int groundIndex;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+    public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
+    private RelativeLayout mRelativeLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences mSettings = this.getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        groundIndex = mSettings.getInt(BACKGROUND_INDEX, 0);
+
 
     }
 
@@ -32,6 +42,8 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_chat,null);
+        mRelativeLayout = (RelativeLayout)v.findViewById(R.id.chat_relative_layout);
+        mRelativeLayout.setBackgroundResource(groundIndex);
         send = (Button)v.findViewById(R.id.buttonSend);
         message = (EditText)v.findViewById(R.id.message);
         chat_log = (TextView)v.findViewById(R.id.chatLog);

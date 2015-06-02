@@ -84,14 +84,8 @@ public class Results extends FragmentActivity {
     }
 
     public void onClick(View v) {
-        SharedPreferences.Editor editor = mSettings.edit();
-        int mCounter = 0;
-        //single game
-        editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
-        editor.putInt(APP_PREFERENCES_SIN_WIN, mCounter);
-        editor.putInt(APP_PREFERENCES_SIN_LOS, mCounter);
 
-        onResume();
+        nullPreferences();
     }
 
    @Override
@@ -112,9 +106,20 @@ public class Results extends FragmentActivity {
         }
         else{
 
-            ///////////////НАДО ЧТО-ТО СДЕЛАТЬ!
-
+            nullPreferences();
         }
+    }
+
+    private void nullPreferences() {
+        SharedPreferences.Editor editor = mSettings.edit();
+        int mCounter = 0;
+        //single game
+        editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
+        editor.putInt(APP_PREFERENCES_SIN_WIN, mCounter);
+        editor.putInt(APP_PREFERENCES_SIN_LOS, mCounter);
+        editor.apply();
+
+        onResume();
     }
 
     private String numAttempts(int attempt){
@@ -175,9 +180,7 @@ public class MyTask extends AsyncTask<String, String, Client> {
             String [] lose_aray  = values[0].split(EQUALS);
             multiText3.setText(lose_aray[1]);
         }
-
     }
-
 }
 
 }
