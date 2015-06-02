@@ -365,7 +365,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
     public void isend(int rid) {
         (game_fragment.getView().findViewById(R.id.buttonRiddle)).setVisibility(View.INVISIBLE);
-        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText("your riddle" + rid);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText("Your riddle is " + rid);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setEnabled(false);
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setCursorVisible(false);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setBackgroundColor(Color.TRANSPARENT);
@@ -419,7 +419,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         Log.i(TAG, "after set saves");}
         else if(flag.equals("notrenew")){
             (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.INVISIBLE);
-            (game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.INVISIBLE);
             (game_fragment.getView().findViewById(R.id.buttonChat)).setVisibility(View.INVISIBLE);
         }
         //Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
