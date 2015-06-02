@@ -1,14 +1,15 @@
 package com.fupm.skeb.androidclient;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.support.v4.app.FragmentActivity;
 
 
-public class Rules extends ActionBarActivity {
+
+public class Rules extends FragmentActivity {
 
     private Button buttonR;
 
