@@ -3,7 +3,8 @@
     android:layout_height="match_parent" tools:context="com.fupm.skeb.androidclient.ChatFragment">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/chat_relative_layout">
 
 
         <Button
