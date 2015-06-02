@@ -254,10 +254,12 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             mClient.stopClient();
             Log.i(TAG, "cafter stop client");
             saveDataToReferences();
+
             Log.i(TAG, "after save data");
             intent.putExtra("flag",RENEW);
             Log.i(TAG, "can't send riddle");
             setResult(RESULT_OK,intent);
+
             finish();
             super.onBackPressed();
         }

@@ -23,11 +23,13 @@
             android:layout_alignParentStart="true"
 
             android:layout_toStartOf="@+id/buttonSet"
-            android:layout_toLeftOf="@+id/buttonSet"/>
+            android:layout_toLeftOf="@+id/buttonSet"
+            android:textColor="#FAEEDD"
+            android:textColorHint="#FAEEDD" />
 
         <Button
             android:layout_width="50sp"
-            android:layout_height="20sp"
+            android:layout_height="40sp"
             android:text="@string/check"
             android:id="@+id/buttonSet"
             android:layout_alignParentTop="true"
@@ -39,8 +41,8 @@
 
 
         <Button
-            android:layout_width="80sp"
-            android:layout_height="wrap_content"
+            android:layout_width="60sp"
+            android:layout_height="30sp"
             android:text="@string/riddle"
             android:id="@+id/buttonRiddle"
             android:layout_alignParentBottom="true"
@@ -60,46 +62,47 @@
             android:layout_alignParentStart="true" />
 
         <ScrollView
-            android:layout_width="200sp"
+            android:layout_width="180sp"
             android:layout_height="380sp"
             android:id="@+id/scrollView1"
             android:layout_below="@+id/buttonSet"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="38dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/log"
-                android:id="@+id/ownLog"/>
+                android:id="@+id/ownLog"
+                android:textColor="#FAEEDD"
+                android:textColorHint="#FAEEDD" />
         </ScrollView>
 
         <ScrollView
-            android:layout_width="120sp"
+            android:layout_width="140sp"
             android:layout_height="380sp"
             android:id="@+id/scrollView2"
-            android:layout_alignBottom="@+id/buttonChat"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignTop="@+id/scrollView1"
+            android:layout_alignRight="@+id/buttonRiddle"
+            android:layout_alignEnd="@+id/buttonRiddle"
+            android:layout_toEndOf="@+id/scrollView1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/log"
-                android:id="@+id/enemyLog"/>
+                android:text="@string/log2"
+                android:id="@+id/enemyLog"
+                android:textColorHint="#FAEEDD"
+                android:textColor="#FAEEDD" />
         </ScrollView>
 
         <Button
             android:layout_width="60sp"
-            android:layout_height="25sp"
+            android:layout_height="30sp"
             android:text="@string/Chat"
             android:id="@+id/buttonChat"
-            android:layout_alignBottom="@+id/scrollView1"
-            android:layout_alignLeft="@+id/scrollView2"
-            android:layout_alignStart="@+id/scrollView2"
-            android:layout_alignRight="@+id/scrollView2"
-            android:layout_alignEnd="@+id/scrollView2" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
      <Button
          style="?android:attr/buttonStyleSmall"
