@@ -97,12 +97,11 @@
     </RadioGroup>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170sp"
+        android:layout_height="50sp"
         android:text="Вернуться назад"
         android:id="@+id/backButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/radiogroup" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

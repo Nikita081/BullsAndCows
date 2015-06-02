@@ -3,35 +3,17 @@ package com.fupm.skeb.androidclient;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-
-import android.graphics.Typeface;
-import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.AttributeSet;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-
-import android.widget.Toast;
-
 import com.vk.sdk.VKAccessToken;
-
 import static com.vk.sdk.VKSdk.getAccessToken;
-
-import android.widget.TextView;
-
-
-import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKRequest;
 import com.vk.sdk.api.VKResponse;
@@ -48,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     private SharedPreferences token_prefarences;
     private VKAccessToken token;
 
-    private Button btnActTwo, btnResult, button2;
+    private Button btnActTwo, btnResult;
     private Button background, rules;
     private MyTextView textView4;
 
@@ -56,15 +38,12 @@ public class MainActivity extends FragmentActivity {
     public static final String APP_PREFERENCES = "mysettings";
     public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
 
-
     private RelativeLayout mRelativeLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
         btnResult = (Button) findViewById(R.id.btnResult);
@@ -87,8 +66,6 @@ public class MainActivity extends FragmentActivity {
             public void onComplete(VKResponse response) {
                 super.onComplete(response);
 
-                //Log.v("VK SDK",response.json.toString());
-
                 VKList list = (VKList) response.parsedModel;
                 VKApiUser user = (VKApiUser) list.get(0);
 
@@ -101,9 +78,7 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
-
         onResume(); // load or change background
-
 
         background.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,5 +184,4 @@ public class MainActivity extends FragmentActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
