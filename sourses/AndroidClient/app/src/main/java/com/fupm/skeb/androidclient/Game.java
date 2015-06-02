@@ -36,18 +36,25 @@ public class Game extends FragmentActivity {
     public static final String APP_PREFERENCES_SIN_RES = "single_result";
     public static final String APP_PREFERENCES_SIN_WIN = "single_win";
     public static final String APP_PREFERENCES_SIN_LOS = "single_loss";
+    public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
     private SharedPreferences mSettings;
 
     private String TAG = "GameActivityLog";
 
-
-
     BodyGame bullcow  = new BodyGame();
+
+    private RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        SharedPreferences mS = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mS.getInt(BACKGROUND_INDEX, 0);
+
+        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+        mRelativeLayout.setBackgroundResource(groundIndex);
 
         set(arrayButton, mycount);
         for (int j = 0; j < 10; j++){
@@ -110,8 +117,9 @@ public class Game extends FragmentActivity {
                 }
             }
         });
-        Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
-        Log.i(TAG, "Online onCreate()");
+
+        //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+        //Log.i(TAG, "Online onCreate()");
     }
 
 
@@ -203,7 +211,7 @@ public class Game extends FragmentActivity {
         });
 
     }
-    @Override
+/*    @Override
     protected void onStart() {
         super.onStart();
 
@@ -250,5 +258,6 @@ public class Game extends FragmentActivity {
         Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onDestroy()");
     }
+*/
 }
 
