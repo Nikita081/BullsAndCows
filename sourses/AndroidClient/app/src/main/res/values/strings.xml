@@ -74,5 +74,6 @@
     <string name="title_activity_background">Background</string>
     <string name="bar">BAR</string>
     <string name="change">Background</string>
+    <string name="be_back">be back soon...</string>
 
 </resources>
