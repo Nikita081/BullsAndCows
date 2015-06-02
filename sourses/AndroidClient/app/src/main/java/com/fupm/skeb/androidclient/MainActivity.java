@@ -174,10 +174,21 @@ public class MainActivity extends FragmentActivity {
         super.onResume();
 
         SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int groundIndex = mSettings.getInt(BACKGROUND_INDEX, 0);
 
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        mRelativeLayout.setBackgroundResource(groundIndex);
+        if (mSettings.contains(BACKGROUND_INDEX)) {
+
+            int groundIndex = mSettings.getInt(BACKGROUND_INDEX, 0);
+            mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
+            mRelativeLayout.setBackgroundResource(groundIndex);
+        }
+        else{
+
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putInt(BACKGROUND_INDEX, R.drawable.p12);
+            editor.apply();
+
+            onResume();
+        }
     }
 
     @Override
