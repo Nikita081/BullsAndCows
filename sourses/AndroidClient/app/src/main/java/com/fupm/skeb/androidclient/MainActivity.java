@@ -29,7 +29,7 @@ public class MainActivity extends FragmentActivity {
     private String TAG  = "MainAct";
     private String uri = "http://192.168.0.101:10100/test";
     private Button btnActTwo, btnResult, button2;
-    private Button background, rules;
+    private Button background;
     private TextView textView1;
 
     //PREFERENCES
@@ -48,8 +48,7 @@ public class MainActivity extends FragmentActivity {
         btnResult = (Button) findViewById(R.id.btnResult);
         textView1 = (TextView) findViewById(R.id.textView1);
         background = (Button) findViewById(R.id.background);
-        rules = (Button) findViewById(R.id.rules);
-
+        
         onResume(); // load or change background
 
         background.setOnClickListener(new View.OnClickListener() {
@@ -98,20 +97,6 @@ public class MainActivity extends FragmentActivity {
             }
         });
         
-        rules.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.rules:
-                        // TODO Call second activity
-                        Intent intent = new Intent(MainActivity.this, Rules.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
     }
 
     @Override
