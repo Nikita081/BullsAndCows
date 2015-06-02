@@ -182,26 +182,4 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void setNickName( TextView p) {
-//        p= textView4;
-//        final VKRequest request = VKApi.users().get();
-//        request.executeWithListener(new VKRequest.VKRequestListener() {
-//            @Override
-//            public void onComplete(VKResponse response) {
-//                super.onComplete(response);
-//
-//                //Log.v("VK SDK",response.json.toString());
-//
-//                VKList list = (VKList) response.parsedModel;
-//                VKApiUser user = (VKApiUser) list.get(0);
-//
-//                if (user == null) {
-//                    Log.v("Ошибка", "Ничего не загрузилось");
-//                } else {
-//                    Log.v("User name:", user.first_name + user.last_name);
-//                    p.setText(user.first_name + " " + user.last_name);
-//                }
-//            }
-//        });
-//    }
 }

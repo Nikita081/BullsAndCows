@@ -110,7 +110,7 @@ public class Game extends FragmentActivity {
                 }
             }
         });
-        Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onCreate()");
     }
 
@@ -207,7 +207,7 @@ public class Game extends FragmentActivity {
     protected void onStart() {
         super.onStart();
 
-        Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onStart()");
     }
 
@@ -215,7 +215,7 @@ public class Game extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onResume()");
     }
 
@@ -223,7 +223,7 @@ public class Game extends FragmentActivity {
     protected void onPause() {
         super.onPause();
 
-        Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onPause()");
     }
 
@@ -231,7 +231,7 @@ public class Game extends FragmentActivity {
     protected void onStop() {
         super.onStop();
 
-        Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onStop()");
     }
 
@@ -239,7 +239,7 @@ public class Game extends FragmentActivity {
     protected void onRestart() {
         super.onRestart();
 
-        Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onRestart()");
     }
 
@@ -247,7 +247,7 @@ public class Game extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onDestroy()");
     }
 }

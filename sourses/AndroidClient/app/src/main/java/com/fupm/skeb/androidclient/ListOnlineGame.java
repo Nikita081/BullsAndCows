@@ -52,7 +52,7 @@ public class ListOnlineGame extends FragmentActivity {
 
     public static final String APP_PREFERENCES = "mysettings";
     public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
-
+    public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
     private RelativeLayout mRelativeLayout;
 
 
@@ -60,8 +60,6 @@ public class ListOnlineGame extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_online_game);
-
-//        onResume(); // load or change background
 
         listView = (ListView) findViewById(R.id.listView);
         button = (Button) findViewById(R.id.button3);
@@ -87,7 +85,7 @@ public class ListOnlineGame extends FragmentActivity {
                 startWithOwnRequest((int)id,intent);
             }
         });
-        Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onCreate()");
     }
 
@@ -169,7 +167,7 @@ public class ListOnlineGame extends FragmentActivity {
             }
             // если вернулось не ОК
         } else {
-            Toast.makeText(this, "Wrong result", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Wrong result", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -177,14 +175,6 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        //ChangeBackground mBackground = new ChangeBackground();
-
-        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
-
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mistake:
-        //mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
         Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onResume()");
     }
@@ -212,7 +202,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onStart() {
         super.onStart();
 
-        Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onStart()");
     }
 
@@ -222,7 +212,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onPause() {
         super.onPause();
 
-        Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onPause()");
     }
 
@@ -230,7 +220,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onStop() {
         super.onStop();
 
-        Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onStop()");
     }
 
@@ -238,7 +228,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onRestart() {
         super.onRestart();
 
-        Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onRestart()");
     }
 
@@ -246,7 +236,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onDestroy()");
     }
 

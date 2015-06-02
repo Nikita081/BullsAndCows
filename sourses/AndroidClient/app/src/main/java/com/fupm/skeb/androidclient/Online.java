@@ -154,7 +154,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             Log.i(TAG, "send token");
             Log.i(TAG, "create MyTask: " + task.hashCode());
             Log.i(TAG, "task:" + task);
-            Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "Online onCreate()");
 
         } else if(flag.equals(RENEW)){
@@ -179,7 +179,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             Log.i(TAG, "task:" + task);
 
 
-            Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "Online onCreate()");
 
         }
@@ -366,6 +366,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setKeyListener(null);
         (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
         (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
+        (game_fragment.getView().findViewById(R.id.buttonChat)).setVisibility(View.VISIBLE);
     }
 
 
@@ -389,7 +390,6 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setKeyListener(null);
         (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
         (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
-
         ((TextView) game_fragment.getView().findViewById(R.id.ownLog)).setText(own_log);
         ((TextView) game_fragment.getView().findViewById(R.id.enemyLog)).setText(enemy_log);
         ((TextView) chat_fragment.getView().findViewById(R.id.chatLog)).setText(chat_log);
@@ -400,7 +400,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     protected void onStart() {
         super.onStart();
 
-        Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onStart()");
     }
 
@@ -414,8 +414,9 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         else if(flag.equals("notrenew")){
             (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.INVISIBLE);
             (game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.INVISIBLE);
+            (game_fragment.getView().findViewById(R.id.buttonChat)).setVisibility(View.INVISIBLE);
         }
-        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onResume()");
     }
 
@@ -423,7 +424,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     protected void onPause() {
         super.onPause();
 
-       Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
+       //Toast.makeText(getApplicationContext(), "onPause()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onPause()");
     }
 
@@ -431,7 +432,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     protected void onStop() {
         super.onStop();
 
-        Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onStop()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onStop()");
     }
 
@@ -439,10 +440,10 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     protected void onRestart() {
         super.onRestart();
 
-        Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onRestart()");
 
-        //(game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.VISIBLE);
+
 
     }
 
@@ -450,7 +451,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     protected void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onDestroy()");
     }
 
