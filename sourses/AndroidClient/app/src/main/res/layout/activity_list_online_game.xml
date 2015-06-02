@@ -10,7 +10,7 @@
 
     <Button
         android:layout_width="200sp"
-        android:layout_height="25sp"
+        android:layout_height="40sp"
         android:text="@string/newSession"
         android:id="@+id/button3"
         android:layout_alignParentTop="true"
