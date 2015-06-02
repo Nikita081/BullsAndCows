@@ -105,21 +105,22 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online);
         intent = getIntent();
-        id = intent.getIntExtra("id",-1);
+        id = intent.getIntExtra("id", -1);
         flag = intent.getStringExtra("flag");
         Log.i(TAG, "online item id:" + id);
         Log.i(TAG, "online flag:" + flag);
 
         game_pref = getSharedPreferences(GAME_PREFERENCES, Context.MODE_PRIVATE);
-        token_prefarences = getSharedPreferences(APP_PREFERENCES,Context.MODE_PRIVATE);
-        token = token_prefarences.getString(APP_PREFERENCES_TOKEN,"!!!");
+        token_prefarences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        token = token_prefarences.getString(APP_PREFERENCES_TOKEN, "!!!");
 
         Log.i(TAG, "get token!!!!!" + token);
         Log.i(TAG, "create MainActivity: " + this.hashCode());
 
         game_fragment = new GameFragment();
+        Log.i(TAG, "create game fragment"+game_fragment.hashCode());
         chat_fragment = new ChatFragment();
-
+        Log.i(TAG, "create chatfragment" + chat_fragment.hashCode());
 
         manager = this.getFragmentManager();
         transaction = manager.beginTransaction();
@@ -127,6 +128,8 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         transaction.add(R.id.container, chat_fragment);
         transaction.hide(chat_fragment);
         transaction.show(game_fragment);
+        //(game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.INVISIBLE);
+        //(game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.INVISIBLE);
         boolean tmp = transaction.isAddToBackStackAllowed();
         Log.i(TAG, "stack allow:" + tmp);
         transaction.addToBackStack(null);
@@ -386,6 +389,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setKeyListener(null);
         (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
         (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
+
         ((TextView) game_fragment.getView().findViewById(R.id.ownLog)).setText(own_log);
         ((TextView) game_fragment.getView().findViewById(R.id.enemyLog)).setText(enemy_log);
         ((TextView) chat_fragment.getView().findViewById(R.id.chatLog)).setText(chat_log);
@@ -407,6 +411,10 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         if(flag.equals(RENEW)){
         setSaves();
         Log.i(TAG, "after set saves");}
+        else if(flag.equals("notrenew")){
+            (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.INVISIBLE);
+            (game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.INVISIBLE);
+        }
         Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onResume()");
     }
@@ -433,6 +441,9 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
         Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onRestart()");
+
+        //(game_fragment.getView().findViewById(R.id.bar)).setVisibility(View.VISIBLE);
+
     }
 
     @Override

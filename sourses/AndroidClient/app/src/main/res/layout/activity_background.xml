@@ -13,13 +13,14 @@
         android:orientation="vertical"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
 
         <RadioButton
             android:id="@+id/option1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ferma" />
+            android:text="0" />
 
         <RadioButton
             android:id="@+id/option2"
@@ -72,17 +73,28 @@
             android:layout_height="wrap_content"
             android:text="9" />
 
+        <RadioButton
+            android:id="@+id/option11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10" />
+        <RadioButton
+            android:id="@+id/option12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11" />
+
+        <RadioButton
+            android:id="@+id/option13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12" />
+        <RadioButton
+            android:id="@+id/option14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13" />
+
     </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
 
 </RelativeLayout>

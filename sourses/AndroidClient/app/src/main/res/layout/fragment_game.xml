@@ -25,8 +25,8 @@
             android:layout_toLeftOf="@+id/buttonSet"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50sp"
+            android:layout_height="20sp"
             android:text="@string/check"
             android:id="@+id/buttonSet"
             android:layout_alignParentTop="true"
@@ -38,7 +38,7 @@
 
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="80sp"
             android:layout_height="wrap_content"
             android:text="@string/riddle"
             android:id="@+id/buttonRiddle"
@@ -79,7 +79,8 @@
             android:id="@+id/scrollView2"
             android:layout_alignTop="@+id/scrollView1"
             android:layout_alignRight="@+id/buttonSet"
-            android:layout_alignEnd="@+id/buttonSet">
+            android:layout_alignEnd="@+id/buttonSet"
+            android:layout_above="@+id/buttonChat">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,13 +90,26 @@
         </ScrollView>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60sp"
+            android:layout_height="25sp"
             android:text="@string/Chat"
             android:id="@+id/buttonChat"
             android:layout_alignBottom="@+id/scrollView1"
-            android:layout_alignLeft="@+id/buttonRiddle"
-            android:layout_alignStart="@+id/buttonRiddle" />
+            android:layout_alignLeft="@+id/scrollView2"
+            android:layout_alignStart="@+id/scrollView2"
+            android:layout_alignRight="@+id/scrollView2"
+            android:layout_alignEnd="@+id/scrollView2" />
 
-    </RelativeLayout>
+     <Button
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/bar"
+         android:id="@+id/bar"
+         android:layout_alignBottom="@+id/buttonRiddle"
+         android:layout_toRightOf="@+id/setRiddle"
+         android:layout_alignRight="@+id/buttonRiddle"
+         android:layout_alignEnd="@+id/buttonRiddle" />
+
+ </RelativeLayout>
 

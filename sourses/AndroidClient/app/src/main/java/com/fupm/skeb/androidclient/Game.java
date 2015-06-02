@@ -6,18 +6,24 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+
+import android.view.LayoutInflater;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Game extends ActionBarActivity {
+public class Game extends FragmentActivity {
 
     private EditText edTryNumber;
     private int tryNumber = 0;
@@ -31,7 +37,9 @@ public class Game extends ActionBarActivity {
     public static final String APP_PREFERENCES_SIN_WIN = "single_win";
     public static final String APP_PREFERENCES_SIN_LOS = "single_loss";
     private SharedPreferences mSettings;
-    private String TAG  = "GAME:";
+
+    private String TAG = "GameActivityLog";
+
 
 
     BodyGame bullcow  = new BodyGame();
@@ -55,13 +63,12 @@ public class Game extends ActionBarActivity {
             public void onClick(View v) {
 
                 int len = edTryNumber.getText().toString().length();
-                if (len == 4)
-                {
+                if (len == 4) {
                     tryNumber = Integer.parseInt(edTryNumber.getText().toString());
                     tryNumberString = edTryNumber.getText().toString();
                     edTryNumber.setText("");
 
-                    TextView text = (TextView)findViewById(R.id.logtext);
+                    TextView text = (TextView) findViewById(R.id.logtext);
 
                     int bulls = bullcow.countALL(tryNumber);
 
@@ -96,7 +103,7 @@ public class Game extends ActionBarActivity {
 
                     String st = bullcow.giveLog(tryNumberString);
                     text.setText(st);
-                }else {
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             R.string.only4num, Toast.LENGTH_SHORT);
                     toast.show();
@@ -106,6 +113,7 @@ public class Game extends ActionBarActivity {
         Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onCreate()");
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

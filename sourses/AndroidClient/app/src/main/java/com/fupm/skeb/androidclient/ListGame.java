@@ -1,41 +1,38 @@
 package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.content.res.Resources;
 
 
-public class ListGame extends ActionBarActivity {
+public class ListGame extends FragmentActivity {
 
     private Button gameComp;
     private Button gameOnline;
 
-    public RelativeLayout mRelativeLayout;
 
-    public int check(){
+    //PREFERENCES
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
 
-        return R.drawable.bull;
-
-    }
-
-
+    private RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_game);
 
+        SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        int groundIndex = mSettings.getInt(BACKGROUND_INDEX, 0);
+
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mRelativeLayout.setBackgroundResource(R.drawable.ferma);
-        mRelativeLayout.setBackgroundResource(check());
-
-
+        mRelativeLayout.setBackgroundResource(groundIndex);
 
         gameComp = (Button) findViewById(R.id.comp_game);
         gameComp.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +58,7 @@ public class ListGame extends ActionBarActivity {
                     case R.id.human_game:
                         // TODO Call second activity
 
-                        //Intent intent = new Intent(ListGame.this, Online.class);
-
-                        //Intent intent = new Intent(ListGame.this, GameOnline.class);
                         Intent intent = new Intent(ListGame.this, ListOnlineGame.class);
-
                         startActivity(intent);
                         break;
                     default:

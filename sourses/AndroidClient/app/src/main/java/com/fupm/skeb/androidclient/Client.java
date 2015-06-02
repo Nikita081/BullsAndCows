@@ -16,7 +16,9 @@ import java.net.Socket;
 public class Client {
     private String serverMessage;
     public static  String serverIP = "192.168.0.101";
+
     public int port = 10100;
+
     private OnMessageReceived mMessageListener = null;
     private volatile boolean mRun = false;
     private String TAG = "Client logging";

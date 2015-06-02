@@ -66,7 +66,7 @@ public class BodyGame {
         attempt++;
         String space = "";
         if (attempt < 10) space = "  ";
-        log += "\n" +  attempt + ".   " + space + tryNumber + "           " + bulls + " Bulls     " + cow + " Cow";
+        log += "\n" +  attempt + ".  " + space + tryNumber + "     " + bulls + " Bulls    " + cow + " Cow";
         return log;
     }
 
