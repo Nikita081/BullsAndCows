@@ -25,8 +25,8 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60sp"
+        android:layout_height="30sp"
         android:text="Ок"
         android:id="@+id/buttonR"
         android:layout_alignParentBottom="true"
