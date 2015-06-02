@@ -252,8 +252,8 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             }
             mClient.stopClient();
             saveDataToReferences();
-            intent.putExtra("flag",RENEW);
-            setResult(RESULT_OK,intent);
+            intent.putExtra("flag", RENEW);
+            setResult(RESULT_OK, intent);
             finish();
             super.onBackPressed();
         }
