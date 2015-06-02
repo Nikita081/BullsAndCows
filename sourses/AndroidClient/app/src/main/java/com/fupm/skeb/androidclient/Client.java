@@ -25,6 +25,7 @@ public class Client {
     private BufferedReader in;
     private volatile Online.MyTask task;
 
+
     public Client(OnMessageReceived listener,Online.MyTask task,int plus) {
         mMessageListener = listener;
         this.task = task;
@@ -46,7 +47,13 @@ public class Client {
 
     public void stopClient() {
 
-        mRun = false;
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public boolean clientHasRun(){
         return out != null && in != null;

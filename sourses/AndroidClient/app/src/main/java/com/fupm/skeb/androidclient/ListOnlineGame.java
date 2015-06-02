@@ -2,6 +2,7 @@ package com.fupm.skeb.androidclient;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListOnlineGame extends ActionBarActivity {
+public class ListOnlineGame extends FragmentActivity {
 
     private int listNumbers = 0;
     private Button button;
@@ -26,7 +27,17 @@ public class ListOnlineGame extends ActionBarActivity {
     private ArrayList<String> catnames = new ArrayList<String>();
     private int idd;
     private AsyncTask task  = null;
-
+    private final int REQUEST_CODE_1 = 0;
+    private final int REQUEST_CODE_2 = 1;
+    private final int REQUEST_CODE_3 = 2;
+    private final int REQUEST_CODE_4 = 3;
+    private final int REQUEST_CODE_5 = 4;
+    private final int REQUEST_CODE_6 = 5;
+    private final int REQUEST_CODE_7 = 6;
+    private final int REQUEST_CODE_8 = 7;
+    private final int REQUEST_CODE_9 = 8;
+    private final int REQUEST_CODE_10 = 9;
+    private String [] renew_st_array = new String[10];
     private ArrayList<String> session = new ArrayList<String>();
 
 
@@ -38,7 +49,7 @@ public class ListOnlineGame extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         button = (Button) findViewById(R.id.button3);
-
+        for(int i=0;i<10;i++) renew_st_array[i] = "notrenew";
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, R.layout.list_item_1, session);
         listView.setAdapter(adapter);
@@ -55,13 +66,95 @@ public class ListOnlineGame extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 Intent intent = new Intent(ListOnlineGame.this, Online.class);
-                intent.putExtra("id", id);
-
-                startActivity(intent);
+                intent.putExtra("flag", renew_st_array[(int)id]);
+                intent.putExtra("id",(int)id);
+                startWithOwnRequest((int)id,intent);
             }
         });
         Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "ListOnline onCreate()");
+    }
+
+    private void startWithOwnRequest(int id,Intent intent){
+        switch (id) {
+            case REQUEST_CODE_1:
+                startActivityForResult(intent, REQUEST_CODE_1);
+                break;
+
+            case REQUEST_CODE_2:
+                startActivityForResult(intent, REQUEST_CODE_2);
+                break;
+
+            case REQUEST_CODE_3:
+                startActivityForResult(intent, REQUEST_CODE_3);
+                break;
+
+            case REQUEST_CODE_4:
+                startActivityForResult(intent, REQUEST_CODE_4);
+                break;
+            case REQUEST_CODE_5:
+                startActivityForResult(intent, REQUEST_CODE_5);
+                break;
+            case REQUEST_CODE_6:
+                startActivityForResult(intent, REQUEST_CODE_6);
+                break;
+            case REQUEST_CODE_7:
+                startActivityForResult(intent, REQUEST_CODE_7);
+                break;
+            case REQUEST_CODE_8:
+                startActivityForResult(intent, REQUEST_CODE_8);
+                break;
+            case REQUEST_CODE_9:
+                startActivityForResult(intent, REQUEST_CODE_9);
+                break;
+            case REQUEST_CODE_10:
+                startActivityForResult(intent, REQUEST_CODE_10);
+                break;
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // запишем в лог значения requestCode и resultCode
+        Log.d("myLogs", "requestCode = " + requestCode + ", resultCode = " + resultCode);
+        // если пришло ОК
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CODE_1:
+                    renew_st_array[REQUEST_CODE_1] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_2:
+                    renew_st_array[REQUEST_CODE_2] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_3:
+                    renew_st_array[REQUEST_CODE_3] = data.getStringExtra("flag");
+                    break;
+
+                case REQUEST_CODE_4:
+                    renew_st_array[REQUEST_CODE_4] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_5:
+                    renew_st_array[REQUEST_CODE_5] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_6:
+                    renew_st_array[REQUEST_CODE_6] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_7:
+                    renew_st_array[REQUEST_CODE_7] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_8:
+                    renew_st_array[REQUEST_CODE_8] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_9:
+                    renew_st_array[REQUEST_CODE_9] = data.getStringExtra("flag");
+                    break;
+                case REQUEST_CODE_10:
+                    renew_st_array[REQUEST_CODE_10] = data.getStringExtra("flag");
+                    break;
+            }
+            // если вернулось не ОК
+        } else {
+            Toast.makeText(this, "Wrong result", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

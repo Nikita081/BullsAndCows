@@ -20,6 +20,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.vk.sdk.VKAccessToken;
+import com.vk.sdk.api.VKApi;
+import com.vk.sdk.api.VKRequest;
+import com.vk.sdk.api.VKResponse;
+import com.vk.sdk.api.model.VKApiUser;
+import com.vk.sdk.api.model.VKList;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -40,32 +46,42 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     private static final String OWN_ATTEMPT = "own_attempt";
     private static final String GAME = "game";
     private static final String CHAT = "chat";
+    private static final String RENEW = "renew";
+    private static final String ENEMY_TOKEN = "enemytoken";
     private static final String ENEMY_ATTEMPT = "enemy_attempt";
     private static final String STARTCHAT = "startChat";
     private static final String GAME_PREFERENCES = "game";
     private static final String ENEMY_LOG = "enemylog";
     private static final String OWN_LOG = "ownlog";
     private static final String CHAT_LOG = "chatlog";
-    private static final String TASK_LOG = "tasklog";
+    private static final String OWN_RIDDLE = "ownriddle";
+    private static final String ENEMY_ID = "enemyid";
+
+    public static final String APP_PREFERENCES= "tokensettings";
+    public static final String APP_PREFERENCES_TOKEN = "usertoken";
+    private SharedPreferences token_prefarences;
     private String TAG = "Life circle";
     private String enemy_log = "\n";
     private String own_log = "\n";
     private String chat_log = "\n";
+    private String enemy_token;
     private GameFragment game_fragment;
     private ChatFragment chat_fragment;
-    private VKAccessToken token;
+    private String token;
+    private  String own_riddle;
     private StringBuilder build_new_game_message;
     private String new_game_message;
     private FragmentTransaction transaction;
     private FragmentManager manager;
-    private long id;
+    private int id;
     private volatile MyTask task;
     private Intent intent;
     private static final int CORE_POOL_SIZE = 20;
     private static final int MAXIMUM_POOL_SIZE = 128;
     private static final int KEEP_ALIVE = 1;
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
+    private SharedPreferences game_pref;
+    private String flag;
+
     private static final ThreadFactory sThreadFactory = new ThreadFactory() {
         private final AtomicInteger mCount = new AtomicInteger(1);
         public Thread newThread(Runnable r) {
@@ -89,19 +105,21 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online);
         intent = getIntent();
-        pref = getSharedPreferences(GAME_PREFERENCES, Context.MODE_PRIVATE);
-        editor = pref.edit();
-        id = intent.getLongExtra("id", 0);
-
-
-        Log.i(TAG, "task get from intent" + task);
+        id = intent.getIntExtra("id",-1);
+        flag = intent.getStringExtra("flag");
         Log.i(TAG, "online item id:" + id);
+        Log.i(TAG, "online flag:" + flag);
+
+        game_pref = getSharedPreferences(GAME_PREFERENCES, Context.MODE_PRIVATE);
+        token_prefarences = getSharedPreferences(APP_PREFERENCES,Context.MODE_PRIVATE);
+        token = token_prefarences.getString(APP_PREFERENCES_TOKEN,"!!!");
+
+        Log.i(TAG, "get token!!!!!" + token);
         Log.i(TAG, "create MainActivity: " + this.hashCode());
 
         game_fragment = new GameFragment();
         chat_fragment = new ChatFragment();
-        token = getAccessToken();
-        Log.i(TAG, "userID: " + token.userId);
+
 
         manager = this.getFragmentManager();
         transaction = manager.beginTransaction();
@@ -116,14 +134,12 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
         Log.i(TAG, "try open game fragment");
 
-        task = (MyTask) getLastCustomNonConfigurationInstance();
-        Log.i(TAG, "task after getcustom  : "+task);
-        if (task == null) {
+
+        if (flag.equals("notrenew")) {
             task = new MyTask();
             task.executeOnExecutor(executor);
-            task.link(this);
             build_new_game_message = new StringBuilder();
-            build_new_game_message.append(NEW_GAME + EQUALS).append(token.userId);
+            build_new_game_message.append(NEW_GAME + EQUALS).append(token);
             new_game_message = build_new_game_message.toString();
 
             while (true) {
@@ -137,15 +153,32 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             Log.i(TAG, "task:" + task);
             Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "Online onCreate()");
-            task.link(this);
-        } else {
+
+        } else if(flag.equals(RENEW)){
+            task = new MyTask();
+            task.executeOnExecutor(executor);
+            loadPreferences();
+            Log.i(TAG, "after load pref");
+            build_new_game_message = new StringBuilder();
+            build_new_game_message.append(RENEW + EQUALS).append(token).append(EQUALS+OWN_RIDDLE+EQUALS+own_riddle+EQUALS+ENEMY_TOKEN+EQUALS+enemy_token);
+            new_game_message = build_new_game_message.toString();
+            Log.i(TAG, "after build message");
+            while (true) {
+                if (mClient != null && mClient.clientHasRun()) {
+                    mClient.sendMessage(new_game_message);
+                    break;
+                }
+            }
+            Log.i(TAG, "after send message");
+
+            Log.i(TAG, "new game message when renew " + new_game_message);
             Log.i(TAG, "create MyTask: " + task.hashCode());
             Log.i(TAG, "task:" + task);
 
 
             Toast.makeText(getApplicationContext(), "onCreate()", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "Online onCreate()");
-            task.link(this);
+
         }
     }
 
@@ -153,13 +186,14 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     public void doAttempt(String s) {
         if (s.startsWith(RIDDLE)) {
             if (mClient != null) {
-                boolean a = mClient.sendMessage(s);
-                if (!a) {
-                    Log.i(TAG, "can't send riddle");
-                } else {
-                    String[] array = s.split(EQUALS);
-                    isend(Integer.parseInt(array[1]));
-                }
+                    boolean a = mClient.sendMessage(s);
+                    if (!a) {
+                        Log.i(TAG, "can't send riddle");
+                    } else {
+                        String[] array = s.split(EQUALS);
+                        own_riddle = array[1];
+                        isend(Integer.parseInt(array[1]));
+                    }
             }
         } else if (s.startsWith(GAME)) {
             if (mClient != null) {
@@ -205,24 +239,45 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
             transaction.commit();
 
         } else {
+            Intent intent  = new Intent();
 
-          onRetainCustomNonConfigurationInstance();
+            if (mClient != null) {
+                boolean a = mClient.sendMessage(RENEW);
+                if (!a) {
+                    Log.i(TAG, "can't send riddle");
+                }
+            }
+            mClient.stopClient();
+            saveDataToReferences();
+            intent.putExtra("flag",RENEW);
+            setResult(RESULT_OK,intent);
+            finish();
             super.onBackPressed();
         }
 
     }
 
+    private void saveDataToReferences(){
+        SharedPreferences.Editor  editor = game_pref.edit();
+        editor.remove(ENEMY_TOKEN+id);
+        editor.remove(ENEMY_LOG+id);
+        editor.remove(OWN_LOG+id);
+        editor.remove(CHAT_LOG+id);
+        editor.remove(OWN_RIDDLE+id);
+        editor.putString(ENEMY_LOG+id,enemy_log);
+        editor.putString(OWN_LOG+id,own_log);
+        editor.putString(CHAT_LOG+id,chat_log);
+        editor.putString(OWN_RIDDLE+id,own_riddle);
+        editor.putString(ENEMY_TOKEN+id,enemy_token);
+        editor.apply();
+
+    }
+
     public class MyTask extends AsyncTask<String, String, Client> {
-        Online activity;
 
 
-        void link(Online act) {
-            activity = act;
-        }
 
-        void unLink() {
-            activity = null;
-        }
+
         @Override
         protected Client doInBackground(String... message) {
 
@@ -246,29 +301,35 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-            if(activity!=null) {
+
                 if (values[0].startsWith(GAME + EQUALS + OWN_ATTEMPT)) {
                     String[] own_attempt_array = values[0].split(EQUALS);
                     own_log += own_attempt_array[2].trim() + "\n";
-                    ((TextView) activity.game_fragment.getView().findViewById(R.id.ownLog)).setText(own_log);
+                    ((TextView) game_fragment.getView().findViewById(R.id.ownLog)).setText(own_log);
                     Log.i(TAG, own_attempt_array[1] + ":::::" + own_log);
                 } else if (values[0].startsWith(GAME + EQUALS + ENEMY_ATTEMPT)) {
                     String[] enemy_attempt_array = values[0].split(EQUALS);
                     enemy_log += enemy_attempt_array[2].trim() + "\n";
-                    ((TextView) activity.game_fragment.getView().findViewById(R.id.enemyLog)).setText(enemy_log);
+                    Log.i(TAG, enemy_attempt_array[1] + ":::::" + enemy_log);
+                    ((TextView) game_fragment.getView().findViewById(R.id.enemyLog)).setText(enemy_log);
                     Log.i(TAG, enemy_attempt_array[1] + ":::::" + enemy_log);
                 } else if (values[0].startsWith(CHAT)) {
                     String[] chat_array = values[0].split(EQUALS);
                     chat_log += chat_array[1].trim() + "\n";
-                    ((TextView) activity.chat_fragment.getView().findViewById(R.id.chatLog)).setText(chat_log);
-                } else {
-                    Toast.makeText(activity.game_fragment.getActivity(), values[0], Toast.LENGTH_SHORT).show();
+                    ((TextView) chat_fragment.getView().findViewById(R.id.chatLog)).setText(chat_log);
+                }else if(values[0].startsWith(ENEMY_TOKEN)){
+                    String [] token_aray = values[0].split(EQUALS);
+                    enemy_token = token_aray[1];
+                    Log.i(TAG, values[0]);
+                }
+                else {
+                    //Toast.makeText(game_fragment.getActivity(), values[0], Toast.LENGTH_SHORT).show();
                     Log.i(TAG, values[0]);
 
 
                 }
 
-            }
+
         }
     }
 
@@ -295,7 +356,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
     public void isend(int rid) {
         (game_fragment.getView().findViewById(R.id.buttonRiddle)).setVisibility(View.INVISIBLE);
-        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText(R.string.yourRiddle + rid);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText("your riddle" + rid);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setEnabled(false);
         ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setCursorVisible(false);
         (game_fragment.getView().findViewById(R.id.setRiddle)).setBackgroundColor(Color.TRANSPARENT);
@@ -305,20 +366,29 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
     }
 
 
-    private void savePreferences(){
-        SharedPreferences online_saves = getSharedPreferences(GAME_PREFERENCES+id, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = online_saves.edit();
-        editor.putString(ENEMY_LOG,enemy_log);
-        editor.putString(OWN_LOG,own_log);
-        editor.putString(CHAT_LOG,chat_log);
-        editor.commit();
+
+    private void loadPreferences(){
+
+        enemy_log = game_pref.getString(ENEMY_LOG+id,"shit enemy");
+        own_log = game_pref.getString(OWN_LOG+id,"shit own");
+        chat_log = game_pref.getString(CHAT_LOG+id,"shit chat");
+        own_riddle = game_pref.getString(OWN_RIDDLE+id,"1234");
+        enemy_token = game_pref.getString(ENEMY_TOKEN+id,"1111111");
 
     }
 
-    private void loaddPreferences(){
-        SharedPreferences online_saves = getSharedPreferences(GAME_PREFERENCES+id, Context.MODE_PRIVATE);
-        enemy_log = online_saves.getString(ENEMY_LOG,"shit enemy");
-        own_log = online_saves.getString(OWN_LOG,"shit own");
+    private void setSaves(){
+        (game_fragment.getView().findViewById(R.id.buttonRiddle)).setVisibility(View.INVISIBLE);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setText("your riddle" + own_riddle);
+        (game_fragment.getView().findViewById(R.id.setRiddle)).setEnabled(false);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setCursorVisible(false);
+        (game_fragment.getView().findViewById(R.id.setRiddle)).setBackgroundColor(Color.TRANSPARENT);
+        ((EditText)game_fragment.getView().findViewById(R.id.setRiddle)).setKeyListener(null);
+        (game_fragment.getView().findViewById(R.id.tryNumber)).setEnabled(true);
+        (game_fragment.getView().findViewById(R.id.buttonSet)).setVisibility(View.VISIBLE);
+        ((TextView) game_fragment.getView().findViewById(R.id.ownLog)).setText(own_log);
+        ((TextView) game_fragment.getView().findViewById(R.id.enemyLog)).setText(enemy_log);
+        ((TextView) chat_fragment.getView().findViewById(R.id.chatLog)).setText(chat_log);
 
     }
 
@@ -332,8 +402,11 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
 
     @Override
     protected void onResume() {
-        super.onResume();
 
+        super.onResume();
+        if(flag.equals(RENEW)){
+        setSaves();
+        Log.i(TAG, "after set saves");}
         Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Online onResume()");
     }
@@ -375,11 +448,7 @@ public class Online extends FragmentActivity implements GameFragment.AttemptsLis
         super.onSaveInstanceState(outState);
 
     }
-    @Override
-    public Object onRetainCustomNonConfigurationInstance (){
-        task.unLink();
-        return task;
-    }
+
 
 
 }

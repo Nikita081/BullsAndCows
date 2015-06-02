@@ -22,8 +22,11 @@ public class Results extends ActionBarActivity {
     private TextView SingleText1, SingleText2, SingleText3, SingleText4;
 
     //multiplayer
-    private TextView MultiText1, MultiText2, MultiText3, MultiText4, MultiText5;
-
+    private TextView multiText1, multiText2, multiText3, multiText4, multiText5;
+    private String [] game_array;
+    private String [] win_array;
+    private String [] best_array;
+    private String [] draw_array;
 
     private TextView mInfoTextView,resultOnline;
     private Client mClient;
@@ -35,13 +38,16 @@ public class Results extends ActionBarActivity {
     public static final String APP_PREFERENCES_SIN_LOS = "single_loss";//количество недоигранных игр
     private static final String STATISTIC = "statistic";
     private static final String EQUALS = "=";
+    private static final String WIN = "win";
+    private static final String GAME = "game";
+    private static final String ATTEMPT = "attempt";
+    private static final String DRAW = "draw";
+    private static final String LOSE = "lose";
+
+
     private VKAccessToken token;
     private String res_log  ="\n";
-    //multiplayer
-    public static final String APP_PREFERENCES_MUL_RES = "multi_result";//количество ходов
-    public static final String APP_PREFERENCES_MUL_WIN = "multi_win";//количество побед
-    public static final String APP_PREFERENCES_MUL_LOS = "multi_loss";//количество проигрышей
-    public static final String APP_PREFERENCES_MUL_DRAW = "multi_draw";//количество ничей
+
 
     private SharedPreferences mSettings;
     private Results.MyTask task;
@@ -51,8 +57,13 @@ public class Results extends ActionBarActivity {
         setContentView(R.layout.activity_results);
         token = getAccessToken();
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-
-
+        task = (MyTask)new MyTask().execute("");
+        while(true){
+            if(mClient !=null && mClient.clientHasRun()){
+                mClient.sendMessage(STATISTIC+EQUALS+token.userId);
+                break;
+            }
+        }
         //single game
         SingleText1 = (TextView) findViewById(R.id.SingleText1);
         SingleText2 = (TextView) findViewById(R.id.SingleText2);
@@ -60,11 +71,11 @@ public class Results extends ActionBarActivity {
         SingleText4 = (TextView) findViewById(R.id.SingleText4);
 
         //multiplayer
-        MultiText1 = (TextView) findViewById(R.id.MultiText1);
-        MultiText2 = (TextView) findViewById(R.id.MultiText2);
-        MultiText3 = (TextView) findViewById(R.id.MultiText3);
-        MultiText4 = (TextView) findViewById(R.id.MultiText4);
-        MultiText5 = (TextView) findViewById(R.id.MultiText5);
+        multiText1 = (TextView) findViewById(R.id.MultiText1);
+        multiText2 = (TextView) findViewById(R.id.MultiText2);
+        multiText3 = (TextView) findViewById(R.id.MultiText3);
+        multiText4 = (TextView) findViewById(R.id.MultiText4);
+        multiText5 = (TextView) findViewById(R.id.MultiText5);
 
     }
 
@@ -75,12 +86,7 @@ public class Results extends ActionBarActivity {
         editor.putInt(APP_PREFERENCES_SIN_RES, mCounter);
         editor.putInt(APP_PREFERENCES_SIN_WIN, mCounter);
         editor.putInt(APP_PREFERENCES_SIN_LOS, mCounter);
-        //multiplayer
-        editor.putInt(APP_PREFERENCES_MUL_RES, mCounter);
-        editor.putInt(APP_PREFERENCES_MUL_WIN, mCounter);
-        editor.putInt(APP_PREFERENCES_MUL_LOS, mCounter);
-        editor.putInt(APP_PREFERENCES_MUL_DRAW, mCounter);
-        editor.apply();
+
         onResume();
     }
 
@@ -99,17 +105,6 @@ public class Results extends ActionBarActivity {
             SingleText3.setText("" + mCounterLOS + "");
             SingleText4.setText(numAttempts(mCounterRES));
 
-            //multiplayer
-            mCounterWIN = mSettings.getInt(APP_PREFERENCES_MUL_WIN, 0);
-            mCounterLOS = mSettings.getInt(APP_PREFERENCES_MUL_LOS, 0);
-            int mCounterDRAW = mSettings.getInt(APP_PREFERENCES_MUL_DRAW, 0);
-            mCounterRES = mSettings.getInt(APP_PREFERENCES_MUL_RES, 0);
-
-            MultiText1.setText("" + (mCounterWIN + mCounterLOS + mCounterDRAW) + "");
-            MultiText2.setText("" + mCounterWIN + "");
-            MultiText3.setText("" + mCounterLOS + "");
-            MultiText4.setText("" + mCounterDRAW + "");
-            MultiText5.setText(numAttempts(mCounterRES));
         }
         else{
 
@@ -154,8 +149,28 @@ public class MyTask extends AsyncTask<String, String, Client> {
     @Override
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
-        res_log+=values[0]+"\n";
-        resultOnline.setText(res_log);
+        if(values[0].startsWith(GAME)){
+            game_array  = values[0].split(EQUALS);
+            multiText1.setText(game_array[1]);
+        }
+        else if(values[0].startsWith(WIN)){
+            win_array = values[0].split(EQUALS);
+            multiText2.setText(win_array[1]);
+
+
+        }
+        else if(values[0].startsWith(ATTEMPT)){
+            best_array = values[0].split(EQUALS);
+            multiText5.setText(best_array[1]);
+        }
+        else if(values[0].startsWith(DRAW)){
+            draw_array = values[0].split(EQUALS);
+            multiText4.setText(draw_array[1]);
+        }
+        else if(values[0].startsWith(LOSE)){
+            String [] lose_aray  = values[0].split(EQUALS);
+            multiText3.setText(lose_aray[1]);
+        }
 
     }
 
