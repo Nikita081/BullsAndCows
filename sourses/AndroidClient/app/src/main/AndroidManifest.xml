@@ -112,6 +112,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fupm.skeb.androidclient.MainActivity" />
         </activity>
+        <activity
+            android:name=".Rules"
+            android:label="@string/title_activity_rules"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fupm.skeb.androidclient.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
