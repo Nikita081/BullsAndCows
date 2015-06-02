@@ -61,14 +61,22 @@
         android:layout_alignRight="@+id/btnResult"
         android:layout_alignEnd="@+id/btnResult" />
 
-    <TextView
+    <com.fupm.skeb.androidclient.MyTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Medium Text"
+        foo:customFont="Ruthie.ttf"
+        android:textColor="#FFFFFF"
         android:id="@+id/textView4"
         android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="30dp" />
+        android:textSize="35sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignLeft="@+id/btnActTwo"
+        android:layout_alignStart="@+id/btnActTwo"
+        android:layout_alignRight="@+id/btnActTwo"
+        android:layout_alignEnd="@+id/btnActTwo"
+        android:gravity="center" />
 
 </RelativeLayout>

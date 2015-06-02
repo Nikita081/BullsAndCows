@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     private String uri = "http://192.168.0.101:10100/test";
     private Button btnActTwo, btnResult, button2;
     private Button background;
-    private TextView textView1;
+    private MyTextView textView4;
 
     //PREFERENCES
     public static final String APP_PREFERENCES = "mysettings";
@@ -44,12 +44,34 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         btnActTwo = (Button) findViewById(R.id.btnActTwo);
         btnResult = (Button) findViewById(R.id.btnResult);
-        textView1 = (TextView) findViewById(R.id.textView1);
+        textView4 = (MyTextView) findViewById(R.id.textView4);
         background = (Button) findViewById(R.id.background);
 
+        final VKRequest request = VKApi.users().get();
+        request.executeWithListener(new VKRequest.VKRequestListener() {
+            @Override
+            public void onComplete(VKResponse response) {
+                super.onComplete(response);
+
+                //Log.v("VK SDK",response.json.toString());
+
+                VKList list = (VKList) response.parsedModel;
+                VKApiUser user = (VKApiUser) list.get(0);
+
+                if (user == null) {
+                    Log.v("Ошибка", "Ничего не загрузилось");
+                } else {
+                    Log.v("User name:", user.first_name + user.last_name);
+                    textView4.setText(user.first_name + " " + user.last_name);
+                }
+            }
+        });
+
         onResume(); // load or change background
+
 
         background.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,25 +150,26 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setNickName(final TextView textView1) {
-        final VKRequest request = VKApi.users().get();
-        request.executeWithListener(new VKRequest.VKRequestListener() {
-            @Override
-            public void onComplete(VKResponse response) {
-                super.onComplete(response);
-
-                //Log.v("VK SDK",response.json.toString());
-
-                VKList list = (VKList) response.parsedModel;
-                VKApiUser user = (VKApiUser) list.get(0);
-
-                if (user == null) {
-                    Log.v("Ошибка", "Ничего не загрузилось");
-                } else {
-                    Log.v("User name:", user.first_name + user.last_name);
-                    textView1.setText(user.first_name + " " + user.last_name);
-                }
-            }
-        });
-    }
+//    private void setNickName( TextView p) {
+//        p= textView4;
+//        final VKRequest request = VKApi.users().get();
+//        request.executeWithListener(new VKRequest.VKRequestListener() {
+//            @Override
+//            public void onComplete(VKResponse response) {
+//                super.onComplete(response);
+//
+//                //Log.v("VK SDK",response.json.toString());
+//
+//                VKList list = (VKList) response.parsedModel;
+//                VKApiUser user = (VKApiUser) list.get(0);
+//
+//                if (user == null) {
+//                    Log.v("Ошибка", "Ничего не загрузилось");
+//                } else {
+//                    Log.v("User name:", user.first_name + user.last_name);
+//                    p.setText(user.first_name + " " + user.last_name);
+//                }
+//            }
+//        });
+//    }
 }
