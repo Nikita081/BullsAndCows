@@ -12,7 +12,8 @@
         android:id="@+id/ruleView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/rules" />
+        android:text="@string/rules"
+        android:textStyle="italic" />
 
     <TextView
         android:layout_width="wrap_content"

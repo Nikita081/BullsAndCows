@@ -11,8 +11,8 @@
     <string name="tryNumber">Enter your number</string>
     <string name="welcome">Play with me, please</string>
     <string name="check">Check</string>
-    <string name="log">Here will be log of your game</string>
-    <string name="log2">Here will be log game of your enemy</string>
+    <string name="log">Your game logs</string>
+    <string name="log2">Enemies game logs</string>
     <string name="title_activity_list_game">ListGame</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="single_player">Single player</string>
@@ -88,5 +88,6 @@
 Результат: 1 бык (цифра 1 стоит в обоих числах на одном месте)\n
 2 коровы (цифры 3 и 4 есть в обоих числах, но стоят на разных местах).\n
 Задача: отгадать число за наименьшее число ходов.</string>
+    <string name="trules">Rules</string>
 
 </resources>
