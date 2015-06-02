@@ -12,7 +12,8 @@
 
     <TextView android:text="@string/welcome" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:textColor="#FAEEDD" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,7 +26,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/buttonSet"
-        android:layout_alignEnd="@+id/buttonSet" />
+        android:layout_alignEnd="@+id/buttonSet"
+        android:textColor="#FAEEDD"
+        android:textColorHint="#FAEEDD" />
 
     <Button
         android:layout_width="50sp"
