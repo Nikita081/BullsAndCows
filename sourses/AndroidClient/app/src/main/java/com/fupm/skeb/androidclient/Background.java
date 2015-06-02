@@ -2,20 +2,19 @@ package com.fupm.skeb.androidclient;
 
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.TextView;
+import android.widget.Button;
+import android.view.View;
 
 
 public class Background extends FragmentActivity {
 
     //layout
     RadioGroup radioGroup;
+    private Button backButton;
 
     //PREFERENCES
     public static final String APP_PREFERENCES = "mysettings";
@@ -29,6 +28,15 @@ public class Background extends FragmentActivity {
 
         radioGroup = (RadioGroup)findViewById(R.id.radiogroup);
         radioGroup.setOnCheckedChangeListener(radioGroupOnCheckedChangeListener);
+
+        backButton = (Button) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
 
         LoadPreferences();
     }

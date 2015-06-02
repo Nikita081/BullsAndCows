@@ -49,7 +49,7 @@ public class MainActivity extends FragmentActivity {
     private VKAccessToken token;
 
     private Button btnActTwo, btnResult, button2;
-    private Button background;
+    private Button background, rules;
     private MyTextView textView4;
 
     //PREFERENCES
@@ -79,6 +79,7 @@ public class MainActivity extends FragmentActivity {
 
         textView4 = (MyTextView) findViewById(R.id.textView4);
         background = (Button) findViewById(R.id.background);
+        rules = (Button) findViewById(R.id.rules);
 
         final VKRequest request = VKApi.users().get();
         request.executeWithListener(new VKRequest.VKRequestListener() {
@@ -112,6 +113,22 @@ public class MainActivity extends FragmentActivity {
                         // TODO Call second activity
 
                         Intent intent = new Intent(MainActivity.this, Background.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.rules:
+                        // TODO Call second activity
+
+                        Intent intent = new Intent(MainActivity.this, Rules.class);
                         startActivity(intent);
                         break;
                     default:
