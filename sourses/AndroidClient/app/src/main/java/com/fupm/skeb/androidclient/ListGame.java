@@ -19,7 +19,7 @@ public class ListGame extends FragmentActivity {
 
     //PREFERENCES
     public static final String APP_PREFERENCES = "mysettings";
-    public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+    public static final String BACKGROUND_INDEX = "BACKGROUND_DRAWABLE_INDEX";
 
     private RelativeLayout mRelativeLayout;
 
@@ -28,16 +28,11 @@ public class ListGame extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_game);
 
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        mRelativeLayout.setBackgroundResource(R.drawable.ferma);
-
-        ChangeBackground mBackground = new ChangeBackground();
-
         SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
+        int groundIndex = mSettings.getInt(BACKGROUND_INDEX, 0);
 
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
+        mRelativeLayout.setBackgroundResource(groundIndex);
 
         gameComp = (Button) findViewById(R.id.comp_game);
         gameComp.setOnClickListener(new View.OnClickListener() {
