@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.content.Context;
 import android.widget.Toast;
@@ -51,6 +52,7 @@ public class Results extends FragmentActivity {
 
     private VKAccessToken token;
     private String res_log  ="\n";
+    private Button buttonCrowsCounter;
 
 
     private SharedPreferences mSettings;
@@ -68,6 +70,8 @@ public class Results extends FragmentActivity {
                 break;
             }
         }
+
+        buttonCrowsCounter = (Button) findViewById(R.id.buttonCrowsCounter);
         //single game
         SingleText1 = (TextView) findViewById(R.id.SingleText1);
         SingleText2 = (TextView) findViewById(R.id.SingleText2);
@@ -81,11 +85,21 @@ public class Results extends FragmentActivity {
         multiText4 = (TextView) findViewById(R.id.MultiText4);
         multiText5 = (TextView) findViewById(R.id.MultiText5);
 
-    }
+       buttonCrowsCounter.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               switch (v.getId()) {
+                   case R.id.buttonCrowsCounter:
+                       // TODO Call second activity
 
-    public void onClick(View v) {
+                       nullPreferences();
+                       break;
+                   default:
+                       break;
+               }
+           }
+       });
 
-        nullPreferences();
     }
 
    @Override
