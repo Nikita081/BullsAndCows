@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -32,30 +35,15 @@ public class Game extends FragmentActivity {
     public static final String APP_PREFERENCES_SIN_WIN = "single_win";
     public static final String APP_PREFERENCES_SIN_LOS = "single_loss";
     private SharedPreferences mSettings;
+    private String TAG = "GameActivityLog";
 
 
     BodyGame bullcow  = new BodyGame();
-
-    //PREFERENCES
-
-    public static final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
-
-    private RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        ChangeBackground mBackground = new ChangeBackground();
-
-        SharedPreferences mS = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int groundIndex = mS.getInt(KEY_RADIOBUTTON_INDEX, 0);
-
-        mRelativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
-        //mRelativeLayout.setBackgroundResource(mBackground.choose(groundIndex));
-
-
 
         set(arrayButton, mycount);
         for (int j = 0; j < 10; j++){

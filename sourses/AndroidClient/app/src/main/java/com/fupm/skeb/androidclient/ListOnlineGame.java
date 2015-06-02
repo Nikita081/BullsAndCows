@@ -63,7 +63,7 @@ public class ListOnlineGame extends FragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        ChangeBackground mBackground = new ChangeBackground();
+        //ChangeBackground mBackground = new ChangeBackground();
 
         SharedPreferences mSettings = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         int groundIndex = mSettings.getInt(KEY_RADIOBUTTON_INDEX, 0);
